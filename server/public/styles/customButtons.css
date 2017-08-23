@@ -1,0 +1,28 @@
+.btnWhite {
+  color: white !important;
+}
+
+.btn-darkBlue {
+  background-color: #89bdd3;
+}
+.btn-lightBlue {
+  background-color: #9ad3de;
+}
+.btn-lightBlue:hover {
+  background-color: #89bdd3;
+}
+.btn-lightGray {
+  background-color: #e3e3e3;
+}
+.btn-gray {
+  background-color: #c9c9c9;
+}
+.btn-newWarning {
+  background-color: #CE1564;
+}
+.btn-newSuccess {
+  background-color: #00A5C4;
+}
+.btn-newSuccess:hover {
+  background-color: #0B83DB;
+}
