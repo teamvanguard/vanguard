@@ -7,20 +7,32 @@
     "test": "nodemon server/server.js",
     "start": "node server/server.js"
   },
-  "author": "Scott Bromander, Kris Szafranski",
+  "author": "Team Vanguard",
   "license": "ISC",
   "dependencies": {
-    "angular": "^1.6.4",
-    "angular-route": "^1.6.4",
+    "angular": "^1.6.6",
+    "angular-animate": "^1.6.6",
+    "angular-route": "^1.6.6",
+    "angular-sweetalert": "^1.1.2",
+    "angular-touch": "^1.6.6",
+    "angular-ui": "^1.0.0",
+    "angular-ui-bootstrap": "^2.5.0",
+    "angular-ui-utils": "^0.1.1",
+    "angular-xeditable": "^0.8.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.13.3",
     "bootstrap": "^3.3.5",
-    "express": "^4.13.1",
-    "express-session": "^1.13.0",
+    "bootstrap-timepicker": "^0.5.2",
+    "checklist-model": "^0.11.0",
+    "express": "^4.15.4",
+    "express-session": "^1.15.5",
     "jquery": "^2.1.4",
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
     "path": "^0.11.14",
-    "pg": "^7.1.0"
+    "pg": "^7.2.0",
+    "swangular": "^1.3.9",
+    "sweetalert": "^1.1.3",
+    "sweetalert2": "^6.6.9"
   }
 }
