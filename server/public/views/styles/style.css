@@ -61,10 +61,6 @@ ul {
   overflow: hidden;
 }
 
-li {
-  float: left;
-}
-
 li a {
   display: block;
   color: white;
@@ -77,6 +73,11 @@ li a {
 li a:hover {
   text-decoration: underline;
   color: #eee;
+}
+/* Add Challenge */
+
+.addChallenge {
+    margin-bottom: 10px;
 }
 /* Login / Register Styles*/
 
@@ -124,44 +125,27 @@ li a:hover {
 details {
   border-radius: 3px;
   background: #EEE;
-  margin: 1em 0;
+  margin: 0;
 }
-
 summary {
-  background: #333;
-  color: #FFF;
   border-radius: 3px;
   padding: 5px 10px;
   outline: none;
-}
+  background-color: white;
+  border-bottom: 1px solid #dfdfdf;
+  font-size: 18px;
 
-/* Style the summary when details box is open */
-details[open] summary {
-  background: #69c773;
-  color: #333;
 }
-
-/* Custom Markers */
-#custom-marker summary {
-  font-size: 17px;
-  vertical-align: top;
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-top: none;
+    background-color: white;
 }
-
-#custom-marker summary::-webkit-details-marker {
-  display: none;
+th {
+    background-color: white;
 }
-
-#custom-marker summary:before {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  content: "";
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/treehouse-icon-sprite.png);
-  background-repeat: no-repeat;
-  background-position: 0 0;
-}
-
-#custom-marker[open] summary:before {
-  background-position: -18px 0;
+.challengeList details table {
+    border: 1px solid #dfdfdf;
 }
