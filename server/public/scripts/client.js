@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap']);
+var myApp = angular.module('myApp', ['ngRoute', 'ui.bootstrap', 'pathgather.popeye']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -11,6 +11,10 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/register', {
       templateUrl: '/views/templates/register.html',
+      controller: 'LoginController as lc'
+    })
+    .when('/teachers', {
+      templateUrl: '/views/templates/teachers.html',
       controller: 'LoginController as lc'
     })
     .when('/user', {
