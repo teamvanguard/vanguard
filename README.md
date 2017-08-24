@@ -1,10 +1,15 @@
-# Name of Project
+# Vanguard-Tech
 
-One Paragraph of project description goes here. Link to the live version of the app if it's hosted on Heroku.
+VT Is a full-stack mobile-responsive web application that promotes student engagement through a student driven challenge/rewards system. Teachers will provide challenges for student body.  Students will be able to accept and complete challenges.  Once a challenge is completed a student will be awarded points.  The points will be redeemable at the school store, which is maintained by a designated store manager.  
 
 ## Built With
 
-List technologies and frameworks here
+SQL         Javascript    Heroku
+Express     Moment.js     Xditable
+AngularJS   HTML 5        CSS 3    
+Bootstrap   Filestack     NodeMailer
+Node        
+
 
 ## Getting Started
 
@@ -19,16 +24,11 @@ Link to software that is required to install the app (e.g. node).
 
 
 ### Installing
+To set up database, read "database.sql"
+Follow the steps
+1) set up database
+2-6) set up individual tables
 
-Steps to get the development environment running.
-
-```sql
-CREATE TABLE "users" (
-  "id" serial primary key,
-  "username" varchar(80) not null UNIQUE,
-  "password" varchar(240) not null
-);
-```
 
 ## Screen Shot
 
@@ -57,7 +57,7 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Name of author(s)
+* Ale Leyva, Antonio Rice, Ben Siegel, Brendin Barone and Dexter St.Pierre
 
 
 ## Acknowledgments
