@@ -1,18 +1,27 @@
-<div class="container">
-  <h1 class="lead">Login</h1>
-    <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-    <form ng-submit="lc.login()">
-      <div>
-          <label for="username">Username:</label>
-          <input type="text" ng-model="lc.user.username" />
+<div class="container login">
+
+<div class="wrapper">
+  <div class="alert alert-danger loginError" role="alert" ng-if="lc.message != ''">{{lc.message}}</div>
+
+  <form ng-submit="lc.login()" class="form-signin">
+
+      <h2 class="form-signin-heading">Please login</h2>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <input type="text" class="form-control " name="username" placeholder="Username" ng-model="lc.user.username" required="" autofocus="" />
       </div>
-      <div>
-          <label for="password">Password:</label>
-          <input type="password" ng-model="lc.user.password" />
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+        <input type="password" ng-model="lc.user.password" class="form-control" name="password" placeholder="Password" required=""/>
+
       </div>
-      <div>
-          <input class="btn btn-default" type="submit" name="submit" value="Log In" />
-          <a href="#register">Register</a>
+
+      <div class="submitButton">
+        <button class="submit btn btn-md btn-primary hidden-sm hidden-xs" type="submit" name="submit" value="Log In">Login</button>
+        <button class="submit btn btn-primary btn-block visible-sm visible-xs" type="submit" name="submit" value="Log In">Login</button>
+        <a href="#register" class="btn hidden-sm hidden-xs btn-link">Register</a>
+        <a href="#register" class="btn btn-block visible-sm visible-xs btn-link">Register</a>
       </div>
     </form>
+  </div>
 </div>

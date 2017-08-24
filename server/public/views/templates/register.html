@@ -1,17 +1,21 @@
 <div class="container">
-  <h1 class="lead">Register User</h1>
   <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-  <form ng-submit="lc.registerUser()">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" ng-model="lc.user.username" />
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" ng-model="lc.user.password" />
-    </div>
-    <input class="btn btn-default" type="submit" name="submit" value="Register" />
-    <a href="#home">Cancel</a>
-  </form>
+    <div class="wrapper">
 
+
+  <form ng-submit="lc.registerUser()" class=form-signin>
+    <h2 class="form-signin-heading">Please register</h2>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+      <input type="text" class="form-control " name="username" placeholder="Username" ng-model="lc.user.username" required="" autofocus="" />
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-key"></i></span>
+      <input type="password" ng-model="lc.user.password" class="form-control" name="password" placeholder="Password" required=""/>
+
+    </div>
+    <div class="submitButton"><button class="submit btn btn-md btn-primary" type="submit" name="submit" value="Register" href="#register">Register</button>
+     <a href="#home" class="btn btn-link">Cancel</a></div>
+  </form>
+</div>
 </div>

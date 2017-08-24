@@ -1,0 +1,167 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 14px;
+}
+
+.instructions .container h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.instructions {
+  background-color: #333333;
+  color: #DDDDDD;
+  padding: 15px;
+}
+
+#entryForm {
+  margin-top: 14px;
+}
+
+#container {
+  margin-top: 10px;
+}
+
+.container p{
+  margin-top : 14px;
+}
+
+.message {
+  padding: 10px 0;
+}
+
+.message p {
+  margin-left: 10px;
+}
+
+.message:nth-child(odd) {
+   background-color: #eeeeee;
+}
+
+.message:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+.btn-danger{
+  margin-left: 10px;
+}
+
+.navbar {
+  background-color: #333333;
+  width: 100%;
+  border-radius: 0px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  text-decoration: underline;
+  color: #eee;
+}
+/* Login / Register Styles*/
+
+.form-control {
+  font-size:16px;
+  height:163px;
+  importantwidth:555px;
+  padding:10px;
+  position:relative;
+  resize:none;
+}
+
+.form-signin {
+  background-color:#fff;
+  border:1px solid rgba(0,0,0,0.1);
+  margin:0 auto;
+  max-width:380px;
+  padding:15px 35px 45px;
+}
+.borderRight {
+    min-height: 438px !important;
+}
+.form-signin .checkbox {
+  font-weight:400;
+}
+
+.form-signin .form-signin-heading,.form-signin .checkbox {
+  margin-bottom:30px;
+}
+
+.form-signin input[type="password"],
+.form-signin input[type="text"] {
+  border-top-left-radius:0;
+  border-top-right-radius:0;
+}
+.submitButton {
+  padding-top: 25px;
+}
+.form-signin input[type="text"]
+{
+  margin-bottom:-1px;
+}
+/*Teacher Challenge View*/
+
+details {
+  border-radius: 3px;
+  background: #EEE;
+  margin: 1em 0;
+}
+
+summary {
+  background: #333;
+  color: #FFF;
+  border-radius: 3px;
+  padding: 5px 10px;
+  outline: none;
+}
+
+/* Style the summary when details box is open */
+details[open] summary {
+  background: #69c773;
+  color: #333;
+}
+
+/* Custom Markers */
+#custom-marker summary {
+  font-size: 17px;
+  vertical-align: top;
+}
+
+#custom-marker summary::-webkit-details-marker {
+  display: none;
+}
+
+#custom-marker summary:before {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  content: "";
+  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/treehouse-icon-sprite.png);
+  background-repeat: no-repeat;
+  background-position: 0 0;
+}
+
+#custom-marker[open] summary:before {
+  background-position: -18px 0;
+}
