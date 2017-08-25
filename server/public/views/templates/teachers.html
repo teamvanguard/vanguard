@@ -1,14 +1,15 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
   <h1>Challenges</h1>
-  <div class="addChallenge">
+  <div class="addChallenge col-md-3">
     <form class="form-horizontal">
     <fieldset>
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="challengeName">Text Input</label>
-      <div class="col-md-4">
+      <div>
+        <label class="control-label" for="challengeName">Challenge Name</label>
+
       <input id="challengeName" name="challengeName" type="text" placeholder="Challenge Name" class="form-control input-md">
 
       </div>
@@ -16,28 +17,30 @@
 
     <!-- Textarea -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="textarea">Challenge Description</label>
-      <div class="col-md-4">
+      <div>
+        <label class="control-label" for="textarea">Challenge Description</label>
+
         <textarea class="form-control" id="textarea" name="textarea"></textarea>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-4 control-label">Start Date</label>
-      <div class="col-md-4">
+      <div>
+        <label class="control-label">Start Date</label>
+
         <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md">
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-4 control-label">End Date</label>
-      <div class="col-md-4">
+      <div>
+        <label class="control-label">End Date</label>
+
         <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md">
       </div>
     </div>
 
     <!-- Button -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="addChallenge"></label>
-      <div class="col-md-4">
+      <div class="col-md-3">
         <button id="addChallenge" name="addChallenge" class="btn btn-primary">Add Challenge</button>
       </div>
     </div>
@@ -45,9 +48,9 @@
     </fieldset>
     </form>
   </div>
-  <div class="challengeList">
+  <div class="challengeList col-md-9">
     <details>
-      <summary>Homecoming Dance</summary>
+      <summary>{{challenge.name}}</summary>
       <table class="table table-responsive">
         <thead>
           <tr>
@@ -74,24 +77,20 @@
         <tbody>
           <tr>
             <td>
-              Homecoming Dance
+              {{challenge.name}}
             </td>
             <td>
-              Buy Tickets to the dance
+              {{challenge.description}}
             </td>
             <td>
-              11/5/17
+              {{challenge.start_date}}
             </td>
             <td>
-              11/10/17
+            {{challenge.end_date}}
             </td>
             <td>
               <ul>
-                <li>Ben Siegel</li>
-                <li>Ben Siegel</li>
-                <li>Ben Siegel</li>
-                <li>Ben Siegel</li>
-                <li>Ben Siegel</li>
+                {{req.user.id}}
               </ul>
             </td>
             <td></td>
