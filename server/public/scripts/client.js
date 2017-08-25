@@ -26,6 +26,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/storefront', {
+      templateUrl: '/views/templates/storefront.html',
+      controller: 'ManagerStorefrontController as msc',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController',
