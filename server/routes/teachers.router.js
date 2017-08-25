@@ -3,4 +3,6 @@ var router = express.Router();
 var path = require('path');
 
 
-router.get('/teacher')
+// router.get('/teacher')
+
+module.exports = router;

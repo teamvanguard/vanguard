@@ -1,7 +1,7 @@
 myApp.controller('TeacherChallengesController', function(ChallengesService) {
   console.log('TeacherChallengesController created');
-
   var tcc = this;
+  tcc.challengesService = ChallengesService;
 
   tcc.getChallenges = function() {
     console.log('in controller');
