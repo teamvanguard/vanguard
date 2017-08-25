@@ -30,9 +30,10 @@ if(req.isAuthenticated()){
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = 'SELECT "challenges"."id", "challenges"."name", "challenges"."description",' +
-        '"challenges"."start_date", "challenges"."end_date", "challenges"."pts_value", "challenges"."teacher_id" ' +
-        'FROM "challenges" JOIN "users" ON "users"."id" = "challenges"."teacher_id"' +
+      var queryText = 'SELECT "challenges"."id", "challenges"."name",' +
+        '"challenges"."description", "challenges"."start_date",' +
+        '"challenges"."end_date", "challenges"."pts_value", "challenges"."teacher_id" ' +
+        'FROM "challenges"' +
         'ORDER BY "start_date" ASC;';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, [req.user.id], function(errorMakingQuery, result) {
