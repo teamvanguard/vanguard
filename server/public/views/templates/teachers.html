@@ -3,164 +3,76 @@
   <h1>Challenges</h1>
   <div class="addChallenge col-md-3">
     <form class="form-horizontal">
-    <fieldset>
+      <fieldset>
 
-    <!-- Text input-->
-    <div class="form-group">
-      <div>
-        <label class="control-label" for="challengeName">Challenge Name</label>
+        <!-- Text input-->
+        <div class="form-group">
+          <div>
+            <label class="control-label" for="challengeName">Challenge Name</label>
 
-      <input id="challengeName" name="challengeName" type="text" placeholder="Challenge Name" class="form-control input-md">
+            <input id="challengeName" name="challengeName" type="text" placeholder="Challenge Name" class="form-control input-md">
 
-      </div>
-    </div>
+          </div>
+        </div>
 
-    <!-- Textarea -->
-    <div class="form-group">
-      <div>
-        <label class="control-label" for="textarea">Challenge Description</label>
+        <!-- Textarea -->
+        <div class="form-group">
+          <div>
+            <label class="control-label" for="textarea">Challenge Description</label>
 
-        <textarea class="form-control" id="textarea" name="textarea"></textarea>
-      </div>
-    </div>
-    <div class="form-group">
-      <div>
-        <label class="control-label">Start Date</label>
+            <textarea class="form-control" id="textarea" name="textarea"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label class="control-label">Start Date</label>
 
-        <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md">
-      </div>
-    </div>
-    <div class="form-group">
-      <div>
-        <label class="control-label">End Date</label>
+            <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md">
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label class="control-label">End Date</label>
 
-        <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md">
-      </div>
-    </div>
+            <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md">
+          </div>
+        </div>
 
-    <!-- Button -->
-    <div class="form-group">
-      <div class="col-md-3">
-        <button id="addChallenge" name="addChallenge" class="btn btn-primary">Add Challenge</button>
-      </div>
-    </div>
+        <!-- Button -->
+        <div class="form-group">
+          <div>
+            <button id="addChallenge" name="addChallenge" class="btn btn-primary">Add Challenge</button>
+          </div>
+        </div>
 
-    </fieldset>
+      </fieldset>
     </form>
   </div>
   <div class="challengeList col-md-9">
-    <details>
-      <summary>{{challenge.name}}</summary>
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th>
-              Challenge
-            </th>
-            <th>
-              Description
-            </th>
-            <th>
-              Start Date
-            </th>
-            <th>
-              End Date
-            </th>
-            <th>
-              Students
-            </th>
-            <th>
-              Pass or Fail
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              {{challenge.name}}
-            </td>
-            <td>
-              {{challenge.description}}
-            </td>
-            <td>
-              {{challenge.start_date}}
-            </td>
-            <td>
-            {{challenge.end_date}}
-            </td>
-            <td>
-              <ul>
-                {{req.user.id}}
-              </ul>
-            </td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </details>
-    <details>
-      <summary>Homecoming Dance</summary>
-      <table class="table table-responsive">
-        <thead>
-          <tr>
-            <th>
-              Challenge
-            </th>
-            <th>
-              Description
-            </th>
-            <th>
-              Start Date
-            </th>
-            <th>
-              End Date
-            </th>
-            <th>
-              Students
-            </th>
-            <th>
-              Pass or Fail
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              Homecoming Dance
-            </td>
-            <td>
-              Buy Tickets to the dance
-            </td>
-            <td>
-              11/5/17
-            </td>
-            <td>
-              11/10/17
-            </td>
-            <td>
-              <ul>
-                <li>Ben Siegel</li>
-                <li>Ben Siegel</li>
-                <li>Ben Siegel</li>
-                <li>Ben Siegel</li>
-                <li>Ben Siegel</li>
-              </ul>
-            </td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </details>
-    <details>
-      <summary>Challenge Three</summary>
-      <p> - by Refsnes Data. All Rights Reserved.</p>
-      <p>All content and graphics on this web site are the property of the company Refsnes Data.</p>
-    </details>
-    <details>
-      <summary>Challenge Four</summary>
-      <p> - by Refsnes Data. All Rights Reserved.</p>
-      <p>All content and graphics on this web site are the property of the company Refsnes Data.</p>
-    </details>
-  </div>
+    <details open>
+      <summary>Say hi to people in the hall</summary>
+      <div class="challengeInfo">
+        <div class="challengeItem"><label>Description:</label>Dont throw food at the students when you say hi</div>
+        <div class="challengeItem"><label>Start Date:</label>11/16/17</div>
+        <div class="challengeItem"><label>End Date:</label>11/21/17</div>
+        <div class="challengeItem pull-left"><label>Students:</label>
+          <div class="studentList pull-right">
+            <table>
+              <tr>
+                <td>Ben Siegel</td>
+                <td><button type="button" name="button" class="btn btn-xs btn-primary">Complete</button>
+                    <button type="button" name="button" class="btn btn-xs btn-danger">Incomplete</button>
+                </td>
+              </tr>
+            </table>
+            </div>
+          </div>
+          <div class="clearfix">
 
-</div>
+        </div>
+
+        </div>
+      </details>
+    </div>
+
+  </div>
