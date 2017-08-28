@@ -17,6 +17,12 @@ body, html {
     right: 0;
     padding: 10px;
 }
+.padding {
+  padding: 0 15px;
+}
+.topPadding {
+  margin-top: -10px;
+}
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;
