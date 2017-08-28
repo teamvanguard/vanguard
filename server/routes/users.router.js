@@ -71,7 +71,7 @@ router.get('/students', function(req, res) {
       }); // end query
     } // end if
   }); // end pool
-});
+}); // end get /students route
 
 //sell item to student
 router.put('/sell', function(req, res) {
