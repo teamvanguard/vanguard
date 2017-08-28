@@ -1,0 +1,34 @@
+<div class="">
+  <form ng-submit="msc.submitNewItem(msc.newItem)">
+    <input type="text" placeholder="item name" ng-model="msc.newItem.name">
+    <input type="text" placeholder="item description" ng-model="msc.newItem.description">
+    <input type="number" placeholder="cost" ng-model="msc.newItem.cost">
+    <input type="radio" ng-model="msc.newItem.school_community" value="true">school
+    <input type="radio" ng-model="msc.newItem.school_community" value="false">community
+    <button type="submit" name="button">Submit</button>
+  </form>
+  <button ng-click="msc.getItems()">get items</button>
+  <div>
+    <table>
+      <thead>
+        <th>name</th>
+        <th>desc</th>
+        <th>points</th>
+        <th>school_community</th>
+        <th>last_edit_user_id</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in msc.itemList">
+          <td>{{item.item_name}}</td>
+          <td>{{item.item_description}}</td>
+          <td>{{item.pts_value}}</td>
+          <td>{{item.school_community}}</td>
+          <td>{{item.name}}</td>
+          <td><button ng-click="msc.editItem(item)">Edit</button></td>
+          <td><button ng-click="msc.deleteItem(item)">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

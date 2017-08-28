@@ -3,18 +3,40 @@ body, html {
   padding: 0;
   font-family: sans-serif;
   font-size: 14px;
+  background-color: white;
 }
-
+/* Global Styles*/
+.alignCenter {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.topRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
 .instructions .container h1 {
   font-size: 32px;
   font-weight: 600;
 }
-
-.instructions {
-  background-color: #333333;
-  color: #DDDDDD;
-  padding: 15px;
+.logo img {
+  padding: 10px;
 }
+.studentPhoto img {
+    padding: 30px;
+}
+h1.vanguardTech {
+    background-image: url("/views/img/logo.png");
+    background-repeat: no-repeat;
+    display: block;
+    height:135px;
+    text-indent: -999px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
 
 #entryForm {
   margin-top: 14px;
@@ -32,17 +54,6 @@ body, html {
   padding: 10px 0;
 }
 
-.message p {
-  margin-left: 10px;
-}
-
-.message:nth-child(odd) {
-   background-color: #eeeeee;
-}
-
-.message:nth-child(even) {
-  background-color: #f8f8f8;
-}
 
 .btn-danger{
   margin-left: 10px;
@@ -53,16 +64,22 @@ body, html {
   width: 100%;
   border-radius: 0px;
 }
+.navbar-default {
+    border-top: 3px solid #000 !important;
+    background-color: white !important;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #333 !important;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    font-weight: 500;
+}
 
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   overflow: hidden;
-}
-
-li {
-  float: left;
 }
 
 li a {
@@ -77,6 +94,12 @@ li a {
 li a:hover {
   text-decoration: underline;
   color: #eee;
+}
+/* Add Challenge */
+
+.addChallenge {
+    margin-bottom: 10px;
+    padding-right: 25px;
 }
 /* Login / Register Styles*/
 
@@ -124,44 +147,28 @@ li a:hover {
 details {
   border-radius: 3px;
   background: #EEE;
-  margin: 1em 0;
+  margin: 0;
 }
+.challengeInfo label {
+    padding-right: 5px;
 
+}
+.addChallenge .form-group {
+    margin-bottom: 5px;
+}
 summary {
-  background: #333;
-  color: #FFF;
   border-radius: 3px;
   padding: 5px 10px;
   outline: none;
-}
+  background-color: white;
+  border-bottom: 1px solid #dfdfdf;
+  font-size: 18px;
 
-/* Style the summary when details box is open */
-details[open] summary {
-  background: #69c773;
-  color: #333;
 }
-
-/* Custom Markers */
-#custom-marker summary {
-  font-size: 17px;
-  vertical-align: top;
+.challengeInfo {
+    background-color: white;
+    padding: 10px;
 }
-
-#custom-marker summary::-webkit-details-marker {
-  display: none;
-}
-
-#custom-marker summary:before {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  margin-right: 8px;
-  content: "";
-  background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/treehouse-icon-sprite.png);
-  background-repeat: no-repeat;
-  background-position: 0 0;
-}
-
-#custom-marker[open] summary:before {
-  background-position: -18px 0;
+.studentList td {
+    padding-right: 10px;
 }
