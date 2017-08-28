@@ -6,6 +6,12 @@ body, html {
   background-color: white;
 }
 /* Global Styles*/
+.table > thead > tr > th {
+  border-bottom: none !important;
+}
+.borderRight {
+  border-right: 1px solid #dfdfdf;
+}
 .alignCenter {
   margin-left: auto;
   margin-right: auto;
@@ -16,6 +22,18 @@ body, html {
     top: 0;
     right: 0;
     padding: 10px;
+}
+.padding {
+  padding: 0 15px;
+}
+.paddingRight {
+  padding-right: 10px;
+}
+.topPadding {
+  margin-top: -10px;
+}
+.paddingBottom {
+  padding-bottom: 25px;
 }
 .instructions .container h1 {
   font-size: 32px;
