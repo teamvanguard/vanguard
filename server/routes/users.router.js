@@ -16,10 +16,10 @@ router.get('/', function(req, res){
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = SELECT '"users"."id", "users"."name",', +
-      '  "users"."username", "users"."studentId", "users"."pic",', +
-      '  "users"."pts", "users"."lifetimePts", "users"."email"', +
-      'FROM "users" ORDER BY "role", "username" ASC;';
+      var queryText = "SELECT userid, username,", +
+    "users.username, users.studentId, users.pic,", +
+    "users.pts, users.lifetimePts, users.email,", +
+    "FROM users ORDER BY role, username ASC;";
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, function(errorMakingQuery, result){
         done();
