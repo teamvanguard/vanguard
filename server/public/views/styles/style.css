@@ -23,9 +23,6 @@ body, html {
     right: 0;
     padding: 10px;
 }
-th, td {
-    font-size: 12px;
-}
 .padding {
   padding: 0 15px;
 }

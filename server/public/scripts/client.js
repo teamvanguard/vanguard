@@ -13,10 +13,6 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
     })
-    .when('/teachers', {
-      templateUrl: '/views/templates/teachers.html',
-      // controller: 'TeacherController as tc'
-    })
     .when('/student', {
       templateUrl: '/views/templates/student.html',
       // controller: 'TeacherController as tc'
@@ -50,7 +46,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/teachers', {
       templateUrl: '/views/templates/teachers.html',
-      controller: 'TeacherChallengesController as tcc',
+      // controller: 'TeacherChallengesController as tcc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();

@@ -50,11 +50,4 @@ myApp.controller('TeacherChallengesController', function(ChallengesService) {
       tcc.getChallenges();
     });
   }; // end deleteChallenge
-
-
-
-
-
-
-
 }); // end TeacherChallengesController
