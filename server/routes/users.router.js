@@ -55,7 +55,7 @@ router.get('/students', function(req, res) {
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = "SELECT * FROM users WHERE role = 4";
+      var queryText = 'SELECT username, studentId, pts FROM users WHERE role = 4;';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, function(errorMakingQuery, result){
         done();
