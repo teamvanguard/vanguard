@@ -37,5 +37,46 @@ router.get('/', function(req, res){
   }); // end pool
 }); // end of GET
 
+//get list of students
+router.get('/students', function(req, res) {
+  console.log('users router get /students');
+  res.sendStatus(200);
+});
+
+//sell item to student
+router.put('/sell', function(req, res) {
+  console.log('users router put /sell');
+  res.sendStatus(200);
+});
+
+//select all users of a specific role
+router.get('/:role', function(req, res) {
+  console.log('users router get by role');
+  res.sendStatus(200);
+});
+
+//get all transactions
+router.get('/transactions', function(req, res) {
+  console.log('users router get /transactions');
+  res.sendStatus(200);
+});
+
+//create a teacher or admin or manager
+router.post('/', function(req, res) {
+  console.log('users router post create teacher or manager or admin');
+  res.sendStatus(200);
+});
+
+//edit a user role
+router.put('/', function(req, res) {
+  console.log('users router put edit user role');
+  res.sendStatus(200);
+});
+
+//delete a user
+router.delete('/:id', function(req, res) {
+  console.log('users router delete a user');
+  res.sendStatus(200);
+});
 
 module.exports = router;
