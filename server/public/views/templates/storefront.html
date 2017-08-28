@@ -1,61 +1,97 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
 <div class="container">
-  <div class="col-md-3">
+  <div class="row">
+    <div class="col-md-3">
 
-    <form class="form-horizontal padding" ng-submit="msc.submitNewItem(msc.newItem)">
-      <!-- Text input-->
-      <div class="form-group itemName">
-
-        <label for="itemName">Item Name</label>
-        <input id="itemName" name="itemName" type="text" placeholder="Item Name" class="form-control">
-      </div>
-
-      <!-- Text input-->
-      <div class="form-group">
-        <label for="itemDescription">Item Description</label>
-        <textarea id="itemDescription" rows="2" name="itemDescription" type="textarea" placeholder="Item Description" class=" form-control"></textarea>
-
-      </div>
-
-      <!-- Text input-->
-      <div class="form-group">
-        <label for="itemCost">Item Cost</label>
-        <input id="itemCost" name="itemCost" type="text" placeholder="Item Cost" class="form-control">
-
-      </div>
-      <div class="form-group">
-        <label for="itemCost">Item Quantity</label>
-        <input id="itemQuantity" name="itemQuanity" type="number" placeholder="Item Quantity" class="form-control">
-
-      </div>
+    </div>
+    <div class="col-md-9 paddingBottom">
 
 
-      <!-- Multiple Radios -->
-      <div class="form-group">
-        <label class="sr-only" for="radio">Community or School</label>
+      <form class="form-inline">
 
-        <div class="radio">
-          <label for="type-0">
-            <input type="radio" name="type" id="type-0" value="True" checked="checked">
-            School
-          </label>
+        <!-- Text input-->
+        <div class="input-group paddingRight input-group-sm">
+          <input type="text" class="form-control " placeholder="Student Name">
+          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
         </div>
-        <div class="radio">
-          <label for="type-1">
-            <input type="radio" name="type" id="type-1" value="False">
-            Community
-          </label>
+
+        <!-- Text input-->
+        <div class="input-group input-group-sm paddingRight ">
+          <input type="text" class="form-control input-xs" placeholder="Student ID">
+          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+
         </div>
-      </div>
 
-      <div class="form-group">
-        <label class="sr-only" for="getItems">List Items</label>
-        <button type="submit" class="btn btn-info btn-sm">Add Items</button>
-      </div>
+        <!-- Button -->
+        <div class="form-group ">
+          <label class=" control-label sr-only" for="search"></label>
+          <div class="">
+            <button id="search" name="search" class="btn btn-primary btn-sm">Search</button>
+          </div>
+        </div>
 
-    </form>
+      </form>
+    </div>
   </div>
+  <div class="row">
+
+    <div class="col-md-3 borderRight">
+
+      <form class="form-horizontal padding" ng-submit="msc.submitNewItem(msc.newItem)">
+        <!-- Text input-->
+        <div class="form-group itemName">
+
+          <label for="itemName">Item Name</label>
+          <input id="itemName" name="itemName" type="text" placeholder="Item Name" class="form-control">
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label for="itemDescription">Item Description</label>
+          <textarea id="itemDescription" rows="2" name="itemDescription" type="textarea" placeholder="Item Description" class=" form-control"></textarea>
+
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <label for="itemCost">Item Cost</label>
+          <input id="itemCost" name="itemCost" type="text" placeholder="Item Cost" class="form-control">
+
+        </div>
+        <div class="form-group">
+          <label for="itemCost">Item Quantity</label>
+          <input id="itemQuantity" name="itemQuanity" type="number" placeholder="Item Quantity" class="form-control">
+
+        </div>
+
+
+        <!-- Multiple Radios -->
+        <div class="form-group">
+          <label class="sr-only" for="radio">Community or School</label>
+
+          <div class="radio">
+            <label for="type-0">
+              <input type="radio" name="type" id="type-0" value="True" checked="checked">
+              School
+            </label>
+          </div>
+          <div class="radio">
+            <label for="type-1">
+              <input type="radio" name="type" id="type-1" value="False">
+              Community
+            </label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="sr-only" for="getItems">List Items</label>
+          <button type="submit" class="btn btn-info btn-sm">Add Items</button>
+        </div>
+
+      </form>
+    </div>
     <div class="col-md-9 topPadding">
 
 
@@ -84,5 +120,5 @@
         </tbody>
       </table>
     </div>
-    <!-- </div> -->
   </div>
+</div>
