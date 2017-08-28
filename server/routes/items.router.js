@@ -56,12 +56,12 @@ router.get('/', function(req, res) {
       } else {
         // gets items with the name of the last person who edited for the store and adim
         if(req.user.role == 2 || req.user.role == 1) {
-          var queryText = 'SELECT items.id, items.item_name, items.item_description, items.pts_value, items.pic, items.school_community, users.name FROM items JOIN users ON users.id = items.last_edit_user_id;';
+          var queryText = 'SELECT items.id, items.item_name, items.item_description, items.pts_value, items.pic, items.school_community, users.name FROM items JOIN users ON users.id = items.last_edit_user_id ORDER BY items.id ASC;';
           //var queryText = 'SELECT items.item_name, items.item_description, items.pts_value, items.pic, items.school_community, users.name FROM items JOIN users ON users.id = items.last_edit_user_id;';
         }
         // gets just the items for the students and teachers
         else {
-          var queryText = 'SELECT item_name, item_description, pts_value, pic, school_community FROM items;';
+          var queryText = 'SELECT item_name, item_description, pts_value, pic, school_community, qty FROM items ORDER BY id ASC;';
         }
         // errorMakingQuery is a bool, result is an object
         client.query(queryText, function(errorMakingQuery, result) {
