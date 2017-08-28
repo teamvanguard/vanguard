@@ -1,0 +1,195 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  font-size: 14px;
+  background-color: white;
+}
+/* Global Styles*/
+.table > thead > tr > th {
+  border-bottom: none !important;
+}
+.borderRight {
+  border-right: 1px solid #dfdfdf;
+}
+.alignCenter {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.topRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+}
+th, td {
+    font-size: 12px;
+}
+.padding {
+  padding: 0 15px;
+}
+.paddingRight {
+  padding-right: 10px;
+}
+.topPadding {
+  margin-top: -10px;
+}
+.paddingBottom {
+  padding-bottom: 25px;
+}
+.instructions .container h1 {
+  font-size: 32px;
+  font-weight: 600;
+}
+.logo img {
+  padding: 10px;
+}
+.studentPhoto img {
+    padding: 30px;
+}
+h1.vanguardTech {
+    background-image: url("/views/img/logo.png");
+    background-repeat: no-repeat;
+    display: block;
+    height:135px;
+    text-indent: -999px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+
+#entryForm {
+  margin-top: 14px;
+}
+
+#container {
+  margin-top: 10px;
+}
+
+.container p{
+  margin-top : 14px;
+}
+
+.message {
+  padding: 10px 0;
+}
+
+
+.btn-danger{
+  margin-left: 10px;
+}
+
+.navbar {
+  background-color: #333333;
+  width: 100%;
+  border-radius: 0px;
+}
+.navbar-default {
+    border-top: 3px solid #000 !important;
+    background-color: white !important;
+}
+.navbar-default .navbar-nav > li > a {
+    color: #333 !important;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    font-weight: 500;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  text-decoration: underline;
+  color: #eee;
+}
+/* Add Challenge */
+
+.addChallenge {
+    margin-bottom: 10px;
+    padding-right: 25px;
+}
+/* Login / Register Styles*/
+
+.form-control {
+  font-size:16px;
+  height:163px;
+  importantwidth:555px;
+  padding:10px;
+  position:relative;
+  resize:none;
+}
+
+.form-signin {
+  background-color:#fff;
+  border:1px solid rgba(0,0,0,0.1);
+  margin:0 auto;
+  max-width:380px;
+  padding:15px 35px 45px;
+}
+.borderRight {
+    min-height: 438px !important;
+}
+.form-signin .checkbox {
+  font-weight:400;
+}
+
+.form-signin .form-signin-heading,.form-signin .checkbox {
+  margin-bottom:30px;
+}
+
+.form-signin input[type="password"],
+.form-signin input[type="text"] {
+  border-top-left-radius:0;
+  border-top-right-radius:0;
+}
+.submitButton {
+  padding-top: 25px;
+}
+.form-signin input[type="text"]
+{
+  margin-bottom:-1px;
+}
+/*Teacher Challenge View*/
+
+details {
+  border-radius: 3px;
+  background: #EEE;
+  margin: 0;
+}
+.challengeInfo label {
+    padding-right: 5px;
+
+}
+.addChallenge .form-group {
+    margin-bottom: 5px;
+}
+summary {
+  border-radius: 3px;
+  padding: 5px 10px;
+  outline: none;
+  background-color: white;
+  border-bottom: 1px solid #dfdfdf;
+  font-size: 18px;
+
+}
+.challengeInfo {
+    background-color: white;
+    padding: 10px;
+}
+.studentList td {
+    padding-right: 10px;
+}

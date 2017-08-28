@@ -1,0 +1,78 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+  <h1>Challenges</h1>
+  <div class="addChallenge col-md-3">
+    <form class="form-horizontal">
+      <fieldset>
+
+        <!-- Text input-->
+        <div class="form-group">
+          <div>
+            <label class="control-label" for="challengeName">Challenge Name</label>
+
+            <input id="challengeName" name="challengeName" type="text" placeholder="Challenge Name" class="form-control input-md">
+
+          </div>
+        </div>
+
+        <!-- Textarea -->
+        <div class="form-group">
+          <div>
+            <label class="control-label" for="textarea">Challenge Description</label>
+
+            <textarea class="form-control" id="textarea" name="textarea"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label class="control-label">Start Date</label>
+
+            <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md">
+          </div>
+        </div>
+        <div class="form-group">
+          <div>
+            <label class="control-label">End Date</label>
+
+            <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md">
+          </div>
+        </div>
+
+        <!-- Button -->
+        <div class="form-group">
+          <div>
+            <button id="addChallenge" name="addChallenge" class="btn btn-primary">Add Challenge</button>
+          </div>
+        </div>
+
+      </fieldset>
+    </form>
+  </div>
+  <div class="challengeList col-md-9">
+    <details open>
+      <summary>Say hi to people in the hall</summary>
+      <div class="challengeInfo">
+        <div class="challengeItem"><label>Description:</label>Dont throw food at the students when you say hi</div>
+        <div class="challengeItem"><label>Start Date:</label>11/16/17</div>
+        <div class="challengeItem"><label>End Date:</label>11/21/17</div>
+        <div class="challengeItem pull-left"><label>Students:</label>
+          <div class="studentList pull-right">
+            <table>
+              <tr>
+                <td>Ben Siegel</td>
+                <td><button type="button" name="button" class="btn btn-xs btn-primary">Complete</button>
+                    <button type="button" name="button" class="btn btn-xs btn-danger">Incomplete</button>
+                </td>
+              </tr>
+            </table>
+            </div>
+          </div>
+          <div class="clearfix">
+
+        </div>
+
+        </div>
+      </details>
+    </div>
+
+  </div>
