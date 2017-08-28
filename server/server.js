@@ -1,3 +1,4 @@
+require('dotenv').config(); //needed to set environment variable
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -11,6 +12,7 @@ var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
 
 var port = process.env.PORT || 5000;
+
 
 // Body parser middleware
 app.use(bodyParser.json());

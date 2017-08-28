@@ -19,7 +19,6 @@ router.get('/', function(req, res) {
     res.send(false);
   }
 });
-
 // clear all server session information about this user
 router.get('/logout', function(req, res) {
   // Use passport's built-in method to log out the user
