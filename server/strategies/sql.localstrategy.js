@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
         }
         var user = {};
         //adding user to database if not already there
-        client.query("INSERT INTO users (username, name, email, pic) VALUES ($2,$1, $2, $3) ON CONFLICT (email) DO NOTHING",
+        client.query("INSERT INTO users (username, name, email, pic) VALUES ($2,$1, $2, $3) ON CONFLICT (email) DO UPDATE SET username = $2, name = $1, email = $2, pic = $3",
         [profile.displayName, profile.emails[0].value, profile.photos[0].value ],
         function(err, result) {
         // Handle Errors
