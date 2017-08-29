@@ -4,6 +4,7 @@ var path = require('path');
 var pool = require('../modules/pool.js');
 var encryptLib = require('../modules/encryption');
 var pg = require('pg');
+var sell = require('../modules/sell.item.module.js');
 
 // roles:
 // 1 = admin
@@ -24,7 +25,7 @@ router.get('/', function(req, res){
       // Now we're going to GET things from the db
       var queryText = 'SELECT "users"."id", "users"."name",' +
       '  "users"."username", "users"."studentId", "users"."pic",' +
-      '  "users"."pts", "users"."lifetimePts", "users"."email"'+
+      '  "users"."pts", "users"."lifetimePts", "users"."email"' +
       'FROM "users" ORDER BY "role", "username" ASC;';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, function(errorMakingQuery, result){
@@ -76,7 +77,8 @@ router.get('/students', function(req, res) {
 //sell item to student
 router.put('/sell', function(req, res) {
   console.log('users router put /sell');
-  res.sendStatus(200);
+  console.log(req.body);
+  sell.sellItem(req.body.student, req.body.item, res, req);
 });
 
 //select all users of a specific role
@@ -132,5 +134,7 @@ router.delete('/:id', function(req, res) {
   console.log('users router delete a user');
   res.sendStatus(200);
 });
+
+
 
 module.exports = router;

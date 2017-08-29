@@ -6,29 +6,23 @@
 
     </div>
     <div class="col-md-9 paddingBottom">
-
-
-      <form class="form-inline">
+      <form class="form-inline search">
 
         <!-- Text input-->
-        <div class="input-group paddingRight input-group-md">
-          <input type="text" class="form-control " placeholder="Student Name">
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
-
+        <div class="form-group paddingRight">
+          <input type="text" class="form-control input-md " placeholder="Student Name">
         </div>
 
         <!-- Text input-->
-        <div class="input-group input-group-md paddingRight ">
+        <div class="form-group paddingRight descriptionIn">
           <input type="text" class="form-control input-md" placeholder="Item">
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
-
         </div>
 
         <!-- Button -->
         <div class="form-group ">
           <label class=" control-label sr-only" for="search"></label>
           <div class="">
-            <button id="search" name="search" class="btn btn-primary btn-md">Sell</button>
+            <button id="search" name="search" class="btn btn-primary btn-sm" ng-click="msc.sellItem()">Search</button>
           </div>
         </div>
 

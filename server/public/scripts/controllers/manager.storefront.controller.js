@@ -33,6 +33,19 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http) {
     $http.delete('/items/' + item.id).then(function(response){
       console.log(response);
       msc.getItems();
-    })
-  }
+    });
+  };
+  msc.sellItem = function(){
+    console.log('sell item');
+    var item = msc.itemList[10];
+    var student = {studentId: 372837};
+    var data = {
+      item: item,
+      student: student
+    };
+    $http.put('/users/sell', data).then(function(response) {
+      console.log(response);
+    });
+  };
+  msc.getItems();
 });
