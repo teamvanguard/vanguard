@@ -75,11 +75,12 @@ router.post('/', function(req, res) {
           } else {
             // We connected to the database!!!
             // Now we're going to POST things to the db
-            var queryText = "INSERT INTO challenges (name, descriptin, start_date, end_date, pts_value, teacher_id) " +
-              "VALUES ($1, $2, $3, $4, $5, $6);";
+            var queryText = "INSERT INTO challenges (name, description, start_date, end_date, pts_value, teacher_id) " +
+              "VALUES ($1, $2, $3, $4, $5, $6); ";
 
             // errorMakingQuery is a bool, result is an object
-            db.query(queryText, [newChallenge.name, newChallenge.description, newChallenge.start_date, newChallenge.end_date, newChallenge.pts_value, req.user.id, function(errorMakingQuery, result) {
+            db.query(queryText, [newChallenge.name, newChallenge.description, newChallenge.start_date, newChallenge.end_date, newChallenge.pts_value, req.user.id],
+              function(errorMakingQuery, result) {
                 done();
 
                 if (errorMakingQuery) {
@@ -88,9 +89,8 @@ router.post('/', function(req, res) {
                   res.sendStatus(500);
                 } else {
                   res.sendStatus(200);
-                }
-              }); // end query
-
+                } // end of else
+              }); //end of query
             } // end of else
           }); // end pool
       }); // end of POST
@@ -112,7 +112,7 @@ router.post('/', function(req, res) {
             } else {
               // set query
               var queryText = 'UPDATE challenges SET name = $1, description = $2, start_date = $3, end_date = $4, pts_value = $5 WHERE id = $6';
-              db.query(queryText, [updatedChallenge.name, updatedChallenge.description, updatedChallenge.start_date, updatedChallenge.end_date, updatedChallenge.pts_value req.user.id, updatedChallenge.id],
+              db.query(queryText, [updatedChallenge.name, updatedChallenge.description, updatedChallenge.start_date, updatedChallenge.end_date, updatedChallenge.pts_value, req.user.id],
                 function(errorMakingQuery, result) {
                   //return connection to pool
                   done();
