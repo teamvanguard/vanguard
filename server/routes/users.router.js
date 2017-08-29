@@ -12,24 +12,24 @@ var pg = require('pg');
 // 4 = student
 
 // get users
-router.get('/', function(req, res){
+router.get('/', function(req, res) {
   // errorConnecting is bool, db is what we query against,
   // done is a function that we call when we're done
-  pool.connect(function(errorConnectingToDatabase, db, done){
-    if(errorConnectingToDatabase) {
+  pool.connect(function(errorConnectingToDatabase, db, done) {
+    if (errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = "SELECT userid,username,", +
-          "users.username, users.studentId, users.pic,", +
-          "users.pts, users.lifetimePts, users.email,", +
-          "FROM users ORDER BY role, username ASC;"
+      var queryText = 'SELECT "users"."id", "users"."name",' +
+        '  "users"."username", "users"."studentId", "users"."pic",' +
+        '  "users"."pts", "users"."lifetimePts", "users"."email"' +
+        'FROM "users" ORDER BY "role", "username" ASC;';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, function(errorMakingQuery, result){
+      db.query(queryText, function(errorMakingQuery, result) {
         done();
-        if(errorMakingQuery) {
+        if (errorMakingQuery) {
           console.log('Attempted to query with', queryText);
           console.log('Error making query');
           res.sendStatus(500);
@@ -48,8 +48,8 @@ router.get('/students', function(req, res) {
   console.log('users router get /students');
   // errorConnecting is bool, db is what we query against,
   // done is a function that we call when we're done
-  pool.connect(function(errorConnectingToDatabase, db, done){
-    if(errorConnectingToDatabase) {
+  pool.connect(function(errorConnectingToDatabase, db, done) {
+    if (errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
@@ -57,9 +57,9 @@ router.get('/students', function(req, res) {
       // Now we're going to GET things from the db
       var queryText = 'SELECT username, studentId, pts FROM users WHERE role = 4;';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, function(errorMakingQuery, result){
+      db.query(queryText, function(errorMakingQuery, result) {
         done();
-        if(errorMakingQuery) {
+        if (errorMakingQuery) {
           console.log('Attempted to query with', queryText);
           console.log('Error making query');
           res.sendStatus(500);
