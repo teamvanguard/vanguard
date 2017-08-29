@@ -16,7 +16,8 @@ router.get('/', function(req, res) {
         pic: req.user.pic,
         lifetimePts: req.user.lifetimePts,
         name: req.user.name,
-        email: req.user.email
+        email: req.user.email,
+        role: req.user.role
       };
     } else{
       var userInfo = {
@@ -24,7 +25,8 @@ router.get('/', function(req, res) {
         employeeid: req.user.studentId,
         pic: req.user.pic,
         name: req.user.name,
-        email: req.user.email
+        email: req.user.email,
+        role: req.user.role
       };
     }
     res.send(userInfo);
