@@ -222,7 +222,33 @@ router.put('/', function(req, res) {
 //delete a user
 router.delete('/:id', function(req, res) {
   console.log('users router delete a user');
-  res.sendStatus(200);
+  var userToDelete = req.params.id;
+  console.log(userToDelete);
+  if (req.user.role == 1) {
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        // We connected to the database!!!
+        // Now we're going to GET things from the db
+        var queryText = 'DELETE FROM users WHERE id = $1;';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [userToDelete], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+            // console.log(result.rows);
+            // Send back the results
+            res.send(result.rows);
+          }
+        }); // end query
+      } // end if
+    }); // end pool
+  }else{res.sendStatus(401)}
 });
 
 
