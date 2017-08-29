@@ -10,19 +10,19 @@
 
         <!-- Text input-->
         <div class="form-group paddingRight">
-          <input type="text" class="form-control input-md " placeholder="Student Name">
+          <input type="text" class="form-control input-md " ng-model="newItem.name" placeholder="Student Name">
         </div>
 
         <!-- Text input-->
         <div class="form-group paddingRight descriptionIn">
-          <input type="text" class="form-control input-md" placeholder="Item">
+          <input type="text" class="form-control input-md" ng-model="description" placeholder="Item">
         </div>
 
         <!-- Button -->
         <div class="form-group ">
           <label class=" control-label sr-only" for="search"></label>
           <div class="">
-            <button id="search" name="search" class="btn btn-primary btn-md">Sell</button>
+            <button id="search" name="search" class="btn btn-primary btn-sm" ng-click="msc.itemsService.sellItem()">Search</button>
           </div>
         </div>
 
@@ -33,30 +33,30 @@
 
     <div class="col-md-3 borderRight">
 
-      <form class="form-horizontal padding" ng-submit="msc.submitNewItem(msc.newItem)">
+      <form class="form-horizontal padding" ng-submit="msc.itemsService.submitNewItem(msc.newItem)">
         <!-- Text input-->
         <div class="form-group itemName">
 
           <label for="itemName">Item Name</label>
-          <input id="itemName" name="itemName" type="text" placeholder="Item Name" class="form-control">
+          <input id="itemName" ng-model="msc.newItem.name" name="itemName" type="text" placeholder="Item Name" class="form-control">
         </div>
 
         <!-- Text input-->
         <div class="form-group">
           <label for="itemDescription">Item Description</label>
-          <textarea id="itemDescription" rows="2" name="itemDescription" type="textarea" placeholder="Item Description" class=" form-control"></textarea>
+          <textarea id="itemDescription" ng-model="msc.newItem.description" rows="2" name="itemDescription" type="textarea" placeholder="Item Description" class=" form-control"></textarea>
 
         </div>
 
         <!-- Text input-->
         <div class="form-group">
           <label for="itemCost">Item Cost</label>
-          <input id="itemCost" name="itemCost" type="text" placeholder="Item Cost" class="form-control">
+          <input id="itemCost" name="itemCost" ng-model="msc.newItem.pts_value" type="text" placeholder="Item Cost" class="form-control">
 
         </div>
         <div class="form-group">
           <label for="itemCost">Item Quantity</label>
-          <input id="itemQuantity" name="itemQuanity" type="number" placeholder="Item Quantity" class="form-control">
+          <input id="itemQuantity" name="itemQuanity" ng-model="msc.newItem.qty" type="number" placeholder="Item Quantity" class="form-control">
 
         </div>
 
@@ -67,13 +67,13 @@
 
           <div class="radio">
             <label for="type-0">
-              <input type="radio" name="type" id="type-0" value="True" checked="checked">
+              <input type="radio" name="type" ng-model="msc.newItem.school_community" id="type-0" value="true">
               School
             </label>
           </div>
           <div class="radio">
             <label for="type-1">
-              <input type="radio" name="type" id="type-1" value="False">
+              <input type="radio" name="type" ng-model="msc.newItem.school_community" id="type-1" value="false">
               Community
             </label>
           </div>
@@ -101,15 +101,15 @@
           <th>Delete</th>
         </thead>
         <tbody>
-          <tr ng-repeat="item in msc.itemList">
+          <tr ng-repeat="item in msc.itemsService.itemList">
             <td>{{item.item_name}}</td>
             <td>{{item.item_description}}</td>
             <td>{{item.pts_value}}</td>
-            <td>{{item.item_qty}}</td>
+            <td>{{item.qty}}</td>
             <td>{{item.school_community}}</td>
             <td>{{item.name}}</td>
-            <td><button ng-click="msc.editItem(item)" class="btn btn-default">Edit</button></td>
-            <td><button ng-click="msc.deleteItem(item)" class="btn btn-default">Delete</button></td>
+            <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-default">Edit</button></td>
+            <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-default">Delete</button></td>
           </tr>
         </tbody>
       </table>

@@ -17,37 +17,47 @@ router.get('/', function(req, res) {
   // done is a function that we call when we're done
 
   console.log(req.body);
-  if (req.isAuthenticated()) {
-    pool.connect(function(errorConnectingToDatabase, db, done) {
-      if (errorConnectingToDatabase) {
-        console.log('Error connecting to the database.');
-        res.sendStatus(500);
-      } else {
-        // gets challenges
-          var queryText = "SELECT challenges.name, challenges.description, ", +
-            "challenges.start_date, challenges.end_date, ", +
-            "challenges.pts_value, challenges.teacher_id, users.username ", +
-            "FROM challenges JOIN users ON users.id = challenges.teacher_id ", +
-            "ORDER BY start_date ASC; ";
-}
-        // errorMakingQuery is a bool, result is an object
-        db.query(queryText, function(errorMakingQuery, result) {
-          done();
-          if (errorMakingQuery) {
-            console.log('Attempted to query with', queryText);
-            console.log('Error making query');
-            res.sendStatus(500);
-          } else {
-            console.log(result.rows);
-            // Send back the results
-            res.send(result.rows);
-          }
-        }); // end query
-      } // end if
-    }); // end pool
-  } else {
-    res.sendStatus(401)
-  }
+if(req.isAuthenticated()){
+  pool.connect(function(errorConnectingToDatabase, db, done) {
+    if (errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      var queryText;
+      // gets items with the name of the last person who edited for the store and adim
+      if(req.user.role == 4) {
+
+         queryText = "SELECT challenges.name, " +
+          "challenges.description, challenges.start_date, " +
+          "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
+          "FROM challenges JOIN users ON users.id = challenges.teacher_id " +
+          "ORDER BY start_date ASC;";
+
+      }
+      // gets just the items for the students and teachers
+      else {
+        queryText = "SELECT challenges.name, challenges.description, " +
+        "challenges.start_date, challenges.end_date, challenges.pts_value " +
+        "FROM challenges " +
+        "JOIN users ON users.id = challenges.teacher_id " +
+        "ORDER BY start_date ASC;";
+      }
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, function(errorMakingQuery, result) {
+        done();
+        if (errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          console.log(result.rows);
+          // Send back the results
+          res.send(result.rows);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
+} else {req.sendStatus(401)}
 }); // end of GET
 
 // NOTE Post challenges
@@ -77,10 +87,10 @@ router.post('/', function(req, res) {
                   console.log('Error making query', errorMakingQuery);
                   res.sendStatus(500);
                 } else {
-
+                  res.sendStatus(200);
                 }
               }); // end query
-              res.sendStatus(200);
+
             } // end of else
           }); // end pool
       }); // end of POST
