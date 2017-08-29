@@ -53,6 +53,15 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
+    .when('/admin', {
+      templateUrl: '/views/templates/admin.html',
+      controller: 'AdminViewUserController as avuc',
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
+    })
     .otherwise({
       redirectTo: 'home'
     });
