@@ -14,6 +14,36 @@ var sell = require('../modules/sell.item.module.js');
 
 // get users
 router.get('/', function(req, res){
+<<<<<<< HEAD
+  // errorConnecting is bool, db is what we query against,
+  // done is a function that we call when we're done
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now we're going to GET things from the db
+      var queryText = 'SELECT "users"."id", "users"."name",' +
+      '  "users"."username", "users"."studentId", "users"."pic",' +
+      '  "users"."pts", "users"."lifetimePts", "users"."email"'+
+      'FROM "users" ORDER BY "role", "username" ASC;';
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          console.log(result.rows);
+          // Send back the results
+          res.send(result.rows);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
+=======
   //everyone but students
   if(req.user.role == 1 || req.user.role == 2 || req.user.role == 3) {
     // errorConnecting is bool, db is what we query against,
@@ -45,11 +75,38 @@ router.get('/', function(req, res){
       } // end if
     }); // end pool
   }else{res.sendStatus(401)} //not authorized
+>>>>>>> master
 }); // end of GET
 
 //get list of students
 router.get('/students', function(req, res) {
   console.log('users router get /students');
+<<<<<<< HEAD
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now we're going to GET things from the db
+      var queryText = ' SELECT id, name, pts, "users"."studentId" FROM users WHERE users.role = $1;';
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, ['4'], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          console.log(result.rows);
+          // Send back the results
+          res.send(result.rows);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
+});
+=======
   //everyone but students
   if(req.user.role == 1 || req.user.role == 2 || req.user.role == 3){
     // errorConnecting is bool, db is what we query against,
@@ -79,6 +136,7 @@ router.get('/students', function(req, res) {
     }); // end pool
   } else{res.sendStatus(200);} //not authorized
 }); // end get /students route
+>>>>>>> master
 
 //sell item to student
 router.put('/sell', function(req, res) {
