@@ -8,9 +8,27 @@ router.get('/', function(req, res) {
   if(req.isAuthenticated()) {
     // send back user object from database
     console.log('logged in', req.user);
-    var userInfo = {
-      username : req.user.username
-    };
+    if(req.user.role == 4) {
+      var userInfo = {
+        username : req.user.username,
+        pts: req.user.pts,
+        studentId: req.user.studentId,
+        pic: req.user.pic,
+        lifetimePts: req.user.lifetimePts,
+        name: req.user.name,
+        email: req.user.email,
+        role: req.user.role
+      };
+    } else{
+      var userInfo = {
+        username : req.user.username,
+        employeeid: req.user.studentId,
+        pic: req.user.pic,
+        name: req.user.name,
+        email: req.user.email,
+        role: req.user.role
+      };
+    }
     res.send(userInfo);
   } else {
     // failure best handled on the server. do redirect here.
