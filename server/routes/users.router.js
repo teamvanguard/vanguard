@@ -84,7 +84,30 @@ router.put('/sell', function(req, res) {
 //select all users of a specific role
 router.get('/:role', function(req, res) {
   console.log('users router get by role');
-  res.sendStatus(200);
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now we're going to GET things from the db
+      var queryText = 'SELECT "username", "email", "role", "employeeid", "studentId", "pts", "name" FROM users WHERE role = $1;';
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, [req.params.role], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          console.log(result.rows);
+          // Send back the results
+          res.send(result.rows);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
+  // res.sendStatus(200);
 });
 
 //get all transactions
