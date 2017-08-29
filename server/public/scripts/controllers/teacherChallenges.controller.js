@@ -1,53 +1,49 @@
-myApp.controller('TeacherChallengesController', function(ChallengesService) {
+myApp.controller('TeacherChallengesController', function(UserService, $http) {
   console.log('TeacherChallengesController created');
   var tcc = this;
-  tcc.challengesService = ChallengesService;
+  tcc.userService = UserService;
+  tcc.challenges = [];
+  tcc.rewards = [];
+  tcc.newChallenge = {};
+
 
   tcc.getChallenges = function() {
-    console.log('in controller');
-    ChallengesService.getChallenges().then(function() {
-      tcc.challenges = ChallengesService.data;
-      console.log('back in controller with:', tcc.challenges);
+    console.log('get challenges');
+    $http.get('/challenges').then(function(response) {
+      console.log(response);
+      tcc.challenges = response.data;
     });
   }; // end getChallenges
 
-  tcc.getRewards = function() {
-    console.log('in controller');
-    ChallengesService.getRewards().then(function() {
-      tcc.rewards = ChallengesService.data;
-      console.log('back in controller with:', tcc.rewards);
-    });
-  }; // end getRewards
 
-
-  tcc.addChallenge = function() {
-    var challengeToSend = {
-      challenge: tcc.challenge
-    };
-    console.log('challengeToSend');
-
-    tcc.challenge = '';
-    ChallengesService.addChallenge(challengeToSend).then(function(data) {
-      console.log(data);
+  tcc.addChallenge = function(newChallenge) {
+    console.log(newChallenge);
+    $http.post('/challenges', newChallenge).then(function(response) {
+      console.log(response);
       tcc.getChallenges();
     });
   }; // end addChallenge
 
-  tcc.updateChallenge = function(challengeId) {
-    console.log('in updateChallenge');
-    ChallengesService.updateChallenge(challengeId).then(function() {
-      console.log('back in controller', ChallengesService.updateChallenge);
+
+  tcc.updateChallenge = function(challenge) {
+    console.log('update challenge');
+    console.log(challenge);
+    $http.put('/challenges', challenge).then(function(response) {
+      console.log(response);
       tcc.getChallenges();
     });
   }; // end updateChallenge
 
 
-  tcc.deleteChallenge = function(challengeId) {
-    console.log('challenge to delete:');
-    ChallengesService.deleteChallenge(challengeId).then(function() {
-      console.log('back in controller', ChallengesService.deletedChallenge);
-      tcc.delete = ChallengesService.deletedChallenge;
+  tcc.deleteChallenge = function(challenge) {
+    console.log('deleteChallenge');
+    console.log(challenge);
+    $http.delete('/challenge/' + challenge.id).then(function(response) {
+      console.log(response);
       tcc.getChallenges();
     });
   }; // end deleteChallenge
+
+  tcc.getChallenges();
+
 }); // end TeacherChallengesController

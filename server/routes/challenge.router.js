@@ -23,22 +23,23 @@ if(req.isAuthenticated()){
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
+      var queryText;
       // gets items with the name of the last person who edited for the store and adim
       if(req.user.role == 4) {
 
-        var queryText = "SELECT challenges.name,", +
-          "challenges.description, challenges.start_date,", +
-          "challenges.end_date, challenges.pts_value, challenges.teacher_id ", +
-          "FROM challenges JOIN users ON users.id = challenges.teacher_id ", +
+         queryText = "SELECT challenges.name, " +
+          "challenges.description, challenges.start_date, " +
+          "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
+          "FROM challenges JOIN users ON users.id = challenges.teacher_id " +
           "ORDER BY start_date ASC;";
 
       }
       // gets just the items for the students and teachers
       else {
-        var queryText = "SELECT challenges.name, challenges.description,", +
-        "challenges.start_date, challenges.end_date, challenges.pts_value", +
-        "FROM challenges", +
-        "JOIN users ON users.id = challenges.teacher_id ", +
+        queryText = "SELECT challenges.name, challenges.description, " +
+        "challenges.start_date, challenges.end_date, challenges.pts_value " +
+        "FROM challenges " +
+        "JOIN users ON users.id = challenges.teacher_id " +
         "ORDER BY start_date ASC;";
       }
       // errorMakingQuery is a bool, result is an object
@@ -78,7 +79,7 @@ router.post('/', function(req, res) {
               "VALUES ($1, $2, $3, $4, $5, $6);";
 
             // errorMakingQuery is a bool, result is an object
-            db.query(queryText, [challenge.name, challenge.description, challenge.start_date, challenge.end_date, challenge.pts_value, req.user.id, function(errorMakingQuery, result) {
+            db.query(queryText, [challenge.name, challenge.description, challenge.start_date, challenge.end_date, challenge.pts_value, req.user.id], function(errorMakingQuery, result) {
                 done();
 
                 if (errorMakingQuery) {
@@ -86,10 +87,10 @@ router.post('/', function(req, res) {
                   console.log('Error making query', errorMakingQuery);
                   res.sendStatus(500);
                 } else {
-
+                  res.sendStatus(200);
                 }
               }); // end query
-              res.sendStatus(200);
+
             } // end of else
           }); // end pool
       }); // end of POST

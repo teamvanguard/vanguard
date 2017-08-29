@@ -46,7 +46,7 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/teachers', {
       templateUrl: '/views/templates/teachers.html',
-      // controller: 'TeacherChallengesController as tcc',
+      controller: 'TeacherChallengesController as tcc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();
