@@ -44,7 +44,7 @@ router.get('/', function(req, res){
         }); // end query
       } // end if
     }); // end pool
-  } //not authorized
+  }else{res.sendStatus(401)} //not authorized
 }); // end of GET
 
 //get list of students
