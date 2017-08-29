@@ -143,13 +143,60 @@ router.get('/transactions', function(req, res) {
 //create a teacher or admin or manager
 router.post('/', function(req, res) {
   console.log('users router post create teacher or manager or admin');
-  res.sendStatus(200);
+  console.log(req.body);
+  var newUser = req.body
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now we're going to GET things from the db
+      var queryText = 'INSERT INTO users (email, role) VALUES ($1, $2) ON CONFLICT (email) DO UPDATE SET role = $2;';
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, [newUser.email, newUser.role], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          // console.log(result.rows);
+          // Send back the results
+          res.send(result.rows);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
 });
 
 //edit a user role
 router.put('/', function(req, res) {
   console.log('users router put edit user role');
-  res.sendStatus(200);
+  console.log(req.body);
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now we're going to GET things from the db
+      var queryText = 'UPDATE users SET role = $2 WHERE email = $1;';
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, [req.body.email, req.body.role], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          // console.log(result.rows);
+          // Send back the results
+          res.send(result.rows);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
 });
 
 //delete a user
