@@ -41,7 +41,6 @@ passport.use(new GoogleStrategy({
               release();
             }
           user = result.rows[0];
-          console.log("THIS IS THE USER: ", result)
           release();
           if(!user) {
               // user not found

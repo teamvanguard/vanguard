@@ -5,21 +5,20 @@
     <div class="col-md-3">
 
     </div>
+
     <div class="col-md-9 paddingBottom">
 
-
       <form class="form-inline">
-
-        <!-- Text input-->
-        <div class="input-group paddingRight input-group-sm">
-          <input type="text" class="form-control " placeholder="Student Name">
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
-
-        </div>
+        <input type="text" ng-model="msc.students" ng-keyup="msc.complete(msc.students)" placeholder="Student Name"/>
+        <ul class="list-group" ng-show="!msc.showMe" ng-hide="msc.showMe">
+          <div ng-repeat="data in msc.filterStudents">
+            <li class="list-group-item" ng-click="msc.textbox(data)">{{data.name}}</li>
+          </div>
+        </ul>
 
         <!-- Text input-->
         <div class="input-group input-group-sm paddingRight ">
-          <input type="text" class="form-control input-xs" placeholder="Student ID">
+          <input type="text" class="form-control input-xs"placeholder="Student ID">
           <span class="input-group-addon"><i class="fa fa-search"></i></span>
 
         </div>
@@ -31,7 +30,7 @@
             <button id="search" name="search" class="btn btn-primary btn-sm">Search</button>
           </div>
         </div>
-
+        <!-- <button ng-click="msc.showStudent(msc.selectedStudent, msc.students)">show</button> -->
       </form>
     </div>
   </div>

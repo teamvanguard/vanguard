@@ -16,9 +16,9 @@ router.get('/', function(req, res){
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = SELECT '"users"."id", "users"."name",', +
-      '  "users"."username", "users"."studentId", "users"."pic",', +
-      '  "users"."pts", "users"."lifetimePts", "users"."email"', +
+      var queryText = 'SELECT "users"."id", "users"."name",' +
+      '  "users"."username", "users"."studentId", "users"."pic",' +
+      '  "users"."pts", "users"."lifetimePts", "users"."email"'+
       'FROM "users" ORDER BY "role", "username" ASC;';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, function(errorMakingQuery, result){
@@ -40,7 +40,29 @@ router.get('/', function(req, res){
 //get list of students
 router.get('/students', function(req, res) {
   console.log('users router get /students');
-  res.sendStatus(200);
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      // We connected to the database!!!
+      // Now we're going to GET things from the db
+      var queryText = ' SELECT id, name, pts, "users"."studentId" FROM users WHERE users.role = $1;';
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, ['4'], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          console.log(result.rows);
+          // Send back the results
+          res.send(result.rows);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
 });
 
 //sell item to student
