@@ -22,7 +22,7 @@
         <div class="form-group ">
           <label class=" control-label sr-only" for="search"></label>
           <div class="">
-            <button id="search" name="search" class="btn btn-primary btn-sm" ng-click="msc.sellItem()">Search</button>
+            <button id="search" name="search" class="btn btn-primary btn-sm" ng-click="msc.itemsService.sellItem()">Search</button>
           </div>
         </div>
 
@@ -33,7 +33,7 @@
 
     <div class="col-md-3 borderRight">
 
-      <form class="form-horizontal padding" ng-submit="msc.submitNewItem(msc.newItem)">
+      <form class="form-horizontal padding" ng-submit="msc.itemsService.submitNewItem(msc.newItem)">
         <!-- Text input-->
         <div class="form-group itemName">
 
@@ -101,15 +101,15 @@
           <th>Delete</th>
         </thead>
         <tbody>
-          <tr ng-repeat="item in msc.itemList">
+          <tr ng-repeat="item in msc.itemsService.itemList">
             <td>{{item.item_name}}</td>
             <td>{{item.item_description}}</td>
             <td>{{item.pts_value}}</td>
             <td>{{item.qty}}</td>
             <td>{{item.school_community}}</td>
             <td>{{item.name}}</td>
-            <td><button ng-click="msc.editItem(item)" class="btn btn-default">Edit</button></td>
-            <td><button ng-click="msc.deleteItem(item)" class="btn btn-default">Delete</button></td>
+            <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-default">Edit</button></td>
+            <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-default">Delete</button></td>
           </tr>
         </tbody>
       </table>
