@@ -71,7 +71,7 @@ router.post('/', function(req, res) {
   if (req.isAuthenticated()) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
-    if (req.user.role == 2 || req.user.role == 1) {
+    if (req.user.role == 3 || req.user.role == 1) {
       pool.connect(function(errorConnectingToDatabase, db, done) {
         if (errorConnectingToDatabase) {
           console.log('Error connecting to the database.');
