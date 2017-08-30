@@ -24,58 +24,80 @@
           </div>
         </div>
         <div class="form-group">
-          <div>
-            <label class="control-label">Start Date</label>
 
-            <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md" ng-model="tcc.newChallenge.start_date">
-          </div>
+          <p class="input-group">
+            <input type="text"
+            id="startDatePicker"
+            class="form-control input-md"
+            ng-model="tcc.newChallenge.date_Start"
+            uib-datepicker-popup="MM-dd-yyyy"
+            datepicker-options="tcc.startDateConfig"
+            ng-focus="tcc.startDateConfig.open=true"
+            minDate="tcc.startDateConfig.minDate"
+            is-open="tcc.startDateConfig.open"
+            show-button-bar="true" placeholder="Start Date"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
         </div>
+
         <div class="form-group">
-          <div>
-            <label class="control-label">End Date</label>
-
-            <input id="startDate" name="startDate" type="date" placeholder="Challenge Name" class="form-control input-md" ng-model="tcc.newChallenge.end_date">
-          </div>
+          <p class="input-group">
+            <input type="text"
+            id="startDatePicker"
+            class="form-control input-md"
+            ng-model="tcc.newChallenge.end_date"
+            uib-datepicker-popup="MM-dd-yyyy"
+            datepicker-options="tcc.endDateConfig"
+            ng-focus="tcc.endDateConfig.open=true"
+            minDate="tcc.endDateConfig.minDate"
+            is-open="tcc.endDateConfig.open"
+            show-button-bar="true" placeholder="End Date"/>
+            <span class="input-group-btn">
+              <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+            </span>
+          </p>
         </div>
 
-        <!-- Button -->
-        <div class="form-group">
-          <div>
-            <button id="addChallenge" name="addChallenge" class="btn btn-primary" ng-click="tcc.addChallenge(tcc.newChallenge)">Add Challenge</button>
-          </div>
+      <!-- Button -->
+      <div class="form-group">
+        <div>
+          <button id="addChallenge" name="addChallenge" class="btn btn-primary" ng-click="tcc.addChallenge(tcc.newChallenge)">Add Challenge</button>
         </div>
+      </div>
 
-      </fieldset>
-    </form>
-  </div>
-  <div class="challengeList col-md-9" >
-    <details ng-repeat="challenge in tcc.challenges">
-      <summary>
+    </fieldset>
+  </form>
+</div>
+<div class="challengeList col-md-9" >
+  <details ng-repeat="challenge in tcc.challenges">
+    <summary>
 
-        {{challenge.name}}
-      </summary>
-      <div class="challengeInfo">
-        <div class="challengeItem"><label>Description:</label>{{challenge.description}}</div>
-        <div class="challengeItem"><label>Start Date:</label>{{challenge.start_date | date:'fullDate'}}</div>
-        <div class="challengeItem"><label>End Date:</label>{{challenge.end_date | date:'fullDate'}}</div>
-        <div class="challengeItem pull-left"><label>Students:</label>
-          <div class="studentList pull-right">
-            <table>
-              <tr>
-                <td>Ben Siegel</td>
-                <td><button type="button" name="button" class="btn btn-xs btn-primary">Complete</button>
-                    <button type="button" name="button" class="btn btn-xs btn-danger">Incomplete</button>
-                </td>
-              </tr>
-            </table>
-            </div>
-          </div>
-          <div class="clearfix">
-
+      {{challenge.name}}
+    </summary>
+    <div class="challengeInfo">
+      <div class="challengeItem"><label>Description:</label>{{challenge.description}}</div>
+      <div class="challengeItem"><label>Start Date:</label>{{challenge.start_date | date:'fullDate'}}</div>
+      <div class="challengeItem"><label>End Date:</label>{{challenge.end_date | date:'fullDate'}}</div>
+      <div class="challengeItem pull-left"><label>Students:</label>
+        <div class="studentList pull-right">
+          <table>
+            <tr>
+              <td>Ben Siegel</td>
+              <td><button type="button" name="button" class="btn btn-xs btn-primary">Complete</button>
+                <button type="button" name="button" class="btn btn-xs btn-danger">Incomplete</button>
+              </td>
+            </tr>
+          </table>
         </div>
+      </div>
+      <div class="clearfix">
 
-        </div>
-      </details>
+      </div>
+
     </div>
+  </details>
+</div>
 
-  </div>
+</div>

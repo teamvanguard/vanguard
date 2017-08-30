@@ -9,13 +9,16 @@ body, html {
 .table > thead > tr > th {
   border-bottom: none !important;
 }
-.borderRight {
-  border-right: 1px solid #dfdfdf;
-}
 .alignCenter {
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+.itemsTable .btn-danger {
+  margin-left: 0;
+}
+.col-md-9.topPadding {
+    border-left: 1px solid #dfdfdf;
 }
 .full button span {
   background-color: limegreen;
