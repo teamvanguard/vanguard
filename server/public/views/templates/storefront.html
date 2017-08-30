@@ -101,15 +101,15 @@
           <th>Delete</th>
         </thead>
         <tbody>
-          <tr ng-repeat="item in msc.itemsService.itemList">
+          <tr ng-repeat="item in msc.itemsService.itemList" class="itemsTable">
             <td>{{item.item_name}}</td>
             <td>{{item.item_description}}</td>
             <td>{{item.pts_value}}</td>
             <td>{{item.qty}}</td>
             <td>{{item.school_community}}</td>
             <td>{{item.name}}</td>
-            <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-default">Edit</button></td>
-            <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-default">Delete</button></td>
+            <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-primary">Edit</button></td>
+            <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-danger">Delete</button></td>
           </tr>
         </tbody>
       </table>

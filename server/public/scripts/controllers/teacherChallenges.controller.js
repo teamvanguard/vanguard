@@ -46,4 +46,5 @@ myApp.controller('TeacherChallengesController', function(UserService, $http) {
 
   tcc.getChallenges();
 
+
 }); // end TeacherChallengesController
