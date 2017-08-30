@@ -1,5 +1,8 @@
-<div>
-  <input ng-model="avuc.newUser.email">
-  <input type="number" ng-model="avuc.user.id">
-  <button ng-click="avuc.usersService.deleteUser(avuc.user)">Add</button>
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+  <div>
+    <input ng-model="avuc.newUser.email">
+    <input type="number" ng-model="avuc.user.id">
+    <button ng-click="avuc.usersService.deleteUser(avuc.user)">Add</button>
+  </div>
 </div>

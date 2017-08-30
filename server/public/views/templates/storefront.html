@@ -5,17 +5,22 @@
     <div class="col-md-3">
 
     </div>
+
     <div class="col-md-9 paddingBottom">
-      <form class="form-inline search">
+
+      <form class="form-inline">
+        <input type="text" ng-model="msc.students" ng-keyup="msc.complete(msc.students)" placeholder="Student Name"/>
+        <ul class="list-group" ng-show="!msc.showMe" ng-hide="msc.showMe">
+          <div ng-repeat="data in msc.filterStudents">
+            <li class="list-group-item" ng-click="msc.textbox(data)">{{data.name}}</li>
+          </div>
+        </ul>
 
         <!-- Text input-->
-        <div class="form-group paddingRight">
-          <input type="text" class="form-control input-md " ng-model="newItem.name" placeholder="Student Name">
-        </div>
+        <div class="input-group input-group-sm paddingRight ">
+          <input type="text" class="form-control input-xs"placeholder="Student ID">
+          <span class="input-group-addon"><i class="fa fa-search"></i></span>
 
-        <!-- Text input-->
-        <div class="form-group paddingRight descriptionIn">
-          <input type="text" class="form-control input-md" ng-model="description" placeholder="Item">
         </div>
 
         <!-- Button -->
@@ -25,7 +30,7 @@
             <button id="search" name="search" class="btn btn-primary btn-sm" ng-click="msc.itemsService.sellItem()">Search</button>
           </div>
         </div>
-
+        <!-- <button ng-click="msc.showStudent(msc.selectedStudent, msc.students)">show</button> -->
       </form>
     </div>
   </div>
@@ -101,15 +106,15 @@
           <th>Delete</th>
         </thead>
         <tbody>
-          <tr ng-repeat="item in msc.itemsService.itemList">
+          <tr ng-repeat="item in msc.itemsService.itemList" class="itemsTable">
             <td>{{item.item_name}}</td>
             <td>{{item.item_description}}</td>
             <td>{{item.pts_value}}</td>
             <td>{{item.qty}}</td>
             <td>{{item.school_community}}</td>
             <td>{{item.name}}</td>
-            <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-default">Edit</button></td>
-            <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-default">Delete</button></td>
+            <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-primary">Edit</button></td>
+            <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-danger">Delete</button></td>
           </tr>
         </tbody>
       </table>
