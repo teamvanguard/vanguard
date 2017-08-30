@@ -9,16 +9,17 @@
     <div class="col-md-9 paddingBottom">
 
       <form class="form-inline">
-        <input type="text" ng-model="msc.students" ng-keyup="msc.complete(msc.students)" placeholder="Student Name"/>
-        <ul class="list-group" ng-show="!msc.showMe" ng-hide="msc.showMe">
-          <div ng-repeat="data in msc.filterStudents">
-            <li class="list-group-item" ng-click="msc.textbox(data)">{{data.name}}</li>
+        <input type="text" ng-model="msc.autocompletePackage.students"
+        ng-keyup="msc.autocompleteService.complete(msc.autocompletePackage.students, msc.autocompletePackage.studentsList)" placeholder="Student Name"/>
+        <ul class="list-group" ng-show="!msc.autocompletePackage.showMe" ng-hide="msc.autocompletePackage.showMe">
+          <div ng-repeat="data in msc.autocompletePackage.filterData">
+            <li class="list-group-item" ng-click="msc.autocompleteService.studentTextbox(data)">{{data.name}}</li>
           </div>
         </ul>
 
         <!-- Text input-->
         <div class="input-group input-group-sm paddingRight ">
-          <input type="text" class="form-control input-xs"placeholder="Student ID">
+          <input type="text" class="form-control input-xs"placeholder="Items">
           <span class="input-group-addon"><i class="fa fa-search"></i></span>
 
         </div>
