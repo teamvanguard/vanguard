@@ -24,7 +24,6 @@ myApp.factory('ItemsService', function($http, $location){
     editItem: function(item) {
       console.log('editItem');
       console.log(item);
-      item.item_name = 'hello';
       console.log(item);
       $http.put('/items', item).then(function(response){
         console.log(response);
@@ -54,6 +53,6 @@ myApp.factory('ItemsService', function($http, $location){
       });
     }
   }
-  
+
   return itemsService
 });
