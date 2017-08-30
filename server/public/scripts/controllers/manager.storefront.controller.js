@@ -9,7 +9,7 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
   msc.getStudents = function(){
     console.log('Getting Students');
     $http.get('/users/students').then(function(response){
-      console.log(response);
+      console.log(response.data);
       msc.studentsList = response.data;
       for (var i = 0; i < msc.studentsList.length; i++) {
         msc.studentsArray.push(msc.studentsList[i]);
