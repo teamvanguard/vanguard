@@ -60,13 +60,18 @@
           </p>
         </div>
 
+      </fieldset>
+    </form>
+  </div>
+  <div class="challengeList col-md-9" >
+    <details ng-repeat="challenge in tcc.challengesService.challenges">
+      <summary>
       <!-- Button -->
       <div class="form-group">
         <div>
           <button id="addChallenge" name="addChallenge" class="btn btn-primary" ng-click="tcc.addChallenge(tcc.newChallenge)">Add Challenge</button>
         </div>
       </div>
-
     </fieldset>
   </form>
 </div>
