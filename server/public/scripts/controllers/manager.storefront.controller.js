@@ -7,9 +7,11 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
   msc.autocompleteService = AutocompleteService;
   msc.autocompletePackage = AutocompleteService.autocompletePackage;
   msc.autocompleteService.getStudents();
+  msc.autocompleteService.getItems();
 
   msc.itemsService = ItemsService;
   msc.itemList = ItemsService.itemList;
+
   msc.itemsService.getItems();
 
 

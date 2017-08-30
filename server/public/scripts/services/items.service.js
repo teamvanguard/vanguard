@@ -1,6 +1,7 @@
 myApp.factory('ItemsService', function($http, $location){
   console.log('ItemsService Loaded');
 
+
   var itemsService = {
 
     itemList: [],
@@ -18,6 +19,7 @@ myApp.factory('ItemsService', function($http, $location){
       $http.get('/items').then(function(response){
         console.log(response);
         itemsService.itemList = response.data;
+        console.log(itemsService.itemList);
       });
     },
 
@@ -52,8 +54,17 @@ myApp.factory('ItemsService', function($http, $location){
       $http.put('/users/sell', data).then(function(response) {
         console.log(response);
       });
+    },
+
+    itemsTextbox : function(string){
+      itemList.selectedData = string;
+      itemList.items = itemList.selectedData.name;
+      console.log("The selected data's information: ", itemsList.selectedData);
+      if(string){
+        msc.autocompletePackage.showMe = true;
+      }
     }
   }
-  
+
   return itemsService
 });
