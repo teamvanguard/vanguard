@@ -37,8 +37,9 @@ router.get('/', function(req, res) {
         }
         // gets challenges for all admin, store, teacher
         else {
-          queryText = "SELECT challenges.challenge_name, challenges.description, " +
-            "challenges.start_date, challenges.end_date, challenges.pts_value " +
+          queryText = "SELECT challenges.challenge_name, " +
+            "challenges.description, challenges.start_date, " +
+            "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
             "FROM challenges " +
             "JOIN users ON users.id = challenges.teacher_id " +
             "ORDER BY start_date ASC;";
@@ -149,13 +150,13 @@ router.put('/', function(req, res) {
 
 //NOTE Delete route for teacher/challenges
 router.delete('/:id', function(req, res) {
-  console.log('itemsRouter delete');
+  console.log('challengeDelete delete');
   //sets id of item to delete to a variable
   var challengeDelete = req.params.id;
   //checks if user is logged in
   if(req.isAuthenticated()){
     //checks if user is authorized
-    if(req.user.role == 2 || req.user.role == 1) {
+    if(req.user.role == 3 || req.user.role == 1) {
       pool.connect(function(errorConnectingToDatabase, db, done) {
         if (errorConnectingToDatabase) {
           console.log('Error connecting to the database.');
