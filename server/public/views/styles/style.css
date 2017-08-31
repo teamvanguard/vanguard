@@ -9,13 +9,16 @@ body, html {
 .table > thead > tr > th {
   border-bottom: none !important;
 }
-.borderRight {
-  border-right: 1px solid #dfdfdf;
-}
 .alignCenter {
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+.itemsTable .btn-danger {
+  margin-left: 0;
+}
+.col-md-9.topPadding {
+    border-left: 1px solid #dfdfdf;
 }
 .full button span {
   background-color: limegreen;
@@ -60,17 +63,23 @@ body, html {
 .logo img {
   padding: 10px;
 }
+a.studentHomeIcon {
+    color: black;
+    height: 68px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.container.header {
+    height: 100%;
+}
 .studentPhoto img {
     padding: 30px;
 }
 h1.vanguardTech {
-    background-image: url("/views/img/logo.png");
-    background-repeat: no-repeat;
-    display: block;
-    height:135px;
-    text-indent: -999px;
-    margin-bottom: 0px;
-    margin-top: 0px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 
@@ -189,8 +198,37 @@ details {
     padding-right: 5px;
 
 }
+input.editable-input {
+  width:100%;
+}
+th.edit {
+    padding-left: 20px !important;
+}
 .addChallenge .form-group {
     margin-bottom: 5px;
+}
+
+.studentNav .container a {
+  color: black;
+
+.points {
+    width: 9%;
+}
+
+.qty {
+    width: 8%;
+}
+.description {
+    width: 33%;
+}
+
+.name {
+    width: 15%;
+}
+
+.school_community {
+    width: 8%;
+
 }
 summary {
   border-radius: 3px;
@@ -207,4 +245,9 @@ summary {
 }
 .studentList td {
     padding-right: 10px;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+
+  }
 }
