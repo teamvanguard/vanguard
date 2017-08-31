@@ -22,11 +22,12 @@
         <!-- Text input-->
         <div class="input-group input-group-sm paddingRight ">
 
-          <input type="text" ng-model="msc.autocompleteService.itemName"
-          ng-keyup="msc.autocompleteService.complete(msc.autocompleteService.itemName, msc.autocompleteService.autocompletePackage.itemList, 'items')" placeholder="Items Name"/>
+          <input type="text" ng-model="msc.autocompletePackage.itemName"
+          ng-keyup="msc.autocompleteService.complete(msc.autocompletePackage.itemName, msc.autocompletePackage.itemList, 'items')"
+          placeholder="Items Name"/>
           <ul class="list-group" ng-show="!msc.autocompletePackage.showMe">
-            <div ng-repeat="data in msc.autocompletePackage.filterData.items">
-              <li class="list-group-item" ng-click="msc.itemsService.itemsTextbox(data)">{{data.item_name}}</li>
+            <div ng-repeat="itemData in msc.autocompletePackage.filterData.items">
+              <li class="list-group-item" ng-click="msc.autocompleteService.itemsTextbox(itemData)">{{itemData.item_name}}</li>
             </div>
           </ul>
 
@@ -61,8 +62,8 @@
       <!-- Text input-->
       <div class="form-group">
         <label for="itemDescription">Item Description</label>
-        <textarea id="itemDescription" ng-model="msc.newItem.description" rows="2" name="itemDescription"
-        type="textarea" placeholder="Item Description" class=" form-control"></textarea>
+        <textarea id="itemDescription" ng-model="msc.newItem.description" rows="2" name="itemDescription"type="textarea"
+        placeholder="Item Description" class=" form-control"></textarea>
 
       </div>
 
