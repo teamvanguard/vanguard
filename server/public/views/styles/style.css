@@ -63,17 +63,23 @@ body, html {
 .logo img {
   padding: 10px;
 }
+a.studentHomeIcon {
+    color: black;
+    height: 68px;
+    display: inline-block;
+    padding: 10px;
+}
+
+.container.header {
+    height: 100%;
+}
 .studentPhoto img {
     padding: 30px;
 }
 h1.vanguardTech {
-    background-image: url("/views/img/logo.png");
-    background-repeat: no-repeat;
-    display: block;
-    height:135px;
-    text-indent: -999px;
-    margin-bottom: 0px;
-    margin-top: 0px;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 
@@ -201,6 +207,10 @@ th.edit {
 .addChallenge .form-group {
     margin-bottom: 5px;
 }
+
+.studentNav .container a {
+  color: black;
+
 .points {
     width: 9%;
 }
@@ -218,6 +228,7 @@ th.edit {
 
 .school_community {
     width: 8%;
+
 }
 summary {
   border-radius: 3px;
@@ -234,4 +245,9 @@ summary {
 }
 .studentList td {
     padding-right: 10px;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+
+  }
 }
