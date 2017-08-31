@@ -2,7 +2,7 @@
 <div class="container">
   <h1>Challenges</h1>
   <div class="addChallenge col-md-3">
-    <form class="form-horizontal">
+    <form class="form-horizontal"  ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
       <fieldset>
 
         <!-- Text input-->
@@ -59,7 +59,6 @@
             </span>
           </p>
         </div>
-
       <!-- Button -->
       <div class="form-group">
         <div>

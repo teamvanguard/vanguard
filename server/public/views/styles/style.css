@@ -198,11 +198,37 @@ details {
     padding-right: 5px;
 
 }
+input.editable-input {
+  width:100%;
+}
+th.edit {
+    padding-left: 20px !important;
+}
 .addChallenge .form-group {
     margin-bottom: 5px;
 }
+
 .studentNav .container a {
   color: black;
+
+.points {
+    width: 9%;
+}
+
+.qty {
+    width: 8%;
+}
+.description {
+    width: 33%;
+}
+
+.name {
+    width: 15%;
+}
+
+.school_community {
+    width: 8%;
+
 }
 summary {
   border-radius: 3px;

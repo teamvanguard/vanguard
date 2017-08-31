@@ -146,6 +146,41 @@ router.put('/', function(req, res) {
   }
 }); // end of PUT
 
+//NOTE Delete route for teacher/challenges
+router.delete('/:id', function(req, res) {
+  console.log('itemsRouter delete');
+  //sets id of item to delete to a variable
+  var challengeDelete = req.params.id;
+  //checks if user is logged in
+  if(req.isAuthenticated()){
+    //checks if user is authorized
+    if(req.user.role == 2 || req.user.role == 1) {
+      pool.connect(function(errorConnectingToDatabase, db, done) {
+        if (errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          // sets up query
+          var queryText = 'DELETE FROM challenges WHERE id = $1';
+          db.query(queryText, [challengeDelete], function(errorMakingQuery, result) {
+            //returns connection to pool
+            done();
+            if (errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query');
+              res.sendStatus(500);
+            } else {
+              console.log('item deleted');
+              // Send back the results
+              res.sendStatus(200);
+            }
+          }); // end query
+        } // end if
+      }); // end pool
+    } else {res.sendStatus(401)}
+  } else {res.sendStatus(401)}
+}); // end of DELETE
+
 
 
 
