@@ -10,7 +10,7 @@
           <div>
             <label class="control-label" for="challengeName">Challenge Name</label>
 
-            <input id="challengeName" name="challengeName" type="text" placeholder="Challenge Name" class="form-control input-md" ng-model="tcc.newChallenge.name">
+            <input id="challengeName" name="challengeName" type="text" placeholder="Challenge Name" class="form-control input-md" ng-model="tcc.newChallenge.challenge_name">
 
           </div>
         </div>
@@ -72,7 +72,7 @@
   <details ng-repeat="challenge in tcc.challengesService.challenges">
     <summary>
 
-      {{challenge.name}}
+      {{challenge.challenge_name}}
     </summary>
     <div class="challengeInfo">
       <div class="challengeItem"><label>Description:</label>{{challenge.description}}</div>
