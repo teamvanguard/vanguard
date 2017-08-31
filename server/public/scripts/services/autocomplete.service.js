@@ -22,7 +22,7 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
       $http.get('/items').then(function(response){
         console.log(response);
         autocompletePackage.itemList = response.data;
-        console.log(autocompletePackage.itemList);
+        // console.log(autocompletePackage.itemList);
       });
     },
 
@@ -43,7 +43,7 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
         //all strings are set to lowercase to prevent case sensitivity.
         //students are pushed to an array, 'searchOutput'
         if(input == 'items'){
-          console.log(data);
+          // console.log(data);
           console.log(data.item_name);
           if(data.item_name.toLowerCase().indexOf(string.toLowerCase()) >=0 ){
             searchOutputItems.push(data);
@@ -60,11 +60,11 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
 
       });
       autocompletePackage.filterData.items = searchOutputItems;
-      console.log(autocompletePackage.filterData.items);
       autocompletePackage.filterData.users = searchOutputUsers;
-    },
+    }, //end of complete function
 
     studentTextbox : function(string){
+      console.log(string);
       autocompletePackage.selectedData = string;
       autocompletePackage.students = autocompletePackage.selectedData.name;
       console.log("The selected data's information: ", autocompletePackage.selectedData);
@@ -74,9 +74,10 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
     },
 
     itemsTextbox : function(string){
-      autocompletePackage.item = string;
-      autocompletePackage.itemName = itemList.item.name;
-      console.log("The selected data's information: ", itemsList.selectedData);
+      console.log(string);
+      autocompletePackage.selectedData = string;
+      autocompletePackage.itemName = autocompletePackage.selectedData.item_name;
+      // console.log("The selected data's information: ", itemsList.selectedData);
       if(string){
         autocompletePackage.showMe = true;
       }
