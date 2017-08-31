@@ -24,19 +24,20 @@ router.get('/', function(req, res) {
         res.sendStatus(500);
       } else {
         var queryText;
-        // gets items with the name of the last person who edited for the store and adim
+
+        // get challenges for students
         if (req.user.role == 4) {
 
-          queryText = "SELECT challenges.name, " +
+          queryText = "SELECT challenges.challenge_name, " +
             "challenges.description, challenges.start_date, " +
             "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
             "FROM challenges JOIN users ON users.id = challenges.teacher_id " +
             "ORDER BY start_date ASC;";
 
         }
-        // gets just the items for the students and teachers
+        // gets challenges for all admin, store, teacher
         else {
-          queryText = "SELECT challenges.name, challenges.description, " +
+          queryText = "SELECT challenges.challenge_name, challenges.description, " +
             "challenges.start_date, challenges.end_date, challenges.pts_value " +
             "FROM challenges " +
             "JOIN users ON users.id = challenges.teacher_id " +
@@ -79,11 +80,11 @@ router.post('/', function(req, res) {
         } else {
           // We connected to the database!!!
           // Now we're going to POST things to the db
-          var queryText = "INSERT INTO challenges (name, description, start_date, end_date, pts_value, teacher_id) " +
+          var queryText = "INSERT INTO challenges (challenge_name, description, start_date, end_date, pts_value, teacher_id) " +
             "VALUES ($1, $2, $3, $4, $5, $6); ";
 
           // errorMakingQuery is a bool, result is an object
-          db.query(queryText, [newChallenge.name, newChallenge.description, newChallenge.start_date, newChallenge.end_date, newChallenge.pts_value, req.user.id],
+          db.query(queryText, [newChallenge.challenge_name, newChallenge.description, newChallenge.start_date, newChallenge.end_date, newChallenge.pts_value, req.user.id],
             function(errorMakingQuery, result) {
               done();
 
@@ -121,8 +122,8 @@ router.put('/', function(req, res) {
           res.sendStatus(500);
         } else {
           // set query
-          var queryText = 'UPDATE challenges SET name = $1, description = $2, start_date = $3, end_date = $4, pts_value = $5 WHERE id = $6';
-          db.query(queryText, [updatedChallenge.name, updatedChallenge.description, updatedChallenge.start_date, updatedChallenge.end_date, updatedChallenge.pts_value, req.user.id],
+          var queryText = 'UPDATE challenges SET challenge_name = $1, description = $2, start_date = $3, end_date = $4, pts_value = $5 WHERE id = $6';
+          db.query(queryText, [updatedChallenge.challenge_name, updatedChallenge.description, updatedChallenge.start_date, updatedChallenge.end_date, updatedChallenge.pts_value, req.user.id],
             function(errorMakingQuery, result) {
               //return connection to pool
               done();
