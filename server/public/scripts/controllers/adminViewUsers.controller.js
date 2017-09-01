@@ -30,6 +30,15 @@ myApp.controller('AdminViewUsersController', function(UserService, $http, UsersS
     });
   };
   avuc.getUsers();
+  avuc.orderBy = 'role';
+  avuc.changeOrderBy = function(property, property2) {
+    if(avuc.orderBy != property){
+      avuc.orderBy = property;
+    } else {
+      avuc.orderBy = '-' + property;
+    }
+
+  }
   //send object with email and role properties
   // avuc.addUser = function(newUser) {
   //   console.log(newUser);

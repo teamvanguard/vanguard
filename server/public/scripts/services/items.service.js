@@ -52,6 +52,7 @@ myApp.factory('ItemsService', function($http, $location){
       };
       $http.put('/users/sell', data).then(function(response) {
         console.log(response);
+        itemsService.getItems();
       });
     },
 

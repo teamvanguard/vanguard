@@ -34,13 +34,13 @@
   <div class="row">
     <table class="table table-responsive">
       <thead>
-        <th>Name</th>
-        <th>Id</th>
-        <th>Email</th>
-        <th>Role</th>
+        <th ng-click="avuc.changeOrderBy('name')">Name</th>
+        <th ng-click="avuc.changeOrderBy('studentId', 'employeeId')">Id</th>
+        <th ng-click="avuc.changeOrderBy('email')">Email</th>
+        <th ng-click="avuc.changeOrderBy('role')">Role</th>
       </thead>
       <tbody>
-        <tr ng-repeat="user in avuc.users | orderBy: 'role' | filter: avuc.filterType | filter: avuc.filterName">
+        <tr ng-repeat="user in avuc.users | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">
           <td>{{user.name}}</td>
           <td>
             <span ng-show="user.studentId">{{user.studentId}}</span>
