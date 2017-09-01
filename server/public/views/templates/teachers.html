@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
   <h1>Challenges</h1>
-  <div class="addChallenge col-md-3">
+  <div class="addChallenge col-md-3 topPadding">
     <form class="form-horizontal"  ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
       <fieldset>
 
@@ -68,7 +68,7 @@
     </fieldset>
   </form>
 </div>
-<div class="challengeList col-md-9" >
+<div class="challengeList col-md-9 borderRight" >
   <details ng-repeat="challenge in tcc.challengesService.challenges">
     <summary>
 
