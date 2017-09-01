@@ -1,0 +1,19 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+<!-- {{scc.userObject.info.studentId}} -->
+<details ng-repeat="challenge in scc.challengesService.challenges">
+  <summary>
+    {{challenge.challenge_name}}
+  </summary>
+  <div class="challengeInfo">
+    <div class="challenge"><label>Description:</label>{{challenge.description}}</div>
+    <div class="challenge"><label>Start Date:</label>{{challenge.start_date | date:'fullDate'}}</div>
+    <div class="challenge"><label>End Date:</label>{{challenge.end_date | date:'fullDate'}}</div>
+      <div class="studentList pull-left">
+            <button type="button" name="button" class="btn btn-xs btn-primary" ng-click="scc.acceptChallenge(scc.userObject.info.studentId, challenge.id)">Accept</button>
+      </div>
+    </div>
+
+</details>
+
+</div>
