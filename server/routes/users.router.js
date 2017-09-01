@@ -27,7 +27,7 @@ router.get('/', function(req, res){
         // Now we're going to GET things from the db
         var queryText = 'SELECT "users"."id", "users"."name",' +
         '  "users"."username", "users"."studentId", "users"."pic",' +
-        '  "users"."pts", "users"."lifetimePts", "users"."email", "users"."employeeId"' +
+        '  "users"."pts", "users"."lifetimePts", "users"."email", "users"."employeeId", "users"."role"' +
         'FROM "users" ORDER BY "role", "username" ASC;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, function(errorMakingQuery, result){
