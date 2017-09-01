@@ -29,7 +29,7 @@ myApp.config(function($routeProvider, $locationProvider) {
            return UserService.getuser();
          }
        }
-
+     })
     .when('/studentChallenges', {
       templateUrl: '/views/templates/studentChallenges.html',
        controller: 'StudentChallengesController as scc'
