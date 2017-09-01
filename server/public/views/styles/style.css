@@ -36,6 +36,20 @@ body, html {
     right: 0;
     padding: 10px;
 }
+.paddingBottom ul.list-group {
+    position: absolute;
+    z-index: 2;
+}
+td span {
+    word-break: break-all;
+}
+.paddingBottom li.list-group-item {
+    width: 100%;
+    curser: pointer;
+}
+.paddingBottom li.list-group-item:hover {
+    background-color: #efefef;
+}
 .alert.alert-danger.loginError {
   border-radius:0;
   margin:0 auto;
@@ -190,13 +204,17 @@ li a:hover {
 /*Teacher Challenge View*/
 
 details {
-  border-radius: 3px;
-  background: #EEE;
-  margin: 0;
+    border-bottom: 1px solid #efefef;
+    padding: 5px;
+    border-radius: 3px;
+    margin: 0;
 }
 .challengeInfo label {
     padding-right: 5px;
 
+}
+.studentList td {
+    padding: 0 5px;
 }
 input.editable-input {
   width:100%;
@@ -250,4 +268,24 @@ summary {
 
 
   }
+}
+/*Store Front*/
+.name {
+    width: 25%;
+}
+
+.description {
+    width: 28%;
+}
+
+.points {
+    width: 8%;
+}
+
+.qty {
+    width: 4%;
+}
+
+.school_community {
+    width: 7%;
 }
