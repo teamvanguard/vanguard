@@ -109,10 +109,11 @@ router.get('/transactions', function(req, res) {
         // Now we're going to GET things from the db
         var queryText = 'SELECT transactions.pts, transactions.timestamp, employees."employeeId",' +
         'employees.name AS "employeeName", students.name AS "studentName", challenges.challenge_name AS "challengeName", ' +
-        'items.item_name AS "itemName", students."studentId" FROM transactions JOIN users employees ON "transactions"."employeeId" = employees.id ' +
+        'items.item_name AS "itemName", students."studentId" FROM transactions ' +
+        'JOIN users employees ON "transactions"."employeeId" = employees.id ' +
         'JOIN users students ON "transactions"."studentId" = students.id ' +
-        'FULL OUTER JOIN items ON "transactions"."itemId" = items.id ' +
-        'FULL OUTER JOIN challenges ON "transactions"."challengeID" = challenges.id;';
+        'LEFT OUTER JOIN items ON "transactions"."itemId" = items.id ' +
+        'LEFT OUTER JOIN challenges ON "transactions"."challengeID" = challenges.id;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, function(errorMakingQuery, result){
           done();
@@ -241,7 +242,8 @@ router.get('/:role', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'SELECT "username", "email", "role", "employeeId", "studentId", "pts", "name" FROM users WHERE role = $1;';
+        var queryText = 'SELECT "username", "email", "role", "employeeId", ' +
+        '"studentId", "pts", "name" FROM users WHERE role = $1;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, [req.params.role], function(errorMakingQuery, result){
           done();
