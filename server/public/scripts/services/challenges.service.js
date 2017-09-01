@@ -15,13 +15,13 @@ myApp.factory('ChallengesService', function($http, $location) {
 
 
 // Ale start
-    acceptStudentChallenge: function() {
-      console.log('accept student challenges');
-      $http.get('/challenges/:studentId').then(function(response){
-        console.log(response);
-        challengesService.challenges = response.data;
-      });
-    }, // end acceptStudentChallenge
+    // acceptStudentChallenge: function() {
+    //   console.log('accept student challenges');
+    //   $http.get('/challenges/:studentId').then(function(response){
+    //     console.log(response);
+    //     challengesService.challenges = response.data;
+    //   });
+    // }, // end acceptStudentChallenge
 // Ale end
 
    addChallenge: function(newChallenge) {
@@ -32,15 +32,15 @@ myApp.factory('ChallengesService', function($http, $location) {
       });
     }, // end addChallenge
 
-// Ale start
-    addChallengeToStudent: function(newStudent) {
-       console.log(newStudent);
-       $http.post('/challenges/addStudent', newStudent).then(function(response) {
-         console.log(response);
-         challengesService.acceptStudentChallenge();
-       });
-     }, // end addChallenge
-     // Ale end
+// // Ale start
+//     addChallengeToStudent: function(newStudent) {
+//        console.log(newStudent);
+//        $http.post('/challenges/addStudent', newStudent).then(function(response) {
+//          console.log(response);
+//          challengesService.acceptStudentChallenge();
+//        });
+//      }, // end addChallenge
+//      // Ale end
 
 
    updateChallenge: function(challenge) {
