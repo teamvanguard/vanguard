@@ -11,10 +11,4 @@ myApp.controller('StudentChallengesController', function($http, UserService, Cha
   scc.challengesService.getChallenges();
   scc.userService.getuser();
 
-  scc.acceptChallenge =  function(challengeId) {
-    $http.post('/students/' + challengeId).then(function(response) {
-    console.log(response);
-    })
-   } // end addChallenge
-
 });
