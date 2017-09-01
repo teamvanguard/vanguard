@@ -87,39 +87,10 @@ router.put('/sell', function(req, res) {
   console.log(req.body);
   //only admins and managers
   if(req.user.role == 1 || req.user.role == 2) {
+    console.log('student', req.body.student);
+    console.log('item', req.body.item);
     sell.sellItem(req.body.student, req.body.item, res, req);
   } else{res.sendStatus(200);} //not authorized
-});
-
-//select all users of a specific role
-router.get('/:role', function(req, res) {
-  console.log('users router get by role');
-  //only admins
-  if(req.user.role == 1) {
-    pool.connect(function(errorConnectingToDatabase, db, done){
-      if(errorConnectingToDatabase) {
-        console.log('Error connecting to the database.');
-        res.sendStatus(500);
-      } else {
-        // We connected to the database!!!
-        // Now we're going to GET things from the db
-        var queryText = 'SELECT "username", "email", "role", "employeeId", "studentId", "pts", "name" FROM users WHERE role = $1;';
-        // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [req.params.role], function(errorMakingQuery, result){
-          done();
-          if(errorMakingQuery) {
-            console.log('Attempted to query with', queryText);
-            console.log('Error making query');
-            res.sendStatus(500);
-          } else {
-            console.log(result.rows);
-            // Send back the results
-            res.send(result.rows);
-          }
-        }); // end query
-      } // end if
-    }); // end pool
-  }else{res.sendStatus(401);} //not authorized
 });
 
 //get all transactions
@@ -136,7 +107,12 @@ router.get('/transactions', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'SELECT "studentId", "pts", "employeeId", "timestamp", "itemId", "challengeID" FROM transactions;';
+        var queryText = 'SELECT transactions.pts, transactions.timestamp, employees."employeeId",' +
+        'employees.name AS "employeeName", students.name AS "studentName", challenges.challenge_name AS "challengeName", ' +
+        'items.item_name AS "itemName", students."studentId" FROM transactions JOIN users employees ON "transactions"."employeeId" = employees.id ' +
+        'JOIN users students ON "transactions"."studentId" = students.id ' +
+        'FULL OUTER JOIN items ON "transactions"."itemId" = items.id ' +
+        'FULL OUTER JOIN challenges ON "transactions"."challengeID" = challenges.id;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, function(errorMakingQuery, result){
           done();
@@ -250,6 +226,38 @@ router.delete('/:id', function(req, res) {
       } // end if
     }); // end pool
   }else{res.sendStatus(401)}
+});
+
+
+//select all users of a specific role
+router.get('/:role', function(req, res) {
+  console.log('users router get by role');
+  //only admins
+  if(req.user.role == 1) {
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        // We connected to the database!!!
+        // Now we're going to GET things from the db
+        var queryText = 'SELECT "username", "email", "role", "employeeId", "studentId", "pts", "name" FROM users WHERE role = $1;';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [req.params.role], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+            console.log(result.rows);
+            // Send back the results
+            res.send(result.rows);
+          }
+        }); // end query
+      } // end if
+    }); // end pool
+  }else{res.sendStatus(401);} //not authorized
 });
 
 
