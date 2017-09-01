@@ -131,7 +131,9 @@
             <span ng-show="!rowform.$visible"  e-class="school_community" editable-text="item.school_community"  e-form="rowform" value="{{item.school_community}}" class="hidden-sm hidden-xs" >{{item.school_community}}</span>
           </td>
         </td>
-        <td class=""></td>
+        <td class="">
+          <span>{{item.name}}</span>
+        </td>
         <td class="actionButtons hidden-sm hidden-xs">
           <form onaftersave="msc.itemsService.editItem(item)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == item">
             <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-link">
