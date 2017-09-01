@@ -6,8 +6,8 @@ myApp.controller('StudentHomeController', function(UserService, ItemsService, Us
   shc.itemsService = ItemsService;
   shc.usersService = UsersService;
   shc.challengesService = ChallengesService;
-  shc.userService.getuser();
 
+  shc.userService.getuser();
 
 
 });

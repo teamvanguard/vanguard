@@ -6,4 +6,8 @@ myApp.controller('StudentItemsController', function(UserService, ItemsService, U
   sic.itemsService = ItemsService;
   sic.usersService = UsersService;
   sic.challengesService = ChallengesService;
+
+  sic.itemsService.getItems();
+
+
 });
