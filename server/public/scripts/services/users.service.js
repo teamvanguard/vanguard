@@ -1,7 +1,7 @@
 myApp.factory('UsersService', function($http, $location){
   console.log('UserssService Loaded');
 
-  var itemsService = {
+  var usersService = {
 
 //send object with email and role properties
     addUser: function(newUser) {
@@ -29,8 +29,17 @@ myApp.factory('UsersService', function($http, $location){
       $http.delete('/users/' + user.id).then(function(response){
         console.log(response);
       });
+    },
+
+// Get transactions
+    getTransactions: function() {
+      console.log('get transactions');
+      $http.get('/users/transactions').then(function(response){
+        console.log(response.data);
+        usersService.transactions = response.data
+      });
     }
   }
 
-  return itemsService
+  return usersService
 });

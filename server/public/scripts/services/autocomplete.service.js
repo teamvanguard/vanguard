@@ -65,9 +65,9 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
 
     studentTextbox : function(string){
       console.log(string);
-      autocompletePackage.selectedData = string;
-      autocompletePackage.students = autocompletePackage.selectedData.name;
-      console.log("The selected data's information: ", autocompletePackage.selectedData);
+      autocompletePackage.selectedStudent = string;
+      autocompletePackage.students = autocompletePackage.selectedStudent.name;
+      console.log("The selected data's information: ", autocompletePackage.selectedStudent);
       if(string){
         autocompletePackage.showMe = true;
       }
@@ -75,8 +75,8 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
 
     itemsTextbox : function(string){
       console.log(string);
-      autocompletePackage.selectedData = string;
-      autocompletePackage.itemName = autocompletePackage.selectedData.item_name;
+      autocompletePackage.selectedItem = string;
+      autocompletePackage.itemName = autocompletePackage.selectedItem.item_name;
       // console.log("The selected data's information: ", itemsList.selectedData);
       if(string){
         autocompletePackage.showMe = true;

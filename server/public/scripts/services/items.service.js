@@ -50,6 +50,7 @@ myApp.factory('ItemsService', function($http, $location){
         item: item,
         student: student
       };
+      console.log(data);
       $http.put('/users/sell', data).then(function(response) {
         console.log(response);
         itemsService.getItems();

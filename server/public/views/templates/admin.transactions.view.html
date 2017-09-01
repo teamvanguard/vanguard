@@ -1,0 +1,25 @@
+<div>
+  <table class="table teable-responsive">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Student Name</th>
+        <th>Employee Name</th>
+        <th>Reason</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="transaction in atc.usersService.transactions">
+        <td>{{transaction.timestamp | date}}</td>
+        <td>{{transaction.studentName}} {{transaction.studentId}}</td>
+        <td>{{transaction.employeeName}} {{transaction.employeeId}}</td>
+        <td>
+          <span ng-if="transaction.challengeName">Challenge: {{transaction.challengeName}}</span>
+          <span ng-if="transaction.itemName">Sale: {{transaction.itemName}}</span>
+        </td>
+        <td>{{transaction.pts}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

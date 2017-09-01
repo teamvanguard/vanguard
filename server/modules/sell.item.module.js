@@ -23,7 +23,7 @@ function findItem(student, item, res, req) {
           console.log('Error making query');
           res.sendStatus(500);
         } else {
-          console.log(result.rows);
+          console.log('item from db', result.rows);
           // Send back the results
           var selectedItem = result.rows[0];
           // find student in database
@@ -55,10 +55,11 @@ function findStudent(student, item, res, req) {
         } else {
           // Send back the results
           var selectedStudent = result.rows[0];
-          console.log('selectedStudent', selectedStudent);
+          console.log('selectedStudent from db', selectedStudent);
           if (selectedStudent.pts > item.pts_value && item.qty > 0) {
             subtractQty(selectedStudent, item, res, req);
           } else {
+            console.log('not enough money');
             res.sendStatus(500);
           }
           // subtract qty from item
@@ -147,7 +148,7 @@ function addTransaction(student, item, res, req){
       var queryText = 'INSERT INTO transactions ("studentId", "pts", "employeeId", "timestamp", "itemId") ' +
       'VALUES ($1, $2, $3, $4, $5)';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [student.id, item.pts_value, req.user.id, today, item.id],
+      db.query(queryText, [student.id, '-' + item.pts_value, req.user.id, today, item.id],
         function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
@@ -166,7 +167,7 @@ function addTransaction(student, item, res, req){
 
 function sellItem(student, item, res, req){
   //get the item info from the database
-  findItem(student, item, res, req)
+  findItem(student, item, res, req);
 };
 
 module.exports = sellingModule;
