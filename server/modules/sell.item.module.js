@@ -145,10 +145,10 @@ function addTransaction(student, item, res, req){
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = 'INSERT INTO transactions ("studentId", "pts", "employeeId", "timestamp", "itemId") ' +
-      'VALUES ($1, $2, $3, $4, $5)';
+      var queryText = 'INSERT INTO transactions ("studentId", "pts", "employeeId", "timestamp", "itemId", "type") ' +
+      'VALUES ($1, $2, $3, $4, $5, $6)';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [student.id, '-' + item.pts_value, req.user.id, today, item.id],
+      db.query(queryText, [student.id, '-' + item.pts_value, req.user.id, today, item.id, 'sale'],
         function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
