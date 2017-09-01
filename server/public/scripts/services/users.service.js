@@ -6,9 +6,13 @@ myApp.factory('UsersService', function($http, $location){
 //send object with email and role properties
     addUser: function(newUser) {
       console.log(newUser);
-      $http.post('/users', newUser).then(function(response) {
-        console.log(response);
-      });
+      if(newUser.email == undefined || newUser.role == undefined || newUser.role == ""){
+        console.log('user needs an email and a role!');
+      } else {
+        $http.post('/users', newUser).then(function(response) {
+          console.log(response);
+        });
+      }
     },
 
 //send object with email and role properties

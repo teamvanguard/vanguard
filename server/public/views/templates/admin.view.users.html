@@ -1,0 +1,55 @@
+<div ng-include="'views/partials/nav.html'"></div>
+
+<div class="container">
+  <div class="row">
+    <form ng-submit="avuc.usersService.addUser(avuc.newUser)" class="form-inline">
+      <div class="form-group">
+          <input class="form-control input-md" required type="email" ng-model="avuc.newUser.email" placeholder="Enter new users email">
+      </div>
+      <div class="form-group">
+        <select ng-model="avuc.newUser.role" class="form-control">
+          <option value="">Select a role</option>
+          <option value="1">Admin</option>
+          <option value="2">Store Manager</option>
+          <option value="3">Teacher</option>
+          <option value="4">Student</option>
+        </select>
+      </div>
+
+      <button type="submit" name="button" class="btn btn-md btn-primary">Add User</button>
+    </form>
+  </div>
+  <div class="row">
+    <div class="form-inline">
+      <input class="form-control input-md" type="text" ng-model="avuc.filterName" placeholder="Search table">
+      <select ng-model="avuc.filterType" class="form-control">
+        <option value="">All</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teachers</option>
+        <option value="Store Manager">Store Managers</option>
+        <option value="admin">Admins</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table table-responsive">
+      <thead>
+        <th ng-click="avuc.changeOrderBy('name')">Name</th>
+        <th ng-click="avuc.changeOrderBy('studentId', 'employeeId')">Id</th>
+        <th ng-click="avuc.changeOrderBy('email')">Email</th>
+        <th ng-click="avuc.changeOrderBy('role')">Role</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in avuc.users | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">
+          <td>{{user.name}}</td>
+          <td>
+            <span ng-show="user.studentId">{{user.studentId}}</span>
+            <span ng-show="user.employeeId">{{user.employeeId}}</span>
+          </td>
+          <td>{{user.email}}</td>
+          <td>{{user.role}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

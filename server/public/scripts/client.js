@@ -57,9 +57,9 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/admin', {
-      templateUrl: '/views/templates/admin.html',
-      controller: 'AdminViewUserController as avuc',
+    .when('/adminusers', {
+      templateUrl: '/views/templates/admin.view.users.html',
+      controller: 'AdminViewUsersController as avuc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();

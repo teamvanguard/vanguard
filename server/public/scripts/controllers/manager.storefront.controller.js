@@ -13,6 +13,16 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
   msc.itemList = ItemsService.itemList;
 
   msc.itemsService.getItems();
+  msc.orderBy = 'item_name';
+
+  msc.changeOrderBy = function(property) {
+    console.log(property);
+    if (msc.orderBy != property) {
+      msc.orderBy = property;
+    } else {
+      msc.orderBy = '-' + property;
+    }
+  }
 
 
 }); //end of controller
