@@ -28,7 +28,7 @@ router.get('/', function(req, res) {
         // get challenges for students
         if (req.user.role == 4) {
 
-          queryText = "SELECT challenges.challenge_name, " +
+          queryText = "SELECT challenges.id, challenges.challenge_name, " +
             "challenges.description, challenges.start_date, " +
             "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
             "FROM challenges JOIN users ON users.id = challenges.teacher_id " +
