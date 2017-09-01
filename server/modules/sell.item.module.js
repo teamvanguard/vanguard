@@ -56,6 +56,7 @@ function findStudent(student, item, res, req) {
           // Send back the results
           var selectedStudent = result.rows[0];
           console.log('selectedStudent from db', selectedStudent);
+          console.log(item);
           if (selectedStudent.pts > item.pts_value && item.qty > 0) {
             subtractQty(selectedStudent, item, res, req);
           } else {
