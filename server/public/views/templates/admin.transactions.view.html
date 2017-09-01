@@ -1,0 +1,34 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="donctainer">
+  <div class="">
+    <input type="text" ng-model="atc.filterInput">
+    <select ng-model="atc.filterType">
+      <option value="">All</option>
+      <option value="sale">Sales</option>
+      <option value="challenge">Challenges</option>
+    </select>
+  </div>
+  <table class="table teable-responsive">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Student Name</th>
+        <th>Employee Name</th>
+        <th>Reason</th>
+        <th>Points</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="transaction in atc.usersService.transactions | orderBy: atc.orderBy | filter: atc.filterType | filter: atc.filterInput">
+        <td>{{transaction.timestamp | date}}</td>
+        <td>{{transaction.studentName}} {{transaction.studentId}}</td>
+        <td>{{transaction.employeeName}} {{transaction.employeeId}}</td>
+        <td>
+          <span ng-if="transaction.challengeName">Challenge: {{transaction.challengeName}}</span>
+          <span ng-if="transaction.itemName">Sale: {{transaction.itemName}}</span>
+        </td>
+        <td>{{transaction.pts}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

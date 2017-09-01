@@ -21,9 +21,19 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/studentItems.html',
        controller: 'StudentItemsController as sic'
     })
+    .when('/admintransactions', {
+      templateUrl: '/views/templates/admin.transactions.view.html',
+       controller: 'AdminTransactionsController as atc',
+       resolve: {
+         getuser : function(UserService){
+           return UserService.getuser();
+         }
+       }
+     })
     .when('/studentChallenges', {
       templateUrl: '/views/templates/studentChallenges.html',
        controller: 'StudentChallengesController as scc'
+
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
