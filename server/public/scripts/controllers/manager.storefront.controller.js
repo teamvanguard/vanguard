@@ -14,6 +14,7 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
 
   msc.itemsService.getItems();
   msc.orderBy = 'item_name';
+  msc.filterType = "";
 
   msc.changeOrderBy = function(property) {
     console.log(property);
