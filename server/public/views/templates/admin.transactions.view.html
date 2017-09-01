@@ -1,14 +1,21 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="donctainer">
+<div class="container">
   <div class="">
-    <input type="text" ng-model="atc.filterInput">
-    <select ng-model="atc.filterType">
-      <option value="">All</option>
-      <option value="sale">Sales</option>
-      <option value="challenge">Challenges</option>
-    </select>
+    <form class="form-inline">
+      <div class="form-group">
+        <input type="text" ng-model="atc.filterInput" class="form-control">
+      </div>
+      <div class="form-group">
+        <select ng-model="atc.filterType" class="form-control">
+          <option value="">All</option>
+          <option value="sale">Sales</option>
+          <option value="challenge">Challenges</option>
+        </select>
+      </div>
+
+    </form>
   </div>
-  <table class="table teable-responsive">
+  <table class="table table-responsive">
     <thead>
       <tr>
         <th>Date</th>
