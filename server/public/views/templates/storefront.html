@@ -99,24 +99,31 @@
       </div>
       </form>
     </div>
+
+    </div>
     <div class="col-md-9 topPadding">
+      <div>
+        <input type="text" ng-model="msc.filterInput">
+        <select ng-model="msc.filterType">
+          <option value="true">School</option>
+          <option value="false">Community</option>
+        </select>
+      </div>
       <div class="table-responsive table-condenced table-hover">
-
-
 
 
       <table class="table">
         <thead>
-          <th class="name">Item Name</th>
-          <th class="description">Item Description</th>
-          <th class="points">Points</th>
-          <th class="qty">Qty</th>
-          <th class="school_community">Type</th>
-          <th class="last_edited">Last Edited by:</th>
+          <th class="name" ng-click="msc.changeOrderBy('item_name')">Item Name</th>
+          <th class="description" ng-click="msc.changeOrderBy('item_description')">Item Description</th>
+          <th class="points" ng-click="msc.changeOrderBy('pts_value')">Points</th>
+          <th class="qty" ng-click="msc.changeOrderBy('qty')">Qty</th>
+          <th class="school_community" ng-click="msc.changeOrderBy('school_community')">Type</th>
+          <th class="last_edited" ng-click="msc.changeOrderBy('name')">Last Edited by:</th>
           <th class="edit">Edit</th>
         </thead>
         <tbody>
-          <tr ng-repeat="item in msc.itemsService.itemList" class="itemsTable">
+          <tr ng-repeat="item in msc.itemsService.itemList | orderBy: msc.orderBy | filter: msc.filterInput | filter: msc.filterType" class="itemsTable">
             <td class="">
 
               <span ng-show="!rowform.$visible"  e-class="name" editable-text="item.item_name"  e-form="rowform" class="hidden-sm hidden-xs" >{{item.item_name}}</span>
@@ -135,7 +142,6 @@
               <td class="">
                 <span ng-show="!rowform.$visible"  e-class="school_community" editable-text="item.school_community"  e-form="rowform" class="hidden-sm hidden-xs" >{{item.school_community}}</span>
               </td>
-</td>
               <td class=""></td>
               <td class="actionButtons hidden-sm hidden-xs">
                 <form onaftersave="msc.itemsService.editItem(item)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == item">
