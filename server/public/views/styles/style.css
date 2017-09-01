@@ -1,166 +1,60 @@
-body, html {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  font-size: 14px;
-  background-color: white;
+#container {
+  margin-top:10px;
 }
-/* Global Styles*/
-.table > thead > tr > th {
-  border-bottom: none !important;
+
+#entryForm,.container p {
+  margin-top:14px;
 }
-.alignCenter {
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+
+.addChallenge {
+  margin-bottom:10px;
+  padding-right:25px;
 }
-.itemsTable .btn-danger {
-  margin-left: 0;
+
+.addChallenge .form-group {
+  margin-bottom:5px;
 }
-.col-md-9.topPadding {
-    border-left: 1px solid #dfdfdf;
-}
-.full button span {
-  background-color: limegreen;
-  border-radius: 32px;
-  color: black;
-}
-.partially button span {
-  background-color: orange;
-  border-radius: 32px;
-  color: black;
-}
-.topRight {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px;
-}
-.paddingBottom ul.list-group {
-    position: absolute;
-    z-index: 2;
-}
-td span {
-    word-break: break-all;
-}
-.paddingBottom li.list-group-item {
-    width: 100%;
-    curser: pointer;
-}
-.paddingBottom li.list-group-item:hover {
-    background-color: #efefef;
-}
+
 .alert.alert-danger.loginError {
   border-radius:0;
   margin:0 auto;
   max-width:380px;
 }
-.search input.form-control {
-    border-radius: 20px !important;
+
+.alignCenter {
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
 }
-.padding {
-  padding: 0 15px;
+
+.borderRight {
+  min-height:438px!important;
 }
-.paddingRight {
-  padding-right: 10px;
+
+.btn-danger {
+  margin-left:10px;
 }
-.topPadding {
-  margin-top: -10px;
+
+.challengeInfo {
+  background-color:#FFF;
+  padding:10px;
 }
-.paddingBottom {
-  padding-bottom: 25px;
+
+.challengeInfo label {
+  padding-right:5px;
 }
-.instructions .container h1 {
-  font-size: 32px;
-  font-weight: 600;
-}
-.logo img {
-  padding: 10px;
-}
-a.studentHomeIcon {
-    color: black;
-    height: 68px;
-    display: inline-block;
-    padding: 10px;
+
+.col-md-9.topPadding {
+  border-left:1px solid #dfdfdf;
 }
 
 .container.header {
-    height: 100%;
-}
-.studentPhoto img {
-    padding: 30px;
-}
-h1.vanguardTech {
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
+  height:100%;
 }
 
-
-#entryForm {
-  margin-top: 14px;
+.description {
+  width:28%;
 }
-
-#container {
-  margin-top: 10px;
-}
-
-.container p{
-  margin-top : 14px;
-}
-
-.message {
-  padding: 10px 0;
-}
-
-
-.btn-danger{
-  margin-left: 10px;
-}
-
-.navbar {
-  background-color: #333333;
-  width: 100%;
-  border-radius: 0px;
-}
-.navbar-default {
-    border-top: 3px solid #000 !important;
-    background-color: white !important;
-}
-.navbar-default .navbar-nav > li > a {
-    color: #333 !important;
-}
-.navbar-default .navbar-nav > li > a:hover {
-    font-weight: 500;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-/* Change the link color to #111 (black) on hover */
-li a:hover {
-  text-decoration: underline;
-  color: #eee;
-}
-/* Add Challenge */
-
-.addChallenge {
-    margin-bottom: 10px;
-    padding-right: 25px;
-}
-/* Login / Register Styles*/
 
 .form-control {
   font-size:16px;
@@ -178,9 +72,7 @@ li a:hover {
   max-width:380px;
   padding:15px 35px 45px;
 }
-.borderRight {
-    min-height: 438px !important;
-}
+
 .form-signin .checkbox {
   font-weight:400;
 }
@@ -189,103 +81,206 @@ li a:hover {
   margin-bottom:30px;
 }
 
-.form-signin input[type="password"],
-.form-signin input[type="text"] {
+.form-signin input[type="password"],.form-signin input[type="text"] {
   border-top-left-radius:0;
   border-top-right-radius:0;
 }
-.submitButton {
-  padding-top: 25px;
-}
-.form-signin input[type="text"]
-{
+
+.form-signin input[type="text"] {
   margin-bottom:-1px;
 }
-/*Teacher Challenge View*/
 
-details {
-    border-bottom: 1px solid #efefef;
-    padding: 5px;
-    border-radius: 3px;
-    margin: 0;
+.full button span {
+  background-color:#32CD32;
+  border-radius:32px;
+  color:#000;
 }
-.challengeInfo label {
-    padding-right: 5px;
 
+.instructions .container h1 {
+  font-size:32px;
+  font-weight:600;
 }
-.studentList td {
-    padding: 0 5px;
+
+.itemsTable .btn-danger {
+  margin-left:0;
 }
-input.editable-input {
+
+.logo img {
+  padding:10px;
+}
+
+.message {
+  padding:10px 0;
+}
+
+.name {
+  width:25%;
+}
+
+.navbar {
+  background-color:#333;
+  border-radius:0;
   width:100%;
 }
-th.edit {
-    padding-left: 20px !important;
+
+.navbar-default {
+  background-color:#FFF!important;
+  border-top:3px solid #000!important;
 }
-.addChallenge .form-group {
-    margin-bottom: 5px;
+
+.navbar-default .navbar-nav > li > a {
+  color:#333!important;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  font-weight:500;
+}
+
+.padding {
+  padding:0 15px;
+}
+
+.paddingBottom {
+  padding-bottom:25px;
+}
+
+.paddingBottom li.list-group-item {
+  curser:pointer;
+  width:100%;
+}
+
+.paddingBottom li.list-group-item:hover {
+  background-color:#efefef;
+}
+
+.paddingRight {
+  padding-right:10px;
+}
+
+.partially button span {
+  background-color:orange;
+  border-radius:32px;
+  color:#000;
+}
+
+.points {
+  width:8%;
+}
+
+.qty {
+  width:4%;
+}
+
+.school_community {
+  width:7%;
+}
+
+.search input.form-control {
+  border-radius:20px!important;
+}
+
+.studentList td {
+  padding:0 10px 0 5px;
 }
 
 .studentNav .container a {
-  color: black;
-
-.points {
-    width: 9%;
+  color:#000;
+  pointswidth:9%;
 }
 
-.qty {
-    width: 8%;
-}
-.description {
-    width: 33%;
+.studentPhoto img {
+  padding:30px;
 }
 
-.name {
-    width: 15%;
+.submitButton {
+  padding-top:25px;
 }
 
-.school_community {
-    width: 8%;
-
+.table > thead > tr > th {
+  border-bottom:none!important;
 }
+
+.topPadding {
+  margin-top:-10px;
+}
+
+.topRight {
+  padding:10px;
+  position:absolute;
+  right:0;
+  top:0;
+}
+
+a.studentHomeIcon {
+  color:#000;
+  display:inline-block;
+  height:68px;
+  padding:10px;
+}
+
+body,html {
+  background-color:#FFF;
+  font-family:sans-serif;
+  font-size:14px;
+  margin:0;
+  padding:0;
+}
+
+details {
+  border-bottom:1px solid #efefef;
+  border-radius:3px;
+  margin:0;
+  padding:5px;
+}
+
+h1.vanguardTech {
+  overflow:hidden;
+  text-indent:100%;
+  white-space:nowrap;
+}
+
+input.editable-input {
+  width:100%;
+}
+
+li a {
+  color:#FFF;
+  display:block;
+  padding:14px 16px;
+  text-align:center;
+  text-decoration:none;
+}
+
+li a:hover {
+  color:#eee;
+  text-decoration:underline;
+}
+
 summary {
-  border-radius: 3px;
-  padding: 5px 10px;
-  outline: none;
-  background-color: white;
-  border-bottom: 1px solid #dfdfdf;
-  font-size: 18px;
-
-}
-.challengeInfo {
-    background-color: white;
-    padding: 10px;
-}
-.studentList td {
-    padding-right: 10px;
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-
-
-  }
-}
-/*Store Front*/
-.name {
-    width: 25%;
+  background-color:#FFF;
+  border-bottom:1px solid #dfdfdf;
+  border-radius:3px;
+  font-size:18px;
+  outline:none;
+  padding:5px 10px;
 }
 
-.description {
-    width: 28%;
+td span {
+  word-break:break-all;
 }
 
-.points {
-    width: 8%;
+th.edit {
+  padding-left:20px!important;
 }
 
-.qty {
-    width: 4%;
+ul {
+  list-style-type:none;
+  margin:0;
+  overflow:hidden;
+  padding:0;
 }
 
-.school_community {
-    width: 7%;
+ul.list-group {
+  position:absolute;
+  z-index:2;
 }
