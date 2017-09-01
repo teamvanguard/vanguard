@@ -109,7 +109,7 @@ router.get('/transactions', function(req, res) {
         // Now we're going to GET things from the db
         var queryText = 'SELECT transactions.pts, transactions.timestamp, employees."employeeId",' +
         'employees.name AS "employeeName", students.name AS "studentName", challenges.challenge_name AS "challengeName", ' +
-        'items.item_name AS "itemName", students."studentId" FROM transactions ' +
+        'items.item_name AS "itemName", students."studentId", transactions.type FROM transactions ' +
         'JOIN users employees ON "transactions"."employeeId" = employees.id ' +
         'JOIN users students ON "transactions"."studentId" = students.id ' +
         'LEFT OUTER JOIN items ON "transactions"."itemId" = items.id ' +
