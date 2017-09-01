@@ -135,7 +135,7 @@
               <span ng-show="!rowform.$visible"  e-class="qty" editable-text="item.qty"  e-form="rowform" class="" >{{item.qty}}</span>
             </td>
             <td class="">
-              <span ng-show="!rowform.$visible"  e-class="school_community" editable-text="item.school_community"  e-form="rowform" value="{{item.school_community}}" class="hidden-sm hidden-xs" >{{item.school_community}}</span>
+              <span ng-show="!rowform.$visible"  e-class="school_community" editable-text="item.school_community"  e-form="rowform" value="{{item.school_community}}">{{item.school_community | itemType}}</span>
             </td>
           </td>
           <td class="">
