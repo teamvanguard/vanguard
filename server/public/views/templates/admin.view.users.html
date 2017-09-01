@@ -34,10 +34,26 @@
   <div class="row">
     <table class="table table-responsive">
       <thead>
-        <th ng-click="avuc.changeOrderBy('name')">Name</th>
-        <th ng-click="avuc.changeOrderBy('studentId', 'employeeId')">Id</th>
-        <th ng-click="avuc.changeOrderBy('email')">Email</th>
-        <th ng-click="avuc.changeOrderBy('role')">Role</th>
+        <th ng-click="avuc.changeOrderBy('name')">
+          Name
+          <span ng-if="avuc.orderBy == '-name'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+          <span ng-if="avuc.orderBy == 'name'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        </th>
+        <th ng-click="avuc.changeOrderBy('studentId')">
+          Id
+          <span ng-if="avuc.orderBy == '-studentId'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+          <span ng-if="avuc.orderBy == 'studentId'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        </th>
+        <th ng-click="avuc.changeOrderBy('email')">
+          Email
+          <span ng-if="avuc.orderBy == '-email'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+          <span ng-if="avuc.orderBy == 'email'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        </th>
+        <th ng-click="avuc.changeOrderBy('role')">
+          Role
+          <span ng-if="avuc.orderBy == '-role'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+          <span ng-if="avuc.orderBy == 'role'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        </th>
       </thead>
       <tbody>
         <tr ng-repeat="user in avuc.users | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">

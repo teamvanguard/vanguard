@@ -32,8 +32,9 @@ myApp.controller('AdminViewUsersController', function(UserService, $http, UsersS
   avuc.getUsers();
   avuc.orderBy = 'role';
   avuc.changeOrderBy = function(property, property2) {
+    console.log(property);
     if(avuc.orderBy != property){
-      avuc.orderBy = property;
+      avuc.orderBy = property || property2;
     } else {
       avuc.orderBy = '-' + property;
     }
