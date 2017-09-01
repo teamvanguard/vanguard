@@ -40,7 +40,15 @@ myApp.factory('ChallengesService', function($http, $location) {
         console.log(response);
         challengesService.getChallenges();
       });
-    } // end deleteChallenge
+    }, // end deleteChallenge
+
+    acceptChallenge : function(challengeId) {
+      $http.post('/students/' + challengeId).then(function(response) {
+      console.log(response);
+      swal("Challenge Accepted");
+    });
+  } // end acceptChallenge
+
   };
 
  return challengesService;

@@ -10,7 +10,7 @@
     <div class="challenge"><label>Start Date:</label>{{challenge.start_date | date:'fullDate'}}</div>
     <div class="challenge"><label>End Date:</label>{{challenge.end_date | date:'fullDate'}}</div>
       <div class="studentList pull-left">
-            <button type="button" name="button" class="btn btn-xs btn-primary" ng-click="scc.acceptChallenge(scc.userObject.info.studentId, challenge.id)">Accept</button>
+  <button type="button" name="button" class="btn btn-xs btn-primary" ng-click="scc.challengesService.acceptChallenge(challenge.id)">Accept</button>
       </div>
     </div>
 

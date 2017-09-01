@@ -4,12 +4,7 @@ var path = require('path');
 var pool = require('../modules/pool.js');
 
 router.post('/:id', function(req, res) {
-  // var accepedChallenge = req.body;
   var timeStamp = new Date();
-  // console.log('router side req.body:', accepedChallenge);
-  // console.log(req.body);
-  console.log(req.params.id);
-  console.log(req.user.id);
   if (req.isAuthenticated()) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
