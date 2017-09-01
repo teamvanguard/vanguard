@@ -1,10 +1,23 @@
 <div ng-include="'views/partials/nav.html'"></div>
-
 <div class="container">
-  <div class="row">
-    <form ng-submit="avuc.usersService.addUser(avuc.newUser)" class="form-inline">
+  <div class="col-md-3 paddingTop">
+    <form class="form-horizontal hidden-xs hidden-sm">
       <div class="form-group">
-          <input class="form-control input-md" required type="email" ng-model="avuc.newUser.email" placeholder="Enter new users email">
+        <input class="form-control input-md" type="text" ng-model="avuc.filterName" placeholder="Search table">
+      </div>
+      <div class="form-group">
+        <select ng-model="avuc.filterType" class="form-control">
+        <option value="">All</option>
+        <option value="student">Student</option>
+        <option value="teacher">Teachers</option>
+        <option value="Store Manager">Store Managers</option>
+        <option value="admin">Admins</option>
+      </select>
+    </div>
+    </form>
+    <form ng-submit="avuc.usersService.addUser(avuc.newUser)" class="form-horizontal">
+      <div class="form-group">
+        <input class="form-control input-md" required type="email" ng-model="avuc.newUser.email" placeholder="Enter new users email">
       </div>
       <div class="form-group">
         <select ng-model="avuc.newUser.role" class="form-control">
@@ -15,14 +28,18 @@
           <option value="4">Student</option>
         </select>
       </div>
+      <div class="form-group">
 
-      <button type="submit" name="button" class="btn btn-md btn-primary">Add User</button>
+        <button type="submit" name="button" class="btn btn-md btn-primary">Add User</button>
+      </div>
+
     </form>
-  </div>
-  <div class="row">
-    <div class="form-inline">
-      <input class="form-control input-md" type="text" ng-model="avuc.filterName" placeholder="Search table">
-      <select ng-model="avuc.filterType" class="form-control">
+    <form class="form-horizontal hidden-md hidden-lg">
+      <div class="form-group">
+        <input class="form-control input-md" type="text" ng-model="avuc.filterName" placeholder="Search table">
+      </div>
+      <div class="form-group">
+        <select ng-model="avuc.filterType" class="form-control">
         <option value="">All</option>
         <option value="student">Student</option>
         <option value="teacher">Teachers</option>
@@ -30,42 +47,44 @@
         <option value="admin">Admins</option>
       </select>
     </div>
+    </form>
+
+    </div>
+    <div class="col-md-9">
+      <table class="table table-responsive">
+        <thead>
+          <th ng-click="avuc.changeOrderBy('name')">
+            Name
+            <span ng-if="avuc.orderBy == '-name'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+            <span ng-if="avuc.orderBy == 'name'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+          </th>
+          <th ng-click="avuc.changeOrderBy('studentId')">
+            Id
+            <span ng-if="avuc.orderBy == '-studentId'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+            <span ng-if="avuc.orderBy == 'studentId'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+          </th>
+          <th ng-click="avuc.changeOrderBy('email')">
+            Email
+            <span ng-if="avuc.orderBy == '-email'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+            <span ng-if="avuc.orderBy == 'email'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+          </th>
+          <th ng-click="avuc.changeOrderBy('role')">
+            Role
+            <span ng-if="avuc.orderBy == '-role'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+            <span ng-if="avuc.orderBy == 'role'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+          </th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in avuc.users | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">
+            <td>{{user.name}}</td>
+            <td>
+              <span ng-show="user.studentId">{{user.studentId}}</span>
+              <span ng-show="user.employeeId">{{user.employeeId}}</span>
+            </td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="row">
-    <table class="table table-responsive">
-      <thead>
-        <th ng-click="avuc.changeOrderBy('name')">
-          Name
-          <span ng-if="avuc.orderBy == '-name'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-          <span ng-if="avuc.orderBy == 'name'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-        </th>
-        <th ng-click="avuc.changeOrderBy('studentId')">
-          Id
-          <span ng-if="avuc.orderBy == '-studentId'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-          <span ng-if="avuc.orderBy == 'studentId'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-        </th>
-        <th ng-click="avuc.changeOrderBy('email')">
-          Email
-          <span ng-if="avuc.orderBy == '-email'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-          <span ng-if="avuc.orderBy == 'email'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-        </th>
-        <th ng-click="avuc.changeOrderBy('role')">
-          Role
-          <span ng-if="avuc.orderBy == '-role'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-          <span ng-if="avuc.orderBy == 'role'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-        </th>
-      </thead>
-      <tbody>
-        <tr ng-repeat="user in avuc.users | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">
-          <td>{{user.name}}</td>
-          <td>
-            <span ng-show="user.studentId">{{user.studentId}}</span>
-            <span ng-show="user.employeeId">{{user.employeeId}}</span>
-          </td>
-          <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
