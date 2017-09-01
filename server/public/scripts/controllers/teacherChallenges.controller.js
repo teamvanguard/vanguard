@@ -6,5 +6,5 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
   tcc.challengesService = ChallengesService;
   tcc.challenges = ChallengesService.challenges;
   tcc.challengesService.getChallenges();
-  // console.log(tcc.challenges);
+  console.log(tcc.challenges);
 }); // end TeacherChallengesController
