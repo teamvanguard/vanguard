@@ -2,10 +2,38 @@
 
 <div class="container storeFront">
   <div class="col-md-3 borderRight">
+    </div>
 
-    <form class="form-horizontal padding" ng-submit="msc.itemsService.submitNewItem(msc.newItem)">
-      <!-- Text input-->
-      <div class="form-group itemName">
+    <div class="col-md-9 paddingBottom">
+
+      <form class="form-inline">
+
+        <div class="form-group">
+          <input type="text" ng-model="msc.autocompletePackage.students" class="form-control"
+          ng-keyup="msc.autocompleteService.complete(msc.autocompletePackage.students, msc.autocompletePackage.studentsList, 'users')" placeholder="Student Name"/>
+          <ul class="list-group" ng-show="!msc.autocompletePackage.showMe">
+            <div ng-repeat="data in msc.autocompletePackage.filterData.users">
+              <li class="list-group-item" ng-click="msc.autocompleteService.studentTextbox(data)">{{data.name}}</li>
+            </div>
+          </ul>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+
+          <input type="text" ng-model="msc.autocompletePackage.itemName" class="form-control"
+          ng-keyup="msc.autocompleteService.complete(msc.autocompletePackage.itemName, msc.autocompletePackage.itemList, 'items')"
+          placeholder="Items Name"/>
+          <ul class="list-group" ng-show="!msc.autocompletePackage.showMe">
+              <li class="list-group-item" ng-repeat="itemData in msc.autocompletePackage.filterData.items" ng-click="msc.autocompleteService.itemsTextbox(itemData)">{{itemData.item_name}}</li>
+          </ul>
+
+        </div>
+        <button id="search" name="search" class="btn btn-primary" ng-click="msc.itemsService.sellItem(msc.autocompletePackage.selectedItem, msc.autocompletePackage.selectedStudent)">Sell</button>
+      </form>
+    </div>
+  </div>
+  <div class="container">
+
 
         <label for="itemName">Item Name</label>
         <input id="itemName" ng-model="msc.newItem.name" name="itemName" type="text" placeholder="Item Name" class="form-control">

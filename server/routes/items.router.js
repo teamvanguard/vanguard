@@ -59,7 +59,7 @@ router.get('/', function(req, res) {
       } else {
         // gets items with the name of the last person who edited for the store and adim
         if(req.user.role == 2 || req.user.role == 1) {
-          var queryText = 'SELECT items.id, items.item_name, items.item_description, items.pts_value, items.pic, items.school_community, users.name, items.qty FROM items JOIN users ON users.id = items.last_edit_user_id ORDER BY items.id ASC;';
+          var queryText = 'SELECT items.id, items.item_name, items.item_description, items.pts_value, items.pic, items.school_community, users.name, items.qty FROM items LEFT OUTER JOIN users ON users.id = items.last_edit_user_id ORDER BY items.id ASC;';
           //var queryText = 'SELECT items.item_name, items.item_description, items.pts_value, items.pic, items.school_community, users.name FROM items JOIN users ON users.id = items.last_edit_user_id;';
         }
         // gets just the items for the students and teachers

@@ -6,4 +6,5 @@ myApp.controller('AdminTransactionsController', function(UserService, ItemsServi
   atc.itemsService = ItemsService;
   atc.usersService = UsersService;
   atc.challengesService = ChallengesService;
+  atc.usersService.getTransactions();
 });
