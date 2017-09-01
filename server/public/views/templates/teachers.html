@@ -1,8 +1,8 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
   <h1>Challenges</h1>
-  <div class="addChallenge col-md-3">
-    <form class="form-horizontal">
+  <div class="addChallenge col-md-3 topPadding">
+    <form class="form-horizontal"  ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
       <fieldset>
 
         <!-- Text input-->
@@ -10,7 +10,7 @@
           <div>
             <label class="control-label" for="challengeName">Challenge Name</label>
 
-            <input id="challengeName" name="challengeName" type="text" placeholder="Challenge Name" class="form-control input-md" ng-model="tcc.newChallenge.name">
+            <input id="challengeName" name="challengeName" type="text" placeholder="Challenge Name" class="form-control input-md" ng-model="tcc.newChallenge.challenge_name">
 
           </div>
         </div>
@@ -20,7 +20,7 @@
           <div>
             <label class="control-label" for="textarea">Challenge Description</label>
 
-            <textarea class="form-control" id="textarea" name="textarea" ng-model="tcc.newChallenge.description"></textarea>
+            <textarea class="form-control" id="textarea" name="textarea" ng-model="tcc.newChallenge.description" placeholder="Challenge Description"></textarea>
           </div>
         </div>
         <div class="form-group">
@@ -59,7 +59,6 @@
             </span>
           </p>
         </div>
-
       <!-- Button -->
       <div class="form-group">
         <div>
@@ -69,11 +68,11 @@
     </fieldset>
   </form>
 </div>
-<div class="challengeList col-md-9" >
+<div class="challengeList col-md-9 borderRight" >
   <details ng-repeat="challenge in tcc.challengesService.challenges">
     <summary>
 
-      {{challenge.name}}
+      {{challenge.challenge_name}}
     </summary>
     <div class="challengeInfo">
       <div class="challengeItem"><label>Description:</label>{{challenge.description}}</div>

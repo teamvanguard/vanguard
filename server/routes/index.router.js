@@ -6,7 +6,7 @@ var path = require('path');
 // Handles login form POST from index.html
 
 //when clicking the google button, the user is taken to the following url to login
-router.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email']}));
+router.get('/auth/google', passport.authenticate('google', {scope : ['profile', 'email'] , prompt: 'select_account'}));
 //if login is successful, we will recieve the information and then redirected to the homepage
 router.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: '/#/user',

@@ -1,123 +1,160 @@
 <div ng-include="'views/partials/nav.html'"></div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
+<div class="container storeFront">
+  <div class="col-md-3 borderRight">
 
-    </div>
+    <form class="form-horizontal padding" ng-submit="msc.itemsService.submitNewItem(msc.newItem)">
+      <!-- Text input-->
+      <div class="form-group itemName">
 
-    <div class="col-md-9 paddingBottom">
+        <label for="itemName">Item Name</label>
+        <input id="itemName" ng-model="msc.newItem.name" name="itemName" type="text" placeholder="Item Name" class="form-control">
+      </div>
 
-      <form class="form-inline">
-        <input type="text" ng-model="msc.students" ng-keyup="msc.complete(msc.students)" placeholder="Student Name"/>
-        <ul class="list-group" ng-show="!msc.showMe" ng-hide="msc.showMe">
-          <div ng-repeat="data in msc.filterStudents">
-            <li class="list-group-item" ng-click="msc.textbox(data)">{{data.name}}</li>
-          </div>
-        </ul>
+      <!-- Text input-->
+      <div class="form-group">
+        <label for="itemDescription">Item Description</label>
+        <textarea id="itemDescription" ng-model="msc.newItem.description" rows="2" name="itemDescription"type="textarea"
+        placeholder="Item Description" class=" form-control"></textarea>
 
-        <!-- Text input-->
-        <div class="input-group input-group-sm paddingRight ">
-          <input type="text" class="form-control input-xs"placeholder="Student ID">
-          <span class="input-group-addon"><i class="fa fa-search"></i></span>
+      </div>
 
+      <!-- Text input-->
+      <div class="form-group">
+        <label for="itemCost">Item Cost</label>
+        <input id="itemCost" name="itemCost" ng-model="msc.newItem.pts_value" type="text" placeholder="Item Cost" class="form-control">
+
+      </div>
+      <div class="form-group">
+        <label for="itemCost">Item Quantity</label>
+        <input id="itemQuantity" name="itemQuanity" ng-model="msc.newItem.qty" type="number" placeholder="Item Quantity" class="form-control">
+
+      </div>
+
+
+      <!-- Multiple Radios -->
+      <div class="form-group">
+        <label class="sr-only" for="radio">Community or School</label>
+
+        <div class="radio">
+          <label for="type-0">
+            <input type="radio" name="type" ng-model="msc.newItem.school_community" id="type-0" ng-true-value="'School'">
+            School
+          </label>
         </div>
-
-        <!-- Button -->
-        <div class="form-group ">
-          <label class=" control-label sr-only" for="search"></label>
-          <div class="">
-            <button id="search" name="search" class="btn btn-primary btn-sm" ng-click="msc.itemsService.sellItem()">Search</button>
-          </div>
+        <div class="radio">
+          <label for="type-1">
+            <input type="radio" name="type" ng-model="msc.newItem.school_community" id="type-1" value="false" ng-false-value="'Community'">
+            Community
+          </label>
         </div>
-        <!-- <button ng-click="msc.showStudent(msc.selectedStudent, msc.students)">show</button> -->
-      </form>
-    </div>
+      </div>
+      <div class="form-group">
+
+
+        <button type="submit" class="btn btn-info btn-sm">Add Items</button>
+      </div>
+    </form>
   </div>
-  <div class="row">
+</form>
+<div class="col-md-9 topPadding">
+  <form class="form-inline paddingBottom">
+    <h5>Sell an item to a student</h5>
 
-    <div class="col-md-3 borderRight">
-
-      <form class="form-horizontal padding" ng-submit="msc.itemsService.submitNewItem(msc.newItem)">
-        <!-- Text input-->
-        <div class="form-group itemName">
-
-          <label for="itemName">Item Name</label>
-          <input id="itemName" ng-model="msc.newItem.name" name="itemName" type="text" placeholder="Item Name" class="form-control">
+    <div class="form-group ">
+      <input type="text" ng-model="msc.autocompletePackage.students" class="form-control"
+      ng-keyup="msc.autocompleteService.complete(msc.autocompletePackage.students, msc.autocompletePackage.studentsList, 'users')" placeholder="Student Name"/>
+      <ul class="list-group" ng-show="!msc.autocompletePackage.showMe">
+        <div ng-repeat="data in msc.autocompletePackage.filterData.users">
+          <li class="list-group-item" ng-click="msc.autocompleteService.studentTextbox(data)">{{data.name}}</li>
         </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-          <label for="itemDescription">Item Description</label>
-          <textarea id="itemDescription" ng-model="msc.newItem.description" rows="2" name="itemDescription" type="textarea" placeholder="Item Description" class=" form-control"></textarea>
-
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-          <label for="itemCost">Item Cost</label>
-          <input id="itemCost" name="itemCost" ng-model="msc.newItem.pts_value" type="text" placeholder="Item Cost" class="form-control">
-
-        </div>
-        <div class="form-group">
-          <label for="itemCost">Item Quantity</label>
-          <input id="itemQuantity" name="itemQuanity" ng-model="msc.newItem.qty" type="number" placeholder="Item Quantity" class="form-control">
-
-        </div>
-
-
-        <!-- Multiple Radios -->
-        <div class="form-group">
-          <label class="sr-only" for="radio">Community or School</label>
-
-          <div class="radio">
-            <label for="type-0">
-              <input type="radio" name="type" ng-model="msc.newItem.school_community" id="type-0" value="true">
-              School
-            </label>
-          </div>
-          <div class="radio">
-            <label for="type-1">
-              <input type="radio" name="type" ng-model="msc.newItem.school_community" id="type-1" value="false">
-              Community
-            </label>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label class="sr-only" for="getItems">List Items</label>
-          <button type="submit" class="btn btn-info btn-sm">Add Items</button>
-        </div>
-
-      </form>
+      </ul>
     </div>
-    <div class="col-md-9 topPadding">
+    <!-- Text input-->
+    <div class="form-group">
 
+      <input type="text" ng-model="msc.autocompletePackage.itemName" class="form-control"
+      ng-keyup="msc.autocompleteService.complete(msc.autocompletePackage.itemName, msc.autocompletePackage.itemList, 'items')"
+      placeholder="Items Name"/>
+      <ul class="list-group" ng-show="!msc.autocompletePackage.showMe">
+        <li class="list-group-item" ng-repeat="itemData in msc.autocompletePackage.filterData.items" ng-click="msc.autocompleteService.itemsTextbox(itemData)">{{itemData.item_name}}</li>
+      </ul>
 
-      <table class="table table-hover">
-        <thead>
-          <th>Item Name</th>
-          <th>Item Description</th>
-          <th>Points</th>
-          <th>Qty</th>
-          <th>Type</th>
-          <th>Last Edited by:</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in msc.itemsService.itemList" class="itemsTable">
-            <td>{{item.item_name}}</td>
-            <td>{{item.item_description}}</td>
-            <td>{{item.pts_value}}</td>
-            <td>{{item.qty}}</td>
-            <td>{{item.school_community}}</td>
-            <td>{{item.name}}</td>
-            <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-primary">Edit</button></td>
-            <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-danger">Delete</button></td>
-          </tr>
-        </tbody>
-      </table>
     </div>
+    <div class="form-group">
+      <button id="search" name="search" class="btn btn-primary" ng-click="msc.itemsService.sellItem()">Sell</button>
+    </div>
+  </form>
+  <form class="form-inline">
+    <div class="form-group">
+      <input type="text" ng-model="msc.filterInput" placeholder="Search table" class="form-control">
+    </div>
+    <div class="form-group">
+      <select ng-model="msc.filterType" class="form-control">
+        <option value="">All</option>
+        <option value="true">School</option>
+        <option value="false">Community</option>
+      </select>
+    </div>
+  </form>
+  <div class="table-responsive table-condenced table-hover">
+
+
+    <table class="table">
+      <thead>
+        <th class="name" ng-click="msc.changeOrderBy('item_name')">Item Name</th>
+        <th class="description" ng-click="msc.changeOrderBy('item_description')">Item Description</th>
+        <th class="points" ng-click="msc.changeOrderBy('pts_value')">Points</th>
+        <th class="qty" ng-click="msc.changeOrderBy('qty')">Qty</th>
+        <th class="school_community" ng-click="msc.changeOrderBy('school_community')">Type</th>
+        <th class="last_edited" ng-click="msc.changeOrderBy('name')">Last Edited by:</th>
+        <th class="edit">Edit</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="item in msc.itemsService.itemList | orderBy: msc.orderBy | filter: msc.filterInput | filter: msc.filterType" class="itemsTable">
+          <td class="">
+
+            <span ng-show="!rowform.$visible"  e-class="name" editable-text="item.item_name"  e-form="rowform" class="hidden-sm hidden-xs" >{{item.item_name}}</span>
+          </td>
+
+          <td>
+            <span ng-show="!rowform.$visible"  e-class="description" editable-text="item.item_description"  e-form="rowform" class="hidden-sm hidden-xs" >{{item.item_description}}</span>
+          </td>
+
+          <td class="">
+            <span ng-show="!rowform.$visible"  e-class="points" editable-text="item.pts_value"  e-form="rowform" class="hidden-sm hidden-xs" >{{item.pts_value}}</span>
+          </td>
+          <td class="">
+            <span ng-show="!rowform.$visible"  e-class="qty" editable-text="item.qty"  e-form="rowform" class="hidden-sm hidden-xs" >{{item.qty}}</span>
+          </td>
+          <td class="">
+            <span ng-show="!rowform.$visible"  e-class="school_community" editable-text="item.school_community"  e-form="rowform" value="{{item.school_community}}" class="hidden-sm hidden-xs" >{{item.school_community}}</span>
+          </td>
+        </td>
+        <td class=""></td>
+        <td class="actionButtons hidden-sm hidden-xs">
+          <form onaftersave="msc.itemsService.editItem(item)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == item">
+            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-link">
+              <i class="fa fa-save fa-lg"></i>
+            </button>
+            <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-link">
+              <i class="fa fa-times fa-lg"></i>
+            </button>
+          </form>
+          <div ng-show="!rowform.$visible">
+            <button type="button" class="btn btn-link" ng-click="rowform.$show()">
+              <i class="fa fa-edit fa-lg"></i></button>
+              <button type="button" class="btn btn-link" name="button" ng-click="msc.itemsService.deleteItem(item)">
+                <i class="fa fa-trash-alt fa-lg"></i>
+              </button>
+            </div>
+          </td>
+          <!-- <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-primary">Edit</button></td>
+          <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-danger">Delete</button></td> -->
+        </tr>
+      </tbody>
+    </table>
   </div>
+</div>
+</div>
 </div>

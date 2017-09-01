@@ -14,6 +14,8 @@ var registerRouter = require('./routes/register.router');
 var itemsRouter = require('./routes/items.router');
 var usersRouter = require('./routes/users.router');
 var challengesRouter = require('./routes/challenge.router');
+var studentsRouter = require('./routes/students.router');
+
 
 
 var port = process.env.PORT || 5000;
@@ -39,6 +41,7 @@ app.use('/user', userRouter);
 app.use('/items', itemsRouter);
 app.use('/users', usersRouter);
 app.use('/challenges', challengesRouter);
+app.use('/students', studentsRouter);
 
 
 // Catch all bucket, must be last!

@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'ui.bootstrap']);
+var myApp = angular.module('myApp', ['xeditable', 'ngRoute', 'ngAnimate', 'ui.bootstrap']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -15,7 +15,15 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/student', {
       templateUrl: '/views/templates/student.html',
-      // controller: 'TeacherController as tc'
+       controller: 'StudentHomeController as shc'
+    })
+    .when('/studentItems', {
+      templateUrl: '/views/templates/studentItems.html',
+       controller: 'StudentItemsController as sic'
+    })
+    .when('/studentChallenges', {
+      templateUrl: '/views/templates/studentChallenges.html',
+       controller: 'StudentChallengesController as scc'
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
@@ -53,9 +61,9 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/admin', {
-      templateUrl: '/views/templates/admin.html',
-      controller: 'AdminViewUserController as avuc',
+    .when('/adminusers', {
+      templateUrl: '/views/templates/admin.view.users.html',
+      controller: 'AdminViewUsersController as avuc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();

@@ -24,20 +24,22 @@ router.get('/', function(req, res) {
         res.sendStatus(500);
       } else {
         var queryText;
-        // gets items with the name of the last person who edited for the store and adim
+
+        // get challenges for students
         if (req.user.role == 4) {
 
-          queryText = "SELECT challenges.name, " +
+          queryText = "SELECT challenges.id, challenges.challenge_name, " +
             "challenges.description, challenges.start_date, " +
             "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
             "FROM challenges JOIN users ON users.id = challenges.teacher_id " +
             "ORDER BY start_date ASC;";
 
         }
-        // gets just the items for the students and teachers
+        // gets challenges for all admin, store, teacher
         else {
-          queryText = "SELECT challenges.name, challenges.description, " +
-            "challenges.start_date, challenges.end_date, challenges.pts_value " +
+          queryText = "SELECT challenges.challenge_name, " +
+            "challenges.description, challenges.start_date, " +
+            "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
             "FROM challenges " +
             "JOIN users ON users.id = challenges.teacher_id " +
             "ORDER BY start_date ASC;";
@@ -79,11 +81,11 @@ router.post('/', function(req, res) {
         } else {
           // We connected to the database!!!
           // Now we're going to POST things to the db
-          var queryText = "INSERT INTO challenges (name, description, start_date, end_date, pts_value, teacher_id) " +
+          var queryText = "INSERT INTO challenges (challenge_name, description, start_date, end_date, pts_value, teacher_id) " +
             "VALUES ($1, $2, $3, $4, $5, $6); ";
 
           // errorMakingQuery is a bool, result is an object
-          db.query(queryText, [newChallenge.name, newChallenge.description, newChallenge.start_date, newChallenge.end_date, newChallenge.pts_value, req.user.id],
+          db.query(queryText, [newChallenge.challenge_name, newChallenge.description, newChallenge.start_date, newChallenge.end_date, newChallenge.pts_value, req.user.id],
             function(errorMakingQuery, result) {
               done();
 
@@ -121,8 +123,8 @@ router.put('/', function(req, res) {
           res.sendStatus(500);
         } else {
           // set query
-          var queryText = 'UPDATE challenges SET name = $1, description = $2, start_date = $3, end_date = $4, pts_value = $5 WHERE id = $6';
-          db.query(queryText, [updatedChallenge.name, updatedChallenge.description, updatedChallenge.start_date, updatedChallenge.end_date, updatedChallenge.pts_value, req.user.id],
+          var queryText = 'UPDATE challenges SET challenge_name = $1, description = $2, start_date = $3, end_date = $4, pts_value = $5 WHERE id = $6';
+          db.query(queryText, [updatedChallenge.challenge_name, updatedChallenge.description, updatedChallenge.start_date, updatedChallenge.end_date, updatedChallenge.pts_value, req.user.id],
             function(errorMakingQuery, result) {
               //return connection to pool
               done();
@@ -145,6 +147,41 @@ router.put('/', function(req, res) {
     res.sendStatus(401)
   }
 }); // end of PUT
+
+//NOTE Delete route for teacher/challenges
+router.delete('/:id', function(req, res) {
+  console.log('challengeDelete delete');
+  //sets id of item to delete to a variable
+  var challengeDelete = req.params.id;
+  //checks if user is logged in
+  if(req.isAuthenticated()){
+    //checks if user is authorized
+    if(req.user.role == 3 || req.user.role == 1) {
+      pool.connect(function(errorConnectingToDatabase, db, done) {
+        if (errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          // sets up query
+          var queryText = 'DELETE FROM challenges WHERE id = $1';
+          db.query(queryText, [challengeDelete], function(errorMakingQuery, result) {
+            //returns connection to pool
+            done();
+            if (errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query');
+              res.sendStatus(500);
+            } else {
+              console.log('item deleted');
+              // Send back the results
+              res.sendStatus(200);
+            }
+          }); // end query
+        } // end if
+      }); // end pool
+    } else {res.sendStatus(401)}
+  } else {res.sendStatus(401)}
+}); // end of DELETE
 
 
 
