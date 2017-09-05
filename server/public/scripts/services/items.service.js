@@ -55,6 +55,7 @@ myApp.factory('ItemsService', function($http, $location){
         console.log(response);
         itemsService.getItems();
       });
+      swal("Sold");
     },
 
     itemsTextbox : function(string){
