@@ -57,8 +57,8 @@ CREATE TABLE transactions (
 
 CREATE TABLE student_challenge (
   "id" serial primary key,
-  "studentId" integer REFERENCES "users",
-  "challengeId" integer REFERENCES "challenges",
+  "studentId" integer REFERENCES "users" ON DELETE SET NULL,
+  "challengeId" integer REFERENCES "challenges" ON DELETE CASCADE,
   "pass" boolean,
   "timestamp" timestamp with time zone
 );

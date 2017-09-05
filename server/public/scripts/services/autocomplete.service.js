@@ -12,7 +12,7 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
     getStudents : function(){
       console.log('Getting Students');
       $http.get('/users/students').then(function(response){
-        console.log(response.data);
+        // console.log(response.data);
         autocompletePackage.studentsList = response.data;
       });
     },
@@ -20,7 +20,7 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
     getItems: function(){
       console.log('get items');
       $http.get('/items').then(function(response){
-        console.log(response);
+        // console.log(response);
         autocompletePackage.itemList = response.data;
         // console.log(autocompletePackage.itemList);
       });
@@ -30,9 +30,9 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
       var searchOutputItems = [];
       var searchOutputUsers = [];
       autocompletePackage.filterData = {};
-      console.log(array);
+      // console.log(array);
       array.forEach(function(data){
-        console.log(data);
+        // console.log(data);
         if(string == ""){
           autocompletePackage.showMe = true;
         }
@@ -41,7 +41,7 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
         }
         //students.name refers to the list of students that will appear while typing
         if(input == 'items'){
-          console.log(data.item_name);
+          // console.log(data.item_name);
           //all strings are set to lowercase to prevent case sensitivity.
           if(data.item_name.toLowerCase().indexOf(string.toLowerCase()) >=0 ){
           //students are pushed to an array, 'searchOutputItems or searchOutputUsers'
@@ -49,7 +49,7 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
           }
         }
         else if( input == 'users'){
-          console.log(data.name);
+          // console.log(data.name);
           if(data.name.toLowerCase().indexOf(string.toLowerCase()) >=0 ){
             searchOutputUsers.push(data);
           }
@@ -61,7 +61,7 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
     }, //end of complete function
 
     studentTextbox : function(string){
-      console.log(string);
+      // console.log(string);
       autocompletePackage.selectedStudent = string;
       //the selected item becomes the ng-model
       autocompletePackage.students = autocompletePackage.selectedStudent.name;
@@ -72,7 +72,7 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
     },
 
     itemsTextbox : function(string){
-      console.log(string);
+      // console.log(string);
       autocompletePackage.selectedItem = string;
       autocompletePackage.itemName = autocompletePackage.selectedItem.item_name;
       if(string){
