@@ -1,14 +1,18 @@
 myApp.factory('UsersService', function($http, $location){
   console.log('UserssService Loaded');
 
-  var itemsService = {
+  var usersService = {
 
 //send object with email and role properties
     addUser: function(newUser) {
       console.log(newUser);
-      $http.post('/users', newUser).then(function(response) {
-        console.log(response);
-      });
+      if(newUser.email == undefined || newUser.role == undefined || newUser.role == ""){
+        console.log('user needs an email and a role!');
+      } else {
+        $http.post('/users', newUser).then(function(response) {
+          console.log(response);
+        });
+      }
     },
 
 //send object with email and role properties
@@ -25,8 +29,17 @@ myApp.factory('UsersService', function($http, $location){
       $http.delete('/users/' + user.id).then(function(response){
         console.log(response);
       });
+    },
+
+// Get transactions
+    getTransactions: function() {
+      console.log('get transactions');
+      $http.get('/users/transactions').then(function(response){
+        console.log(response.data);
+        usersService.transactions = response.data
+      });
     }
   }
 
-  return itemsService
+  return usersService
 });

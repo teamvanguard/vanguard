@@ -1,66 +1,58 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title>Vanguard Tech</title>
+        <link rel="stylesheet" href="views/styles/style.css">
+        <link rel="stylesheet" href="views/styles/bootstrap.css">
+        <link rel="stylesheet" href="views/styles/customButtons.css">
+        <link rel="stylesheet" href="views/styles/ui-bootstrap-csp.css">
+        <link rel="stylesheet" href="views/styles/bootstrap-social.css">
+        <link rel="stylesheet" href="views/styles/bootstrap-formhelpers.css">
+        <link rel="stylesheet" href="views/styles/sweetalert2.min.css" />
+        <link rel="stylesheet" href="views/styles/font-awesome-brands.css" />
+        <link rel="stylesheet" href="views/styles/font-awesome-solid.css" />
+        <link rel="stylesheet" href="views/styles/font-awesome-core.css" />
+        <link rel="stylesheet" href="views/styles/popeye.min.css" />
+        <script type="text/javascript" src="vendors/angular.min.js"></script>
+        <script type="text/javascript" src="vendors/angular-animate.min.js"></script>
+        <script type="text/javascript" src="vendors/angular-touch.js"></script>
+        <script type="text/javascript" src="vendors/sweetalert2.js"></script>
+        <script type="text/javascript" src="vendors/popeye.min.js"></script>
+        <script type="text/javascript" src="vendors/xeditable.js"></script>
+        <script type="text/javascript" src="vendors/ui-bootstrap.js"></script>
+        <script type="text/javascript" src="vendors/ui-bootstrap-tpls.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
+        <script type="text/javascript" src="vendors/mask.js"></script>
+        <script type="text/javascript" src="vendors/fontawesome.min.js"></script>
+        <script type="text/javascript" src="vendors/solid.min.js"></script>
+        <script type="text/javascript" src="vendors/angular-route.min.js"></script>
+        <script type="text/javascript" src="scripts/client.js"></script>
 
-<head>
-  <title>Vanguard Tech</title>
-  <link rel="stylesheet" href="views/styles/style.css">
-  <link rel="stylesheet" href="views/styles/bootstrap.css">
-  <link rel="stylesheet" href="views/styles/customButtons.css">
-  <link rel="stylesheet" href="views/styles/ui-bootstrap-csp.css">
-  <link rel="stylesheet" href="views/styles/bootstrap-social.css">
+        <script type="text/javascript" src="scripts/controllers/info.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/manager.storefront.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/nav.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/teacherChallenges.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/teacherItems.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/studentChallenges.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/studentHomePage.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/studentItems.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/adminViewUsers.controller.js"></script>
+        <script type="text/javascript" src="scripts/controllers/adminTransactions.controller.js"></script>
+        <script src="scripts/filters/school.community.filter.js" charset="utf-8"></script>
+        <script type="text/javascript" src="scripts/services/user.service.js"></script>
+        <script type="text/javascript" src="scripts/services/users.service.js"></script>
+        <script type="text/javascript" src="scripts/services/items.service.js"></script>
+        <script type="text/javascript" src="scripts/services/autocomplete.service.js"></script>
+        <script type="text/javascript" src="scripts/services/challenges.service.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
 
-  <link rel="stylesheet" href="views/styles/bootstrap-formhelpers.css">
-  <link rel="stylesheet" href="views/styles/sweetalert2.min.css" />
-  <link rel="stylesheet" href="views/styles/font-awesome-brands.css" />
+    <body ng-app="myApp">
+      <header ng-include="'/views/partials/header.html'"></header>
 
-  <link rel="stylesheet" href="views/styles/font-awesome-solid.css" />
-  <link rel="stylesheet" href="views/styles/font-awesome-core.css" />
-  <link rel="stylesheet" href="views/styles/popeye.min.css" />
+      <main ng-view></main>
 
-
-  <script type="text/javascript" src="vendors/angular.min.js"></script>
-  <script type="text/javascript" src="vendors/angular-animate.min.js"></script>
-  <script type="text/javascript" src="vendors/angular-touch.js"></script>
-  <script type="text/javascript" src="vendors/sweetalert2.js"></script>
-  <script type="text/javascript" src="vendors/popeye.min.js"></script>
-  <script type="text/javascript" src="vendors/xeditable.js"></script>
-  <script type="text/javascript" src="vendors/ui-bootstrap.js"></script>
-  <script type="text/javascript" src="vendors/ui-bootstrap-tpls.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
-  <script type="text/javascript" src="vendors/mask.js"></script>
-  <script type="text/javascript" src="vendors/fontawesome.min.js"></script>
-  <script type="text/javascript" src="vendors/solid.min.js"></script>
-  <script type="text/javascript" src="vendors/angular-route.min.js"></script>
-
-  <script src="vendors/moment-with-locales.js"></script>
-  <script src="vendors/moment.js"></script>
-
-  <script type="text/javascript" src="scripts/client.js"></script>
-  <script type="text/javascript" src="scripts/controllers/info.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/manager.storefront.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/nav.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/teacherChallenges.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/teacherItems.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/studentChallenges.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/studentHomePage.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/studentItems.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/adminViewUser.controller.js"></script>
-  <script type="text/javascript" src="scripts/controllers/adminTransactions.controller.js"></script>
-  <script type="text/javascript" src="scripts/services/user.service.js"></script>
-  <script type="text/javascript" src="scripts/services/users.service.js"></script>
-  <script type="text/javascript" src="scripts/services/items.service.js"></script>
-  <script type="text/javascript" src="scripts/services/autocomplete.service.js"></script>
-  <script type="text/javascript" src="scripts/services/challenges.service.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-
-<body ng-app="myApp">
-  <header ng-include="'/views/partials/header.html'"></header>
-
-  <main ng-view></main>
-
-</body>
-
+    </body>
 </html>

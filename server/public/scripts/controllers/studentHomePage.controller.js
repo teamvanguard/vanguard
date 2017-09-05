@@ -2,8 +2,12 @@ myApp.controller('StudentHomeController', function(UserService, ItemsService, Us
   console.log('StudentHomeController created');
   var shc = this;
   shc.userService = UserService;
-  shc.userObject = UserService.userObject
+  shc.userObject = UserService.userObject;
   shc.itemsService = ItemsService;
   shc.usersService = UsersService;
   shc.challengesService = ChallengesService;
+
+  shc.userService.getuser();
+
+
 });

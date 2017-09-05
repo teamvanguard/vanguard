@@ -21,6 +21,20 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/studentItems.html',
        controller: 'StudentItemsController as sic'
     })
+    .when('/admintransactions', {
+      templateUrl: '/views/templates/admin.transactions.view.html',
+       controller: 'AdminTransactionsController as atc',
+       resolve: {
+         getuser : function(UserService){
+           return UserService.getuser();
+         }
+       }
+     })
+    .when('/studentChallenges', {
+      templateUrl: '/views/templates/studentChallenges.html',
+       controller: 'StudentChallengesController as scc'
+
+    })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
@@ -57,9 +71,9 @@ myApp.config(function($routeProvider, $locationProvider) {
         }
       }
     })
-    .when('/admin', {
-      templateUrl: '/views/templates/admin.html',
-      controller: 'AdminViewUserController as avuc',
+    .when('/adminusers', {
+      templateUrl: '/views/templates/admin.view.users.html',
+      controller: 'AdminViewUsersController as avuc',
       resolve: {
         getuser : function(UserService){
           return UserService.getuser();

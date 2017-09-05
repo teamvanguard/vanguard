@@ -1,4 +1,13 @@
 <div ng-include="'views/partials/studentNav.html'"></div>
 <div class="container">
-
+  <h2>Rewards</h2>
+  <details ng-repeat="reward in sic.itemsService.itemList">
+    <summary>
+      {{reward.item_name}}
+    </summary>
+    <div class="challengeInfo">
+      <div class="challenge"><label>Description: </label> {{reward.item_description}}</div>
+      <div class="challenge"><label>Cost: </label> {{reward.pts_value}}</div>
+    </div>
+  </details>
 </div>

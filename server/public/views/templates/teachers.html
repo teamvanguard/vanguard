@@ -1,9 +1,8 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
   <h1>Challenges</h1>
-  <div class="row">
-  <div class="addChallenge col-md-3">
-    <form class="form-horizontal" ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
+  <div class="addChallenge col-md-3 topPadding">
+    <form class="form-horizontal"  ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
       <fieldset>
         <!-- Text input-->
         <div class="form-group">
@@ -20,7 +19,7 @@
           <div>
             <label class="control-label" for="textarea">Challenge Description</label>
 
-            <textarea class="form-control" id="textarea" name="textarea" ng-model="tcc.newChallenge.description"></textarea>
+            <textarea class="form-control" id="textarea" name="textarea" ng-model="tcc.newChallenge.description" placeholder="Challenge Description"></textarea>
           </div>
         </div>
         <div class="form-group">
@@ -113,67 +112,5 @@
 </table>
 </div>
 </div>
-
-  <!-- <div class="challengeList col-md-9">
-    <div ng-repeat="challenge in tcc.challengesService.challenges">
-  <form  novalidate editable-form name="editableForm" onbeforesave="saveUser()" onaftersave="tcc.challengesService.updateChallenge(challenge)">
- -->
-
-<!-- editable challengeName (text with validation) -->
-
-      <!-- <summary>
-      {{challenge.challenge_name}}
-      </summary> -->
-
-      <!-- edit/save/cancel button -->
-      <!-- <div> -->
-  <!-- button to show form -->
-  <!-- <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
-    Edit
-  </button> -->
-  <!-- buttons to submit / cancel form -->
-  <!-- <span ng-show="editableForm.$visible">
-    <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
-      Save
-    </button>
-    <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
-      Cancel
-    </button>
-  </span>
-</div> -->
-<!-- end edit/save/cancel button -->
-<!--
-      <div class="challengeInfo">
-        <div ng-show="!rowform.$visible">
-            <button type="button" class="btn btn-link" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
-              <i class="fa fa-trash-alt fa-lg"></i>
-            </button>
-          </div>
-        <div class="challengeItem"><span editable-text="challenge.challenge_name" e-name="name" e-required><label>Challenge Name:</label>{{ challenge.challenge_name || 'empty' }}</span></div>
-        <div class="challengeItem"><span editable-text="challenge.description" e-name="description" e-required><label>Description:</label>{{ challenge.description || 'empty' }}</span></div>
-        <div class="challengeItem"><span editable-text="challenge.start_date" e-name="start_date" e-required><label>Start Date:</label>{{challenge.start_date | date: 'MM-dd-yyyy' || 'empty' }}</span></div>
-        <div class="challengeItem"><span editable-text="challenge.end_date" e-name="end_date" e-required><label>End Date:</label>{{challenge.end_date | date: 'MM-dd-yyyy'|| 'empty' }}</span></div>
-        <div class="challengeItem"><span editable-text="challenge.pts_value" e-name="pts_value" e-required><label>Point Value:</label>{{challenges.pts_value || 'empty' }}</span></div>
-        <div class="challengeItem pull-left"><label>Students:</label>
-          <div class="studentList pull-right">
-            <table>
-              <tr>
-                <td>Ben Siegel</td>
-                <td><button type="button" name="button" class="btn btn-xs btn-primary">Complete</button>
-                  <button type="button" name="button" class="btn btn-xs btn-danger">Incomplete</button>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="clearfix">
-
-        </div>
-
-      </div>
-</form>
-    </div>
-
-  </div> -->
 </div>
 </div>
