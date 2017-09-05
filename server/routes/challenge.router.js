@@ -28,7 +28,7 @@ router.get('/', function(req, res) {
         // get challenges for students
         if (req.user.role == 4) {
 
-          queryText = "SELECT challenges.challenge_name, " +
+          queryText = "SELECT challenges.id, challenges.challenge_name, " +
             "challenges.description, challenges.start_date, " +
             "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
             "FROM challenges JOIN users ON users.id = challenges.teacher_id " +
@@ -37,7 +37,7 @@ router.get('/', function(req, res) {
         }
         // gets challenges for all admin, store, teacher
         else {
-          queryText = "SELECT challenges.challenge_name, " +
+          queryText = "SELECT challenges.id, challenges.challenge_name, " +
             "challenges.description, challenges.start_date, " +
             "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
             "FROM challenges " +
@@ -69,6 +69,7 @@ router.get('/', function(req, res) {
 // http://localhost:5000/books/ would '/'
 router.post('/', function(req, res) {
   var newChallenge = req.body;
+
   console.log('router side of challenge:', newChallenge);
   if (req.isAuthenticated()) {
     // errorConnecting is bool, db is what we query against,
@@ -124,7 +125,7 @@ router.put('/', function(req, res) {
         } else {
           // set query
           var queryText = 'UPDATE challenges SET challenge_name = $1, description = $2, start_date = $3, end_date = $4, pts_value = $5 WHERE id = $6';
-          db.query(queryText, [updatedChallenge.challenge_name, updatedChallenge.description, updatedChallenge.start_date, updatedChallenge.end_date, updatedChallenge.pts_value, req.user.id],
+          db.query(queryText, [updatedChallenge.challenge_name, updatedChallenge.description, updatedChallenge.start_date, updatedChallenge.end_date, updatedChallenge.pts_value, updatedChallenge.id],
             function(errorMakingQuery, result) {
               //return connection to pool
               done();

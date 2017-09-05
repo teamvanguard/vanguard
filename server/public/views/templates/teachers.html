@@ -1,10 +1,10 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
   <h1>Challenges</h1>
+  <div class="row">
   <div class="addChallenge col-md-3">
-    <form class="form-horizontal"  ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
+    <form class="form-horizontal" ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
       <fieldset>
-
         <!-- Text input-->
         <div class="form-group">
           <div>
@@ -26,16 +26,8 @@
         <div class="form-group">
 
           <p class="input-group">
-            <input type="text"
-            id="startDatePicker"
-            class="form-control input-md"
-            ng-model="tcc.newChallenge.date_Start"
-            uib-datepicker-popup="MM-dd-yyyy"
-            datepicker-options="tcc.startDateConfig"
-            ng-focus="tcc.startDateConfig.open=true"
-            minDate="tcc.startDateConfig.minDate"
-            is-open="tcc.startDateConfig.open"
-            show-button-bar="true" placeholder="Start Date"/>
+            <input type="text" id="startDatePicker" class="form-control input-md" ng-model="tcc.newChallenge.start_date" uib-datepicker-popup="MM/dd/yyyy" datepicker-options="tcc.startDateConfig" ng-focus="tcc.startDateConfig.open=true" minDate="tcc.startDateConfig.minDate"
+              is-open="tcc.startDateConfig.open" show-button-bar="true" placeholder="Start Date" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
@@ -44,58 +36,144 @@
 
         <div class="form-group">
           <p class="input-group">
-            <input type="text"
-            id="startDatePicker"
-            class="form-control input-md"
-            ng-model="tcc.newChallenge.end_date"
-            uib-datepicker-popup="MM-dd-yyyy"
-            datepicker-options="tcc.endDateConfig"
-            ng-focus="tcc.endDateConfig.open=true"
-            minDate="tcc.endDateConfig.minDate"
-            is-open="tcc.endDateConfig.open"
-            show-button-bar="true" placeholder="End Date"/>
+            <input type="text" id="startDatePicker" class="form-control input-md" ng-model="tcc.newChallenge.end_date" uib-datepicker-popup="MM/dd/yyyy" datepicker-options="tcc.endDateConfig" ng-focus="tcc.endDateConfig.open=true" minDate="tcc.endDateConfig.minDate"
+              is-open="tcc.endDateConfig.open" show-button-bar="true" placeholder="End Date" />
             <span class="input-group-btn">
               <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
             </span>
           </p>
         </div>
-      <!-- Button -->
-      <div class="form-group">
         <div>
-          <button id="addChallenge" name="addChallenge" class="btn btn-primary" ng-click="tcc.addChallenge(tcc.newChallenge)">Add Challenge</button>
+          <label class="control-label" for="textarea">Point Value</label>
+          <textarea class="form-control" id="textarea" name="textarea" ng-model="tcc.newChallenge.pts_value"></textarea>
         </div>
-      </div>
-    </fieldset>
-  </form>
-</div>
-<div class="challengeList col-md-9" >
-  <details ng-repeat="challenge in tcc.challengesService.challenges">
-    <summary>
+        <!-- Button -->
+        <div class="form-group">
+          <div>
+            <button id="addChallenge" name="addChallenge" class="btn btn-primary" ng-click="tcc.addChallenge(tcc.newChallenge)">Add Challenge</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+  <!-- table with list of challenges -->
+  <div class="col-md-9 topPadding">
+    <div class="table-responsive table-condenced table-hover">
 
-      {{challenge.challenge_name}}
-    </summary>
-    <div class="challengeInfo">
-      <div class="challengeItem"><label>Description:</label>{{challenge.description}}</div>
-      <div class="challengeItem"><label>Start Date:</label>{{challenge.start_date | date:'fullDate'}}</div>
-      <div class="challengeItem"><label>End Date:</label>{{challenge.end_date | date:'fullDate'}}</div>
-      <div class="challengeItem pull-left"><label>Students:</label>
-        <div class="studentList pull-right">
-          <table>
-            <tr>
-              <td>Ben Siegel</td>
-              <td><button type="button" name="button" class="btn btn-xs btn-primary">Complete</button>
-                <button type="button" name="button" class="btn btn-xs btn-danger">Incomplete</button>
+      <table class="table">
+        <thead>
+          <th class="name">Challenge Title</th>
+          <th class="description">Description</th>
+          <th class="start_date">Start Date</th>
+          <th class="end_date">End Date</th>
+          <th class="pts_value">Points</th>
+          <th class="edit">Edit</th>
+        </thead>
+        <tbody>
+          <tr ng-repeat="challenge in tcc.challengesService.challenges" class="itemsTable">
+            <td class="">
+              <span ng-show="!rowform.$visible"  e-class="name" editable-text="challenge.challenge_name"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.challenge_name}}</span>
               </td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      <div class="clearfix">
+              <td>
+                <span ng-show="!rowform.$visible"  e-class="description" editable-text="challenge.description"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.description}}</span>
+              </td>
 
-      </div>
-
+              <td class="">
+                <span ng-show="!rowform.$visible"  e-class="start_date" editable-text="challenge.start_date"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.start_date | date: 'MM/dd/yyyy'|| 'empty' }}</span>
+              </td>
+              <td class="">
+                <span ng-show="!rowform.$visible"  e-class="end_date" editable-text="challenge.end_date"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.end_date | date: 'MM/dd/yyyy'|| 'empty' }}</span>
+              </td>
+              <td class="">
+                <span ng-show="!rowform.$visible"  e-class="pts_value" editable-text="challenge.pts_value"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.pts_value}}</span>
+              </td>
+</td>
+<td class=""></td>
+<td class="actionButtons hidden-sm hidden-xs">
+  <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
+    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-link">
+      <i class="fa fa-save fa-lg"></i>
+    </button>
+    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-link">
+      <i class="fa fa-times fa-lg"></i>
+    </button>
+  </form>
+  <div ng-show="!rowform.$visible">
+    <button type="button" class="btn btn-link" ng-click="rowform.$show()">
+      <i class="fa fa-edit fa-lg"></i></button>
+      <button type="button" class="btn btn-link" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
+        <i class="fa fa-trash-alt fa-lg"></i>
+      </button>
     </div>
-  </details>
+  </td>
+  <!-- <td><button ng-click="msc.itemsService.editItem(item)" class="btn btn-primary">Edit</button></td>
+  <td><button ng-click="msc.itemsService.deleteItem(item)" class="btn btn-danger">Delete</button></td> -->
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 
+  <!-- <div class="challengeList col-md-9">
+    <div ng-repeat="challenge in tcc.challengesService.challenges">
+  <form  novalidate editable-form name="editableForm" onbeforesave="saveUser()" onaftersave="tcc.challengesService.updateChallenge(challenge)">
+ -->
+
+<!-- editable challengeName (text with validation) -->
+
+      <!-- <summary>
+      {{challenge.challenge_name}}
+      </summary> -->
+
+      <!-- edit/save/cancel button -->
+      <!-- <div> -->
+  <!-- button to show form -->
+  <!-- <button type="button" class="btn btn-default" ng-click="editableForm.$show()" ng-show="!editableForm.$visible">
+    Edit
+  </button> -->
+  <!-- buttons to submit / cancel form -->
+  <!-- <span ng-show="editableForm.$visible">
+    <button type="submit" class="btn btn-primary" ng-disabled="editableForm.$waiting">
+      Save
+    </button>
+    <button type="button" class="btn btn-default" ng-disabled="editableForm.$waiting" ng-click="editableForm.$cancel()">
+      Cancel
+    </button>
+  </span>
+</div> -->
+<!-- end edit/save/cancel button -->
+<!--
+      <div class="challengeInfo">
+        <div ng-show="!rowform.$visible">
+            <button type="button" class="btn btn-link" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
+              <i class="fa fa-trash-alt fa-lg"></i>
+            </button>
+          </div>
+        <div class="challengeItem"><span editable-text="challenge.challenge_name" e-name="name" e-required><label>Challenge Name:</label>{{ challenge.challenge_name || 'empty' }}</span></div>
+        <div class="challengeItem"><span editable-text="challenge.description" e-name="description" e-required><label>Description:</label>{{ challenge.description || 'empty' }}</span></div>
+        <div class="challengeItem"><span editable-text="challenge.start_date" e-name="start_date" e-required><label>Start Date:</label>{{challenge.start_date | date: 'MM-dd-yyyy' || 'empty' }}</span></div>
+        <div class="challengeItem"><span editable-text="challenge.end_date" e-name="end_date" e-required><label>End Date:</label>{{challenge.end_date | date: 'MM-dd-yyyy'|| 'empty' }}</span></div>
+        <div class="challengeItem"><span editable-text="challenge.pts_value" e-name="pts_value" e-required><label>Point Value:</label>{{challenges.pts_value || 'empty' }}</span></div>
+        <div class="challengeItem pull-left"><label>Students:</label>
+          <div class="studentList pull-right">
+            <table>
+              <tr>
+                <td>Ben Siegel</td>
+                <td><button type="button" name="button" class="btn btn-xs btn-primary">Complete</button>
+                  <button type="button" name="button" class="btn btn-xs btn-danger">Incomplete</button>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="clearfix">
+
+        </div>
+
+      </div>
+</form>
+    </div>
+
+  </div> -->
+</div>
 </div>

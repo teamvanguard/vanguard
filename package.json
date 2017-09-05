@@ -30,6 +30,7 @@
     "express": "^4.15.4",
     "express-session": "^1.15.5",
     "jquery": "^2.1.4",
+    "moment": "^2.18.1",
     "passport": "^0.2.2",
     "passport-google-oauth": "^1.0.0",
     "passport-local": "^1.0.0",
