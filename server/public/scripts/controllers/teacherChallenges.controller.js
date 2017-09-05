@@ -3,8 +3,11 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
   var tcc = this;
   tcc.userService = UserService;
   tcc.newChallenge = {};
+
   tcc.challengesService = ChallengesService;
   tcc.challenges = ChallengesService.challenges;
+
   tcc.challengesService.getChallenges();
   console.log(tcc.challenges);
+
 }); // end TeacherChallengesController
