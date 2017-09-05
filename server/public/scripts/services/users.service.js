@@ -36,7 +36,7 @@ myApp.factory('UsersService', function($http, $location){
       console.log('get transactions');
       $http.get('/users/transactions').then(function(response){
         console.log(response.data);
-        usersService.transactions = response.data
+        usersService.transactions = response.data;
       });
     }
   }
