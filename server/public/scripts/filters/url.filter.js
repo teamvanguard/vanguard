@@ -5,6 +5,7 @@ myApp.filter('resize', function(){
       url = url.substr(0, url.length-6);
       return url;
     }else{
+      //if url is undefined, it is set to a default image
       url ='/views/img/highschool.jpg';
       return url;
     }

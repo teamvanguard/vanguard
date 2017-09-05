@@ -22,7 +22,6 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
       $http.get('/items').then(function(response){
         console.log(response);
         autocompletePackage.itemList = response.data;
-        // console.log(autocompletePackage.itemList);
       });
     },
 
@@ -74,6 +73,8 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
     itemsTextbox : function(string){
       console.log(string);
       autocompletePackage.selectedItem = string;
+      //the selected item becomes the ng-model
+
       autocompletePackage.itemName = autocompletePackage.selectedItem.item_name;
       if(string){
         autocompletePackage.showMe = true;

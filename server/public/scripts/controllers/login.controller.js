@@ -16,7 +16,18 @@ myApp.controller('LoginController', function($http, $location, UserService) {
         if(response.data.username) {
           console.log('LoginController -- login -- success: ', response.data);
           // location works with SPA (ng-route)
-          $location.path('/user'); // http://localhost:5000/#/user
+          if(response.data.role == 4){
+             $location.path('/student');
+          }else if (response.data.role == 3){
+             $location.path('/teacher');
+          }else if(response.data.role == 2){
+             $location.path('/storefront');
+          }else if(response.data.role == 1){
+            $location.path('/adminusers');
+          }else {
+             $location.path('/user');
+          }
+          // $location.path('/user'); // http://localhost:5000/#/user
         } else {
           console.log('LoginController -- login -- failure: ', response);
           vm.message = "Please check your username or password";
