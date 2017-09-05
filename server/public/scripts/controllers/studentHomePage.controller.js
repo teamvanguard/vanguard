@@ -10,4 +10,5 @@ myApp.controller('StudentHomeController', function(UserService, ItemsService, Us
   shc.userService.getuser();
 
 
+
 });

@@ -1,10 +1,13 @@
 <div class="container header">
   <div class="row">
     <div class="studentPhoto">
-      <img src="/views/img/highschool.jpg" class="center-block img-responsive img-thumbnail" alt="Profile">
+      <!-- resize removes google's set size of 50 -->
+      <img src="{{shc.userObject.info.pic | resize}}"class="center-block img-responsive img-thumbnail" alt="/views/img/highschool.jpg">
       <p class="text-center">
         <a href="#/studentChallenges" class="btn btn-primary btn-lg">Challenges</a>
         <a href="#/studentItems" class="btn btn-primary btn-lg">Rewards</a>
+        <!-- points only show for students -->
+        <span ng-if="shc.userObject.info.role == 4">Points: {{shc.userObject.info.pts}}</span>
       </p>
     </div>
 
