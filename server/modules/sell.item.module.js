@@ -44,9 +44,9 @@ function findStudent(student, item, res, req) {
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = 'SELECT * FROM users WHERE "studentId" = $1';
+      var queryText = 'SELECT * FROM users WHERE "id" = $1';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [student.studentId], function(errorMakingQuery, result){
+      db.query(queryText, [student.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
@@ -114,9 +114,9 @@ function subtractPoints(student, item, res, req) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'UPDATE users SET pts = $1 WHERE "studentId" = $2';
+        var queryText = 'UPDATE users SET pts = $1 WHERE "id" = $2';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [newPts, student.studentId], function(errorMakingQuery, result){
+        db.query(queryText, [newPts, student.id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
