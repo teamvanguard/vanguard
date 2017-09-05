@@ -1,7 +1,20 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <div class="container">
-  <div class="">
-    <form class="form-inline">
+
+<div class="row">
+  <div class="col-md-3">
+
+  </div>
+  <div class="col-md-9">
+    <h1>Transactions</h1>
+
+  </div>
+</div>
+<div class="row">
+
+  <div class="col-md-3 topPadding borderRight">
+    <h4>Transaction Search</h4>
+    <form class="form-horizontal">
       <div class="form-group">
         <input type="text" ng-model="atc.filterInput" class="form-control">
       </div>
@@ -15,6 +28,8 @@
 
     </form>
   </div>
+  <div class="col-md-9">
+
   <table class="table table-responsive">
     <thead>
       <tr>
@@ -34,8 +49,9 @@
           <span ng-if="transaction.challengeName">Challenge: {{transaction.challengeName}}</span>
           <span ng-if="transaction.itemName">Sale: {{transaction.itemName}}</span>
         </td>
-        <td>{{transaction.pts}}</td>
+        <td>{{transaction.pts}} points</td>
       </tr>
     </tbody>
   </table>
+</div>
 </div>

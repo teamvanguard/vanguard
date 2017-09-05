@@ -127,26 +127,26 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in msc.itemsService.itemList | orderBy: msc.orderBy | filter: msc.filterInput | filter: msc.filterType" class="itemsTable">
-            <td class="">
+            <td>
 
-              <span ng-show="!rowform.$visible"  e-class="name" editable-text="item.item_name"  e-form="rowform" class="" >{{item.item_name}}</span>
+              <span ng-show="!rowform.$visible"  e-class="name" editable-text="item.item_name"  e-form="rowform"  >{{item.item_name}}</span>
             </td>
 
             <td>
-              <span ng-show="!rowform.$visible"  e-class="description" editable-text="item.item_description"  e-form="rowform" class="" >{{item.item_description}}</span>
+              <span ng-show="!rowform.$visible"  e-class="description" editable-text="item.item_description"  e-form="rowform"  >{{item.item_description}}</span>
             </td>
 
-            <td class="">
-              <span ng-show="!rowform.$visible"  e-class="points" editable-text="item.pts_value"  e-form="rowform" class="" >{{item.pts_value}}</span>
+            <td>
+              <span ng-show="!rowform.$visible"  e-class="points" editable-text="item.pts_value"  e-form="rowform"  >{{item.pts_value}}</span>
             </td>
-            <td class="">
-              <span ng-show="!rowform.$visible"  e-class="qty" editable-text="item.qty"  e-form="rowform" class="" >{{item.qty}}</span>
+            <td>
+              <span ng-show="!rowform.$visible"  e-class="qty" editable-text="item.qty"  e-form="rowform"  >{{item.qty}}</span>
             </td>
-            <td class="">
+            <td>
               <span ng-show="!rowform.$visible"  e-class="school_community" editable-text="item.school_community"  e-form="rowform" value="{{item.school_community}}">{{item.school_community | itemType}}</span>
             </td>
           </td>
-          <td class="">
+          <td>
             <span>{{item.name}}</span>
           </td>
           <td class="actionButtons hidden-sm hidden-xs">

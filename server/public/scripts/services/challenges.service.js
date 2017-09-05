@@ -68,7 +68,11 @@ myApp.factory('ChallengesService', function($http, $location) {
     acceptChallenge : function(challengeId) {
       $http.post('/students/' + challengeId).then(function(response) {
       console.log(response);
-      swal("Challenge Accepted");
+      swal(
+        'Good job!',
+        'You selected a challange!',
+        'success'
+      );
     });
   } // end acceptChallenge
 

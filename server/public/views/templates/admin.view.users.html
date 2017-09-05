@@ -11,7 +11,7 @@
   <div class="row">
 
   <div class="col-md-3">
-    <h4>Search or Add user</h4>
+    <h4>Search user</h4>
     <form class="form-horizontal hidden-xs hidden-sm">
       <div class="form-group">
         <input class="form-control input-md" type="text" ng-model="avuc.filterName" placeholder="Type to search">
@@ -27,6 +27,7 @@
     </div>
     </form>
     <hr>
+    <h4>Add user</h4>
     <form ng-submit="avuc.usersService.addUser(avuc.newUser)" class="form-horizontal">
       <div class="form-group">
         <input class="form-control input-md" required type="email" ng-model="avuc.newUser.email" placeholder="Enter new users email">
