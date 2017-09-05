@@ -135,8 +135,9 @@ function subtractPoints(student, item, res, req) {
 
 // create row on transactions table
 function addTransaction(student, item, res, req){
-  console.log(student);
-  console.log(item);
+  console.log('student', student);
+  console.log('item', item);
+  console.log('user', req.user);
   pool.connect(function(errorConnectingToDatabase, db, done){
     var today = new Date();
     console.log(today);
@@ -149,6 +150,7 @@ function addTransaction(student, item, res, req){
       var queryText = 'INSERT INTO transactions ("studentId", "pts", "employeeId", "timestamp", "itemId", "type") ' +
       'VALUES ($1, $2, $3, $4, $5, $6)';
       // errorMakingQuery is a bool, result is an object
+      console.log(student.id, '-' + item.pts_value, req.user.id, today, item.id, 'sale');
       db.query(queryText, [student.id, '-' + item.pts_value, req.user.id, today, item.id, 'sale'],
         function(errorMakingQuery, result){
         done();

@@ -44,7 +44,7 @@ CREATE TABLE "challenges" (
 -- To create the transactions table
 CREATE TABLE transactions (
   "id" serial primary key,
-  "sutdentId" integer REFERENCES "users",
+  "studentId" integer REFERENCES "users",
   "pts" integer,
   "employeeId" integer REFERENCES "users",
   "timestamp" TIMESTAMP WITH TIME ZONE,
