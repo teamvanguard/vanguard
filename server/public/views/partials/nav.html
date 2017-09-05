@@ -16,7 +16,7 @@
         <li ng-if="nc.userObject.info.role == 4"><a href="#/student">Student</a></li>
         <li ng-if="nc.userObject.info.role == 4"><a href="#/studentItems">Student Items</a></li>
         <li ng-if="nc.userObject.info.role == 3"><a href="#/teachers">Teacher</a></li>
-        <li ng-if="nc.userObject.info.role == 2"><a href="#/storefront">Store</a></li>
+        <li ng-if="nc.userObject.info.role <= 2"><a href="#/storefront">Store</a></li>
         <li ng-if="nc.userObject.info.role == 1"><a href="#/adminusers">Admin</a></li>
         <li ng-if="nc.userObject.info.role == 1"><a href="#/admintransactions">Transactions</a></li>
         <li><a href="#" ng-click="uc.userService.logout()">Log Out</a></li>

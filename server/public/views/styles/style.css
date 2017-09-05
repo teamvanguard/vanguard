@@ -29,6 +29,7 @@
 
 .borderRight {
   min-height:438px!important;
+  border-right: 1px solid #dfdfdf;
 }
 
 .btn-danger {
@@ -170,7 +171,7 @@
 }
 
 .qty {
-  width:4%;
+  width:6%;
 }
 
 .school_community {

@@ -77,24 +77,24 @@
         </thead>
         <tbody>
           <tr ng-repeat="challenge in tcc.challengesService.challenges" class="itemsTable">
-            <td class="">
+            <td>
               <span ng-show="!rowform.$visible"  e-class="name" editable-text="challenge.challenge_name"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.challenge_name}}</span>
               </td>
               <td>
                 <span ng-show="!rowform.$visible"  e-class="description" editable-text="challenge.description"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.description}}</span>
               </td>
 
-              <td class="">
+              <td>
                 <span ng-show="!rowform.$visible"  e-class="start_date" editable-text="challenge.start_date"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.start_date | date: 'MM/dd/yyyy'|| 'empty' }}</span>
               </td>
-              <td class="">
+              <td>
                 <span ng-show="!rowform.$visible"  e-class="end_date" editable-text="challenge.end_date"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.end_date | date: 'MM/dd/yyyy'|| 'empty' }}</span>
               </td>
-              <td class="">
+              <td>
                 <span ng-show="!rowform.$visible"  e-class="pts_value" editable-text="challenge.pts_value"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.pts_value}}</span>
               </td>
 </td>
-<td class=""></td>
+<td></td>
 <td class="actionButtons hidden-sm hidden-xs">
   <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
     <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-link">
