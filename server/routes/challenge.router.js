@@ -4,6 +4,7 @@ var path = require('path');
 var pool = require('../modules/pool.js');
 var encryptLib = require('../modules/encryption');
 var pg = require('pg');
+var constantModule  = require('../modules/roles.constants.js');
 
 // roles:
 // 1 = admin
@@ -26,7 +27,7 @@ router.get('/', function(req, res) {
         var queryText;
 
         // get challenges for students
-        if (req.user.role == 4) {
+        if (req.user.role == constantModule.STUDENT_ROLE) {
 
           queryText = "SELECT challenges.id, challenges.challenge_name, " +
             "challenges.description, challenges.start_date, " +
@@ -74,7 +75,7 @@ router.post('/', function(req, res) {
   if (req.isAuthenticated()) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
-    if (req.user.role == 3 || req.user.role == 1) {
+    if (req.user.role == constantModule.TEACHER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
       pool.connect(function(errorConnectingToDatabase, db, done) {
         if (errorConnectingToDatabase) {
           console.log('Error connecting to the database.');
@@ -117,7 +118,7 @@ router.put('/', function(req, res) {
   //checks if user is logged in
   if (req.isAuthenticated()) {
     //checks if user is authorized
-    if (req.user.role == 3 || req.user.role == 1) {
+    if (req.user.role == constantModule.TEACHER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
       pool.connect(function(errorConnectingToDatabase, db, done) {
         if (errorConnectingToDatabase) {
           console.log('Error connecting to the database.');
@@ -157,7 +158,7 @@ router.delete('/:id', function(req, res) {
   //checks if user is logged in
   if(req.isAuthenticated()){
     //checks if user is authorized
-    if(req.user.role == 3 || req.user.role == 1) {
+    if(req.user.role == constantModule.TEACHER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
       pool.connect(function(errorConnectingToDatabase, db, done) {
         if (errorConnectingToDatabase) {
           console.log('Error connecting to the database.');

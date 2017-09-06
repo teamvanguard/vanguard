@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var path = require('path');
 var pool = require('../modules/pool.js');
+var constantModule  = require('../modules/roles.constants.js');
 
 // roles:
 // 1 = admin
@@ -19,7 +20,7 @@ router.post('/', function(req,res){
   //checks if user is logged in
   if(req.isAuthenticated()){
     //checks if user has authorization (1 is admin and 2 is store manager)
-    if(req.user.role == 2 || req.user.role == 1) {
+    if(req.user.role == constantModule.STORE_MANAGER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
       pool.connect(function(err, client, done) {
         if(err) {
           console.log("Error connecting: ", err);
@@ -58,7 +59,7 @@ router.get('/', function(req, res) {
         res.sendStatus(500);
       } else {
         // gets items with the name of the last person who edited for the store and adim
-        if(req.user.role == 2 || req.user.role == 1) {
+        if(req.user.role == constantModule.STORE_MANAGER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
           var queryText = 'SELECT items.id, items.item_name, items.item_description, items.pts_value, items.pic, items.school_community, users.name, items.qty FROM items LEFT OUTER JOIN users ON users.id = items.last_edit_user_id ORDER BY items.id ASC;';
           //var queryText = 'SELECT items.item_name, items.item_description, items.pts_value, items.pic, items.school_community, users.name FROM items JOIN users ON users.id = items.last_edit_user_id;';
         }
@@ -93,7 +94,7 @@ router.put('/', function(req, res) {
   //checks if user is logged in
   if(req.isAuthenticated()){
     //checks if user is authorized
-    if(req.user.role == 2 || req.user.role == 1) {
+    if(req.user.role == constantModule.STORE_MANAGER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
       pool.connect(function(errorConnectingToDatabase, db, done) {
         if (errorConnectingToDatabase) {
           console.log('Error connecting to the database.');
@@ -129,7 +130,7 @@ router.put('/', function(req, res) {
     //checks if user is logged in
     if(req.isAuthenticated()){
       //checks if user is authorized
-      if(req.user.role == 2 || req.user.role == 1) {
+      if(req.user.role == constantModule.STORE_MANAGER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
         pool.connect(function(errorConnectingToDatabase, db, done) {
           if (errorConnectingToDatabase) {
             console.log('Error connecting to the database.');
