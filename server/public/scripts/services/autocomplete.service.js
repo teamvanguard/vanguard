@@ -9,48 +9,44 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
 
     autocompletePackage : autocompletePackage,
 
+// get list of students to use in autocomplete
     getStudents : function(){
       console.log('Getting Students');
       $http.get('/users/students').then(function(response){
-        // console.log(response.data);
         autocompletePackage.studentsList = response.data;
       });
     },
 
+// get list of items to use in autocomplete
     getItems: function(){
       console.log('get items');
       $http.get('/items').then(function(response){
-        // console.log(response);
         autocompletePackage.itemList = response.data;
-        // console.log(autocompletePackage.itemList);
       });
     },
 
-    complete : function(string, array, input){
+// autocomplete function that runs everytime there is user input
+    complete : function(userInput, arrayOfData, type){
       var searchOutputItems = [];
       var searchOutputUsers = [];
       autocompletePackage.filterData = {};
-      // console.log(array);
-      array.forEach(function(data){
-        // console.log(data);
-        if(string == ""){
+      arrayOfData.forEach(function(data){
+        if(userInput == ""){
           autocompletePackage.showMe = true;
         }
         else{
           autocompletePackage.showMe = false;
         }
         //students.name refers to the list of students that will appear while typing
-        if(input == 'items'){
-          // console.log(data.item_name);
+        if(type == 'items'){
           //all strings are set to lowercase to prevent case sensitivity.
-          if(data.item_name.toLowerCase().indexOf(string.toLowerCase()) >=0 ){
+          if(data.item_name.toLowerCase().indexOf(userInput.toLowerCase()) >=0 ){
           //students are pushed to an array, 'searchOutputItems or searchOutputUsers'
             searchOutputItems.push(data);
           }
         }
-        else if( input == 'users'){
-          // console.log(data.name);
-          if(data.name.toLowerCase().indexOf(string.toLowerCase()) >=0 ){
+        else if( type == 'users'){
+          if(data.name.toLowerCase().indexOf(userInput.toLowerCase()) >=0 ){
             searchOutputUsers.push(data);
           }
         }
@@ -60,22 +56,22 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
       autocompletePackage.filterData.users = searchOutputUsers;
     }, //end of complete function
 
-    studentTextbox : function(string){
-      // console.log(string);
-      autocompletePackage.selectedStudent = string;
+// regulates the drop down of options for the student autocomplete
+    studentTextbox : function(selectedData){
+      autocompletePackage.selectedStudent = selectedData;
       //the selected item becomes the ng-model
       autocompletePackage.students = autocompletePackage.selectedStudent.name;
-      console.log("The selected data's information: ", autocompletePackage.selectedStudent);
-      if(string){
+      if(selectedData){
         autocompletePackage.showMe = true;
       }
     },
 
-    itemsTextbox : function(string){
-      // console.log(string);
-      autocompletePackage.selectedItem = string;
+// regulates the drop down of options for the student autocomplete
+    itemsTextbox : function(selectedData){
+      autocompletePackage.selectedItem = selectedData;
+      //the selected item becomes the ng-model
       autocompletePackage.itemName = autocompletePackage.selectedItem.item_name;
-      if(string){
+      if(selectedData){
         autocompletePackage.showMe = true;
       }
     }

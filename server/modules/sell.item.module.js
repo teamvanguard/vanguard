@@ -2,6 +2,7 @@ var pool = require('../modules/pool.js');
 
 var sellingModule = {
   sellItem: function(student, item, res, req){
+    console.log('sell item');
     //get the item info from the database
     findItem(student, item, res, req);
   }
@@ -9,11 +10,10 @@ var sellingModule = {
 
 //find item info in database
 function findItem(student, item, res, req) {
-  console.log('item', item);
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
-      res.sendStatus(500);
+      cancelTransaction(student, item, res, req);
     } else {
       var queryText = 'SELECT * FROM items WHERE id = $1;';
       db.query(queryText, [item.id], function(errorMakingQuery, result){
@@ -21,10 +21,8 @@ function findItem(student, item, res, req) {
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
           console.log('Error making query');
-          res.sendStatus(500);
+          cancelTransaction(student, item, res, req);
         } else {
-          console.log('item from db', result.rows);
-          // Send back the results
           var selectedItem = result.rows[0];
           // find student in database
           findStudent(student, selectedItem, res, req)
@@ -36,11 +34,10 @@ function findItem(student, item, res, req) {
 
 // find student in database
 function findStudent(student, item, res, req) {
-  console.log('student', student);
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
-      res.sendStatus(500);
+      cancelTransaction(student, item, res, req);
     } else {
       var queryText = 'SELECT * FROM users WHERE "id" = $1;';
       db.query(queryText, [student.id], function(errorMakingQuery, result){
@@ -48,22 +45,22 @@ function findStudent(student, item, res, req) {
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
           console.log('Error making query');
-          res.sendStatus(500);
+          cancelTransaction(student, item, res, req);
         } else {
-          // Send back the results
           var selectedStudent = result.rows[0];
-          console.log('selectedStudent from db', selectedStudent);
-          console.log(item);
           if (selectedStudent.pts > item.pts_value && item.qty > 0) {
             subtractQty(selectedStudent, item, res, req);
-          } else if (item.qty <= 0) {
-            console.log('Out of item');
-            res.sendStatus(500);
-          } else {
-            console.log('not enough money');
-            res.sendStatus(500);
           }
-          // subtract qty from item
+          // no items left
+          else if (item.qty <= 0) {
+            console.log('Out of item');
+            cancelTransaction(student, item, res, req);
+          }
+          // student doesn't have enough points
+          else {
+            console.log('not enough points');
+            cancelTransaction(student, item, res, req);
+          }
         }
       }); // end query
     } // end if
@@ -72,25 +69,21 @@ function findStudent(student, item, res, req) {
 
 // subtract qty from item
 function subtractQty(student, item, res, req){
-  console.log('item', item);
   if(item.qty > 0){
+    // sets newQty to item qty minus 1
     var newQty = item.qty - 1;
-    console.log(newQty);
     pool.connect(function(errorConnectingToDatabase, db, done){
       if(errorConnectingToDatabase) {
         console.log('Error connecting to the database.');
-        res.sendStatus(500);
+        cancelTransaction(student, item, res, req);
       } else {
-        // We connected to the database!!!
-        // Now we're going to GET things from the db
         var queryText = 'UPDATE items SET qty = $1 WHERE id = $2';
-        // errorMakingQuery is a bool, result is an object
         db.query(queryText, [newQty, item.id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
             console.log('Error making query');
-            res.sendStatus(500);
+            cancelTransaction(student, item, res, req);
           } else {
             //subrtact points from student
             subtractPoints(student, item, res, req)
@@ -103,19 +96,15 @@ function subtractQty(student, item, res, req){
 
 //subrtact points from student
 function subtractPoints(student, item, res, req) {
-  console.log('item', item);
-  console.log('student', student);
   if (student.pts > item.pts_value) {
+    // subtract cost of item from student points
     var newPts = student.pts - item.pts_value;
     pool.connect(function(errorConnectingToDatabase, db, done){
       if(errorConnectingToDatabase) {
         console.log('Error connecting to the database.');
         cancelTransaction(student, item, res, req, 'item');
       } else {
-        // We connected to the database!!!
-        // Now we're going to GET things from the db
         var queryText = 'UPDATE users SET pts = $1 WHERE "id" = $2';
-        // errorMakingQuery is a bool, result is an object
         db.query(queryText, [newPts, student.id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
@@ -124,8 +113,7 @@ function subtractPoints(student, item, res, req) {
             cancelTransaction(student, item, res, req, 'item');
           } else {
             // create row on transactions table
-            addTransaction(student, item, res, req)
-            //res.send(result.rows);
+            addTransaction(student, item, res, req);
           }
         }); // end query
       } // end if
@@ -135,23 +123,18 @@ function subtractPoints(student, item, res, req) {
 
 // create row on transactions table
 function addTransaction(student, item, res, req){
-  console.log('student', student);
-  console.log('item', item);
-  console.log('user', req.user);
   pool.connect(function(errorConnectingToDatabase, db, done){
-    var today = new Date();
-    console.log(today);
+    //current time and date for timestamp
+    var timestamp = new Date();
+    console.log(timestamp);
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
       cancelTransaction(student, item, res, req, 'user');
     } else {
-      // We connected to the database!!!
-      // Now we're going to GET things from the db
       var queryText = 'INSERT INTO transactions ("studentId", "pts", "employeeId", "timestamp", "itemId", "type") ' +
-      'VALUES ($, $2, $3, $4, $5, $6)';
-      // errorMakingQuery is a bool, result is an object
-      console.log(student.id, '-' + item.pts_value, req.user.id, today, item.id, 'sale');
-      db.query(queryText, [student.id, '-' + item.pts_value, req.user.id, today, item.id, 'sale'],
+      'VALUES ($1, $2, $3, $4, $5, $6)';
+      // creates row with a negative point value
+      db.query(queryText, [student.id, '-' + item.pts_value, req.user.id, timestamp, item.id, 'sale'],
         function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
@@ -159,41 +142,44 @@ function addTransaction(student, item, res, req){
           console.log('Error making query');
           cancelTransaction(student, item, res, req, 'user');
         } else {
-          // Send back the results
           res.sendStatus(200);
-          //res.send(result.rows);
         }
       }); // end query
     } // end if
   }); // end pool
 };
 
+//if there is an error at any point after the db has been changed this function will reset all changes
 function cancelTransaction(student, item, res, req, point) {
-  console.log('transaction error', point);
-  console.log('student', student);
-  console.log('item', item);
+  console.log('transaction canceled');
+  // if the error happens after the item qty has been subtracted and before
+  // the users points have been subtracted
   if(point == 'item'){
     console.log('error after qty was subtracted');
     addQty(student, item, res, req);
-    // res.sendStatus(500);
-  } else if (point == 'user') {
+  }
+  // if the error happens after the item qty has been subtracted and the users
+  // points have been subracted
+  else if (point == 'user') {
     console.log('error after qty and points were subtracted');
     addQty(student, item, res, req, addPoints);
-    // res.sendStatus(500);
+  }
+  // if neither item qty and user points have been subtracted
+  else {
+    console.log('see error message above');
+    res.sendStatus(500);
   }
 }
 
+//sets item qty to original amount if there was an error
 function addQty(student, item, res, req, cb) {
-  console.log('ITEM QTY', item.qty);
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      // We connected to the database!!!
-      // Now we're going to GET things from the db
       var queryText = 'UPDATE items SET qty = $1 WHERE id = $2';
-      // errorMakingQuery is a bool, result is an object
+      // uses qty recieved from db
       db.query(queryText, [item.qty, item.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
@@ -201,10 +187,12 @@ function addQty(student, item, res, req, cb) {
           console.log('Error making query');
           res.sendStatus(500);
         } else {
-          //subrtact points from student
+          // check if
           if(cb) {
+            console.log('item qty reset');
             cb(student, item, res, req);
           } else {
+            console.log('item qty reset');
             res.sendStatus(500);
           }
         }
@@ -213,14 +201,15 @@ function addQty(student, item, res, req, cb) {
   }); // end pool
 }
 
+// sets students points back to orginal ammout if there was an error
 function addPoints(student, item, res, req) {
-  console.log('STUDENT POINTS', student.pts);
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
       var queryText = 'UPDATE users SET pts = $1 WHERE "id" = $2';
+      // uses points recieved from db
       db.query(queryText, [student.pts, student.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
@@ -228,6 +217,7 @@ function addPoints(student, item, res, req) {
           console.log('Error making query');
           res.sendStatus(500);
         } else {
+          console.log('student pts reset');
           res.sendStatus(500);
         }
       }); // end query

@@ -2,7 +2,9 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
   console.log('ManagerStorefrontController created');
   var msc = this;
   msc.userService = UserService;
-  msc.newItem = {};
+  msc.newItem = {
+    school_community: 'true'
+  };
 
   msc.autocompleteService = AutocompleteService;
   msc.autocompletePackage = AutocompleteService.autocompletePackage;
