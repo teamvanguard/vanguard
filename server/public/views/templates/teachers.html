@@ -110,11 +110,11 @@
             </td>
             <td class="actionButtons hidden-sm hidden-xs">
               <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
-                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-link">
-                  <i class="fa fa-save fa-lg"></i>
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success">
+                  <i class="fa fa-check"></i>
                 </button>
-                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-link">
-                  <i class="fa fa-times fa-lg"></i>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-danger">
+                  <i class="fa fa-times"></i>
                 </button>
               </form>
               <div ng-show="!rowform.$visible">
