@@ -35,11 +35,8 @@
           <label  class="control-label" for="startDate">Start Date</label>
         </div>
         <div class="input-group">
-          <input type="text" id="startDatePicker" class="form-control input-md" ng-model="tcc.newChallenge.start_date" uib-datepicker-popup="MM/dd/yyyy" datepicker-options="tcc.startDateConfig" ng-focus="tcc.startDateConfig.open=true" minDate="tcc.startDateConfig.minDate"
+          <input type="text" id="startDatePicker" class="form-control input-md" ng-click="open1()" ng-model="tcc.newChallenge.start_date" uib-datepicker-popup="MM/dd/yyyy" datepicker-options="tcc.startDateConfig" ng-focus="tcc.startDateConfig.open=true" minDate="tcc.startDateConfig.minDate"
           is-open="tcc.startDateConfig.open" show-button-bar="true" placeholder="Start Date" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
         </div>
       </div>
 
@@ -48,11 +45,8 @@
           <label  class="control-label" for="End Date">End Date</label>
         </div>
         <div class="input-group">
-          <input type="text" id="startDatePicker" class="form-control input-md" ng-model="tcc.newChallenge.end_date" uib-datepicker-popup="MM/dd/yyyy" datepicker-options="tcc.endDateConfig" ng-focus="tcc.endDateConfig.open=true" minDate="tcc.endDateConfig.minDate"
+          <input type="text" id="startDatePicker" class="form-control input-md" ng-click="open1()" ng-model="tcc.newChallenge.end_date" uib-datepicker-popup="MM/dd/yyyy" datepicker-options="tcc.endDateConfig" ng-focus="tcc.endDateConfig.open=true" minDate="tcc.endDateConfig.minDate"
           is-open="tcc.endDateConfig.open" show-button-bar="true" placeholder="End Date" />
-          <span class="input-group-btn">
-            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-          </span>
         </div>
       </div>
       <div class="form-group col-md-1">
@@ -65,10 +59,10 @@
       <!-- Button -->
       <div class="form-group col-md-1">
         <div class="">
-          <label for="" class="control-label"></label>
+          <label for="" class="control-label">&nbsp;</label>
         </div>
 
-        <button id="addChallenge" name="addChallenge" tooltip-animation="false" tooltip-placement="bottom" uib-tooltip="Add Challenge" class="btn btn-link" ng-click="tcc.addChallenge(tcc.newChallenge)">Add
+        <button id="addChallenge" name="addChallenge" tooltip-animation="false" tooltip-placement="bottom" uib-tooltip="Add Challenge" class="btn btn-info" ng-click="tcc.addChallenge(tcc.newChallenge)">Add
         </button>
       </div>
     </form>
@@ -115,18 +109,18 @@
 
             <td class="actionButtons hidden-sm hidden-xs">
               <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
-                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-link">
-                  <i class="fa fa-save fa-lg"></i>
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-sm btn-space">
+                  Save
                 </button>
-                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-link">
-                  <i class="fa fa-times fa-lg"></i>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info btn-sm btn-space">
+                  Cancel
                 </button>
               </form>
               <div ng-show="!rowform.$visible">
-                <button type="button" class="btn btn-link" ng-click="rowform.$show()">
-                  <i class="fa fa-edit fa-lg"></i></button>
-                  <button type="button" class="btn btn-link" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
-                    <i class="fa fa-trash-alt fa-lg"></i>
+                <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="rowform.$show()">
+                  Edit
+                  <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
+                    Delete
                   </button>
                 </div>
               </td>

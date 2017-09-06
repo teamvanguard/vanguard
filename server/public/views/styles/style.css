@@ -64,9 +64,11 @@
 }
 
 .description {
-  width:28%;
+  width:26%;
 }
-
+.btn-space {
+    margin-right: 5px;
+}
 .form-control {
   font-size:16px;
   height:163px;
@@ -133,7 +135,17 @@
   border-radius:0;
   width:100%;
 }
+.start_date, .end_date {
+    width: 10%;
+}
 
+.pts_value {
+    width: 7%;
+}
+
+.student_name {
+    width: 15%;
+}
 .navbar-default {
   background-color:#FFF!important;
   border-top:3px solid #000!important;
@@ -294,9 +306,6 @@ td span {
   word-break:break-all;
 }
 
-th.edit {
-  padding-left:20px!important;
-}
 
 ul {
   list-style-type:none;
