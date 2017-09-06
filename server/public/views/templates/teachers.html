@@ -8,7 +8,7 @@
       <h1>Challenges</h1>
     </div>
   </div>
-  <div class="addChallenge col-md-3 topPadding">
+  <div class="addChallenge col-md-3 topPadding borderRight">
     <form class="form-horizontal"  ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
       <fieldset>
         <!-- Text input-->
@@ -73,6 +73,7 @@
           <th class="start_date">Start Date</th>
           <th class="end_date">End Date</th>
           <th class="pts_value">Points</th>
+          <th class="student_name">Students Involved</th>
           <th class="edit">Edit</th>
         </thead>
         <tbody>
@@ -93,8 +94,13 @@
               <td>
                 <span ng-show="!rowform.$visible"  e-class="pts_value" editable-text="challenge.pts_value"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.pts_value}}</span>
               </td>
+              <td>
+                <span ng-show="!rowform.$visible"  e-class="student_name" editable-text="challenge.student_name"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.student_name}}</span>
+              </td>
 </td>
+
 <td></td>
+
 <td class="actionButtons hidden-sm hidden-xs">
   <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
     <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-link">
