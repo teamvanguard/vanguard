@@ -1,11 +1,11 @@
 myApp.factory('ChallengesService', function($http, $location) {
   console.log('ChallengesService Loaded');
 
- var challengesService = {
+  var challengesService = {
 
-   challenges: [],
+    challenges: [],
 
-   getChallenges: function() {
+    getChallenges: function() {
       console.log('get challenges');
       $http.get('/challenges').then(function(response) {
         var startDate = Date.parse(response.data[0].start_date)
@@ -36,25 +36,35 @@ myApp.factory('ChallengesService', function($http, $location) {
    deleteChallenge: function(challenge) {
       console.log('deleteChallenge');
       console.log(challenge);
-      $http.delete('/challenges/' + challenge.id).then(function(response) {
-        console.log(response);
-        challengesService.getChallenges();
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#E3968B',
+        cancelButtonColor: '#839EAC',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function () {
+        $http.delete('/challenges/' + challenge.id).then(function(response) {
+          console.log(response);
+          challengesService.getChallenges();
+        });
       });
     }, // end deleteChallenge
 
     acceptChallenge : function(challengeId) {
       $http.post('/students/' + challengeId).then(function(response) {
-      console.log(response);
-      swal(
-        'Good job!',
-        'You selected a challange!',
-        'success'
-      );
-    });
-  } // end acceptChallenge
+        console.log(response);
+        swal(
+          'Good job!',
+          'You selected a challange!',
+          'success'
+        );
+      });
+    } // end acceptChallenge
 
   };
 
- return challengesService;
+  return challengesService;
 
 }); // end challenges service
