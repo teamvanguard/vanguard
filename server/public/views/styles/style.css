@@ -28,8 +28,8 @@
 }
 
 .borderRight {
+  border-right:1px solid #dfdfdf;
   min-height:438px!important;
-  border-right: 1px solid #dfdfdf;
 }
 
 .btn-danger {
@@ -45,18 +45,30 @@
   padding-right:5px;
 }
 
-.col-md-9.topPadding {
-  border-left:1px solid #dfdfdf;
+.form-horizontal .form-group {
+  margin-left:0!important;
+  margin-right:0!important;
+}
+
+.container h1 {
+  margin-bottom:25px;
+  margin-top:0;
 }
 
 .container.header {
   height:100%;
 }
 
-.description {
-  width:28%;
+.container.student {
+  border-top:2px solid;
 }
 
+.description {
+  width:26%;
+}
+.btn-space {
+    margin-right: 5px;
+}
 .form-control {
   font-size:16px;
   height:163px;
@@ -123,7 +135,17 @@
   border-radius:0;
   width:100%;
 }
+.start_date, .end_date {
+    width: 10%;
+}
 
+.pts_value {
+    width: 7%;
+}
+
+.student_name {
+    width: 15%;
+}
 .navbar-default {
   background-color:#FFF!important;
   border-top:3px solid #000!important;
@@ -140,9 +162,7 @@
 .padding {
   padding:0 15px;
 }
-.paddingTop {
-  padding-top: 35px;
-}
+
 .paddingBottom {
   padding-bottom:25px;
 }
@@ -158,6 +178,10 @@
 
 .paddingRight {
   padding-right:10px;
+}
+
+.paddingTop {
+  padding-top:35px;
 }
 
 .partially button span {
@@ -180,6 +204,18 @@
 
 .search input.form-control {
   border-radius:20px!important;
+}
+
+.storeFront .col-md-3 {
+  padding:0;
+}
+
+.student .challengeInfo {
+  font-size:20px;
+}
+
+.student summary {
+  font-size:22px;
 }
 
 .studentList td {
@@ -270,9 +306,6 @@ td span {
   word-break:break-all;
 }
 
-th.edit {
-  padding-left:20px!important;
-}
 
 ul {
   list-style-type:none;
@@ -280,37 +313,18 @@ ul {
   overflow:hidden;
   padding:0;
 }
-.student .challengeInfo {
-    font-size: 20px;
-}
-.storeFront .col-md-3 {
-    padding: 0;
+
+ul.list-group {
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+  position:absolute;
+  width:86%;
+  z-index:2;
 }
 
-.student summary {
-    font-size: 22px;
-}
-.container.student {
-    border-top: 2px solid;
-}
-.container h1 {
-    margin-top: 0;
-    margin-bottom: 25px;
-}
-.col-md-3 .form-horizontal .form-group {
-      margin-right: 0 !important;
-      margin-left: 0 !important;
-  }
-ul.list-group {
-  position:absolute;
-  z-index:2;
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-   -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-   box-sizing: border-box;
-   width: 86%;
-}
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+@media only screen and min-device-width 320px and max-device-width 480px{
   ul.list-group {
-     width: 100% !important;
-   }
+    width:100%!important;
+  }
 }

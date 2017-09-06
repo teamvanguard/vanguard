@@ -1,5 +1,10 @@
 var myApp = angular.module('myApp', ['xeditable', 'ngRoute', 'ngAnimate', 'ui.bootstrap']);
 
+const ADMIN_ROLE = 1;
+const STORE_MANAGER_ROLE = 2;
+const TEACHER_ROLE = 3;
+const STUDENT_ROLE = 4;
+
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');

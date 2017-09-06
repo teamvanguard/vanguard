@@ -83,9 +83,9 @@ myApp.factory('ChallengesService', function($http, $location) {
           );
         });
       } // end acceptChallenge
-
     };
 
-    return challengesService;
+
+  return challengesService;
 
   }); // end challenges service
