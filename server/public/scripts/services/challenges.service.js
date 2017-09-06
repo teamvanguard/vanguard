@@ -5,66 +5,87 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     challenges: [],
 
+//get the list of all challenges
     getChallenges: function() {
       console.log('get challenges');
       $http.get('/challenges').then(function(response) {
-        var startDate = Date.parse(response.data[0].start_date)
-        console.log('startDate: ', startDate);
-        console.log('response.data[0].start_date: ', response.data[0].start_date);
-        console.log(response);
         challengesService.challenges = response.data;
       });
     }, // end getChallenges
 
-   addChallenge: function(newChallenge) {
-      console.log(newChallenge);
-      $http.post('/challenges', newChallenge).then(function(response) {
-        console.log(response);
-        challengesService.getChallenges();
-      });
-    }, // end addChallenge
 
-   updateChallenge: function(challenge) {
-      console.log('update challenge');
-      console.log(challenge);
-      $http.put('/challenges', challenge).then(function(response) {
-        challengesService.getChallenges();
-        console.log(response);
-      });
-    }, // end updateChallenge
+    // Ale start
+    // acceptStudentChallenge: function() {
+    //   console.log('accept student challenges');
+    //   $http.get('/challenges/:studentId').then(function(response){
+    //     console.log(response);
+    //     challengesService.challenges = response.data;
+    //   });
+    // }, // end acceptStudentChallenge
+    // Ale end
 
-   deleteChallenge: function(challenge) {
-      console.log('deleteChallenge');
-      console.log(challenge);
-      swal({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#E3968B',
-        cancelButtonColor: '#839EAC',
-        confirmButtonText: 'Yes, delete it!'
-      }).then(function () {
-        $http.delete('/challenges/' + challenge.id).then(function(response) {
-          console.log(response);
+// add a new challenge (only teachers)
+    addChallenge: function(newChallenge) {
+      // check if newChallenge has all of the needed info
+      if (newChallenge.challenge_name && newChallenge.description && newChallenge.start_date
+        && newChallenge.end_date && newChallenge.pts_value) {
+          console.log('addChallenge');
+          $http.post('/challenges', newChallenge).then(function(response) {
+            //refresh challenges
+            challengesService.getChallenges();
+          });
+        }
+        else {
+          // newChallenge is missing some info
+          console.log('please fill out all the info');
+        }
+      }, // end addChallenge
+
+      // // Ale start
+      //     addChallengeToStudent: function(newStudent) {
+      //        console.log(newStudent);
+      //        $http.post('/challenges/addStudent', newStudent).then(function(response) {
+      //          console.log(response);
+      //          challengesService.acceptStudentChallenge();
+      //        });
+      //      }, // end addChallenge
+      //      // Ale end
+
+// make updates to the challenge
+      updateChallenge: function(challenge) {
+        console.log('update challenge');
+        $http.put('/challenges', challenge).then(function(response) {
+          // refresh challenges
           challengesService.getChallenges();
         });
-      });
-    }, // end deleteChallenge
+      }, // end updateChallenge
 
-    acceptChallenge : function(challengeId) {
-      $http.post('/students/' + challengeId).then(function(response) {
-        console.log(response);
-        swal(
-          'Good job!',
-          'You selected a challange!',
-          'success'
-        );
-      });
-    } // end acceptChallenge
+//delete a challenge
+      deleteChallenge: function(challenge) {
+        console.log('deleteChallenge');
+        $http.delete('/challenges/' + challenge.id).then(function(response) {
+          // refresh challenges
+          challengesService.getChallenges();
+        });
+      }, // end deleteChallenge
 
-  };
+// students accept a challenge
+      acceptChallenge : function(challengeId) {
+        console.log('acceptChallenge');
+        $http.post('/students/' + challengeId).then(function(response) {
+          //refresh challenges
+          challengesService.getChallenges();
+          // provide user feedback
+          swal(
+            'Good job!',
+            'You selected a challange!',
+            'success'
+          );
+        });
+      } // end acceptChallenge
+    };
+
 
   return challengesService;
 
-}); // end challenges service
+  }); // end challenges service

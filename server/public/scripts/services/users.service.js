@@ -5,29 +5,29 @@ myApp.factory('UsersService', function($http, $location){
 
 //send object with email and role properties
     addUser: function(newUser) {
-      console.log(newUser);
+      console.log('addUser');
       if(newUser.email == undefined || newUser.role == undefined || newUser.role == ""){
         console.log('user needs an email and a role!');
       } else {
         $http.post('/users', newUser).then(function(response) {
-          console.log(response);
+          console.log('user added');
         });
       }
     },
 
 //send object with email and role properties
     editRole: function(user) {
-      console.log(user);
+      console.log('editRole');
       $http.put('/users', user).then(function(response) {
-        console.log(response);
+        console.log('user role edited');
       });
     },
 
 // Send users' id in url
     deleteUser: function(user){
-      console.log(user);
+      console.log('deleteUser');
       $http.delete('/users/' + user.id).then(function(response){
-        console.log(response);
+        console.log('user', user.id, 'deleted');
       });
     },
 
@@ -35,8 +35,7 @@ myApp.factory('UsersService', function($http, $location){
     getTransactions: function() {
       console.log('get transactions');
       $http.get('/users/transactions').then(function(response){
-        console.log(response.data);
-        usersService.transactions = response.data;
+        usersService.transactions = response.data
       });
     }
   }

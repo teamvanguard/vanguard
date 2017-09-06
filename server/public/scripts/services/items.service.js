@@ -6,68 +6,66 @@ myApp.factory('ItemsService', function($http, $location){
 
     itemList: [],
 
+// submit a new item
     submitNewItem: function(newItem){
-      console.log(newItem);
-      $http.post('/items', newItem).then(function(response){
-        console.log(response);
-        itemsService.getItems();
-      });
+      console.log('submitNewItem');
+      //make sure newItem has all needed information
+      if (newItem.name && newItem.description && newItem.pts_value && newItem.qty && newItem.school_community) {
+        $http.post('/items', newItem).then(function(response){
+          // refresh items
+          itemsService.getItems();
+        });
+      }
+      else {
+        // item doesn't have all of the needed info
+        console.log('fill out all the info');
+      }
     },
 
+// get list of items
     getItems: function(){
       console.log('get items');
       $http.get('/items').then(function(response){
-        console.log(response);
         itemsService.itemList = response.data;
-        console.log(itemsService.itemList);
       });
     },
 
+// edit an item
     editItem: function(item) {
       console.log('editItem');
-      console.log(item);
       $http.put('/items', item).then(function(response){
-        console.log(response);
+        // refresh items
         itemsService.getItems();
       });
     },
 
+// delete an item
     deleteItem: function(item) {
       console.log('deleteItem');
-      console.log(item);
       $http.delete('/items/' + item.id).then(function(response){
-        console.log(response);
+        //refresh items
         itemsService.getItems();
       });
     },
 
+// sell an item
     sellItem: function(item, student){
       console.log('sell item');
-      console.log(item);
-      console.log(student);
+      // define item to send to server
       var data = {
         item: item,
         student: student
       };
-      console.log(data);
       $http.put('/users/sell', data).then(function(response) {
-        console.log(response);
+        // refresh item list
         itemsService.getItems();
       });
+      // give user feedback
       swal(
         'Great',
         'The item has been sold!',
         'success'
       );
-    },
-
-    itemsTextbox : function(string){
-      itemList.selectedData = string;
-      itemList.items = itemList.selectedData.name;
-      console.log("The selected data's information: ", itemsList.selectedData);
-      if(string){
-        msc.autocompletePackage.showMe = true;
-      }
     }
   }
 

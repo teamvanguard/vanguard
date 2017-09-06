@@ -21,46 +21,46 @@ CREATE TABLE "users" (
 -- To create the items table
 CREATE TABLE "items" (
   "id" serial PRIMARY KEY,
-  "item_name" character varying(60),
-  "item_description" varchar(180),
-  "pts_value" integer,
-  "pic" varchar(300),
+  "item_name" character varying(60) NOT NULL,
+  "item_description" varchar(180) NOT NULL,
+  "pts_value" integer NOT NULL,
+  "pic" varchar(300) NOT NULL,
 	"qty" integer,
-  "school_community" Boolean,
-  "last_edit_user_id" integer references "users"
+  "school_community" Boolean NOT NULL,
+  "last_edit_user_id" integer references "users" ON DELETE SET NULL
 );
 
 -- To create the challenges table
 CREATE TABLE "challenges" (
   "id" serial primary key,
-  "challenge_name" character varying(60),
+  "challenge_name" character varying(60) NOT NULL,
   "description" varchar(180),
-  "start_date" varchar(60),
-  "end_date" varchar(60),
-  "pts_value" integer,
-  "teacher_id" integer references "users"
+  "start_date" varchar(60) NOT NULL,
+  "end_date" varchar(60) NOT NULL,
+  "pts_value" integer NOT NULL,
+  "teacher_id" integer references "users" ON DELETE CASCADE
 );
 
 -- To create the transactions table
 CREATE TABLE transactions (
   "id" serial primary key,
-  "studentId" integer REFERENCES "users",
-  "pts" integer,
-  "employeeId" integer REFERENCES "users",
-  "timestamp" TIMESTAMP WITH TIME ZONE,
-  "itemId" integer REFERENCES "items",
-  "challengeID" integer REFERENCES "challenges",
-  "type" varchar(10)
+  "studentId" integer REFERENCES "users" ON DELETE CASCADE NOT NULL,
+  "pts" integer NOT NULL,
+  "employeeId" integer REFERENCES "users" ON DELETE SET NULL,
+  "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL,
+  "itemId" integer REFERENCES "items" ON DELETE SET NULL,
+  "challengeID" integer REFERENCES "challenges" ON DELETE SET NULL,
+  "type" varchar(10) NOT NULL
 );
 
 -- To create the student_challenge table
 
 CREATE TABLE student_challenge (
   "id" serial primary key,
-  "studentId" integer REFERENCES "users",
-  "challengeId" integer REFERENCES "challenges",
-  "pass" boolean,
-  "timestamp" timestamp with time zone
+  "studentId" integer REFERENCES "users" ON DELETE CASCADE NOT NULL,
+  "challengeId" integer REFERENCES "challenges" ON DELETE CASCADE NOT NULL,
+  "pass" boolean DEFAULT 'true' NOT NULL,
+  "timestamp" timestamp with time zone NOT NULL
 );
 
 --Your database is ready
