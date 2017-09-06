@@ -16,6 +16,20 @@ myApp.factory('UserService', function($http, $location){
               // console.log(response.data);
               userObject.userName = response.data.username;
               console.log('UserService -- getuser -- User Data: ', userObject.userName);
+              if($location.$$path == '/user'){
+              if(userObject.info.role == ADMIN_ROLE){
+                $location.path("/adminusers");
+              }else if (userObject.info.role == STORE_MANAGER_ROLE) {
+                $location.path("/storefront");
+              }else if (userObject.info.role == TEACHER_ROLE) {
+                $location.path("/teachers");
+              }else if (userObject.info.role == STUDENT_ROLE) {
+                $location.path("/student");
+              }else {
+                $location.path("/user");
+              }
+          }
+
           } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page
