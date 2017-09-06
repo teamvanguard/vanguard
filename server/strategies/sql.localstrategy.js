@@ -11,10 +11,10 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.CALLBACK_URL,
     passReqToCallback: true
   },function(req, accessToken, refreshToken, profile, done){
-      console.log("THIS IS THE PROFILE", profile);
-      console.log("THIS IS THE PROFILE NAME", profile.displayName);
-      console.log("THIS IS THE PROFILE EMAIL", profile.emails[0].value);
-      console.log("THIS IS THE PROFILE PIC", profile.photos[0].value );
+      // console.log("THIS IS THE PROFILE", profile);
+      // console.log("THIS IS THE PROFILE NAME", profile.displayName);
+      // console.log("THIS IS THE PROFILE EMAIL", profile.emails[0].value);
+      // console.log("THIS IS THE PROFILE PIC", profile.photos[0].value );
       pool.connect(function (err, client, release) {
         if(err) {
           console.log('connection err ', err);

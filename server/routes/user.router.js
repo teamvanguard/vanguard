@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var constantModule  = require('../modules/roles.constants.js');
 
 // Handles Ajax request for user information if user is authenticated
 router.get('/', function(req, res) {
@@ -8,7 +9,7 @@ router.get('/', function(req, res) {
   if(req.isAuthenticated()) {
     // send back user object from database
     console.log('logged in', req.user);
-    if(req.user.role == 4) {
+    if(req.user.role == constantModule.STUDENT_ROLE) {
       var userInfo = {
         username : req.user.username,
         pts: req.user.pts,

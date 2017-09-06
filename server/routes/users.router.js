@@ -5,6 +5,7 @@ var pool = require('../modules/pool.js');
 var encryptLib = require('../modules/encryption');
 var pg = require('pg');
 var sell = require('../modules/sell.item.module.js');
+var constantModule  = require('../modules/roles.constants.js');
 
 // roles:
 // 1 = admin
@@ -15,7 +16,7 @@ var sell = require('../modules/sell.item.module.js');
 // get users
 router.get('/', function(req, res){
   //everyone but students
-  if(req.user.role == 1 || req.user.role == 2 || req.user.role == 3) {
+  if(req.user.role == constantModule.ADMIN_ROLE || req.user.role == constantModule.STORE_MANAGER_ROLE || req.user.role == constantModule.TEACHER_ROLE) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -51,7 +52,7 @@ router.get('/', function(req, res){
 router.get('/students', function(req, res) {
   console.log('users router get /students');
   //everyone but students
-  if(req.user.role == 1 || req.user.role == 2 || req.user.role == 3){
+  if(req.user.role == constantModule.ADMIN_ROLE || req.user.role == constantModule.STORE_MANAGER_ROLE || req.user.role == constantModule.TEACHER_ROLE){
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -86,7 +87,7 @@ router.put('/sell', function(req, res) {
   console.log('users router put /sell');
   console.log(req.body);
   //only admins and managers
-  if(req.user.role == 1 || req.user.role == 2) {
+  if(req.user.role == constantModule.ADMIN_ROLE || req.user.role == constantModule.STORE_MANAGER_ROLE) {
     console.log('student', req.body.student);
     console.log('item', req.body.item);
     sell.sellItem(req.body.student, req.body.item, res, req);
@@ -97,7 +98,7 @@ router.put('/sell', function(req, res) {
 router.get('/transactions', function(req, res) {
   console.log('users router get /transactions');
   //only admins
-  if(req.user.role == 1 || req.user.role == 2) {
+  if(req.user.role == constantModule.ADMIN_ROLE || req.user.role == constantModule.STORE_MANAGER_ROLE) {
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
     pool.connect(function(errorConnectingToDatabase, db, done){
@@ -137,7 +138,7 @@ router.post('/', function(req, res) {
   console.log('users router post create teacher or manager or admin');
   console.log(req.body);
   //only admins
-  if(req.user.role == 1) {
+  if(req.user.role == constantModule.ADMIN_ROLE) {
     var newUser = req.body
     pool.connect(function(errorConnectingToDatabase, db, done){
       if(errorConnectingToDatabase) {
@@ -170,7 +171,7 @@ router.put('/', function(req, res) {
   console.log('users router put edit user role');
   console.log(req.body);
   //only admins
-  if(req.user.role == 1){
+  if(req.user.role == constantModule.ADMIN_ROLE){
     pool.connect(function(errorConnectingToDatabase, db, done){
       if(errorConnectingToDatabase) {
         console.log('Error connecting to the database.');
@@ -202,7 +203,7 @@ router.delete('/:id', function(req, res) {
   console.log('users router delete a user');
   var userToDelete = req.params.id;
   console.log(userToDelete);
-  if (req.user.role == 1) {
+  if (req.user.role == constantModule.ADMIN_ROLE) {
     pool.connect(function(errorConnectingToDatabase, db, done){
       if(errorConnectingToDatabase) {
         console.log('Error connecting to the database.');
@@ -234,7 +235,7 @@ router.delete('/:id', function(req, res) {
 router.get('/:role', function(req, res) {
   console.log('users router get by role');
   //only admins
-  if(req.user.role == 1) {
+  if(req.user.role == constantModule.ADMIN_ROLE) {
     pool.connect(function(errorConnectingToDatabase, db, done){
       if(errorConnectingToDatabase) {
         console.log('Error connecting to the database.');

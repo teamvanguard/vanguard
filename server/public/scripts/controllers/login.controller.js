@@ -16,13 +16,13 @@ myApp.controller('LoginController', function($http, $location, UserService) {
         if(response.data.username) {
           console.log('LoginController -- login -- success: ', response.data);
           // location works with SPA (ng-route)
-          if(response.data.role == 4){
+          if(response.data.role == STUDENT_ROLE){
              $location.path('/student');
-          }else if (response.data.role == 3){
+          }else if (response.data.role == TEACHER_ROLE){
              $location.path('/teacher');
-          }else if(response.data.role == 2){
+          }else if(response.data.role == STORE_MANAGER_ROLE){
              $location.path('/storefront');
-          }else if(response.data.role == 1){
+          }else if(response.data.role == ADMIN_ROLE){
             $location.path('/adminusers');
           }else {
              $location.path('/user');
