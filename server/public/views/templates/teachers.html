@@ -98,6 +98,9 @@
                 <span ng-show="!rowform.$visible"  e-class="student_name" editable-text="challenge.student_name"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.student_name}}</span>
               </td>
 </td>
+
+<td></td>
+
 <td class="actionButtons hidden-sm hidden-xs">
   <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
     <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-link">

@@ -26,7 +26,6 @@ myApp.factory('ItemsService', function($http, $location){
     editItem: function(item) {
       console.log('editItem');
       console.log(item);
-      console.log(item);
       $http.put('/items', item).then(function(response){
         console.log(response);
         itemsService.getItems();
@@ -55,6 +54,11 @@ myApp.factory('ItemsService', function($http, $location){
         console.log(response);
         itemsService.getItems();
       });
+      swal(
+        'Great',
+        'The item has been sold!',
+        'success'
+      );
     },
 
     itemsTextbox : function(string){

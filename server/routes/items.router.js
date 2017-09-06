@@ -100,9 +100,9 @@ router.put('/', function(req, res) {
           res.sendStatus(500);
         } else {
           // set query
-          var queryText = 'UPDATE items SET item_name = $1, item_description = $2, pts_value = $3, school_community = $4, last_edit_user_id = $5 WHERE id = $6';
+          var queryText = 'UPDATE items SET item_name = $1, item_description = $2, pts_value = $3, school_community = $4, last_edit_user_id = $5, qty = $6 WHERE id = $7';
           db.query(queryText,
-            [updatedItem.item_name, updatedItem.item_description, updatedItem.pts_value, updatedItem.school_community, req.user.id, updatedItem.id],
+            [updatedItem.item_name, updatedItem.item_description, updatedItem.pts_value, updatedItem.school_community, req.user.id, updatedItem.qty, updatedItem.id],
             function(errorMakingQuery, result) {
               //return connection to pool
               done();

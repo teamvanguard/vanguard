@@ -29,6 +29,7 @@
 
 .borderRight {
   min-height:438px!important;
+  border-right: 1px solid #dfdfdf;
 }
 
 .btn-danger {
@@ -170,7 +171,7 @@
 }
 
 .qty {
-  width:4%;
+  width:6%;
 }
 
 .school_community {
@@ -229,7 +230,6 @@ body,html {
 }
 
 details {
-  border-bottom:1px solid #efefef;
   border-radius:3px;
   margin:0;
   padding:5px;
@@ -283,6 +283,9 @@ ul {
 .student .challengeInfo {
     font-size: 20px;
 }
+.storeFront .col-md-3 {
+    padding: 0;
+}
 
 .student summary {
     font-size: 22px;
@@ -293,8 +296,11 @@ ul {
 .container h1 {
     margin-top: 0;
     margin-bottom: 25px;
-    border-bottom: 2px solid #efefef;
 }
+.col-md-3 .form-horizontal .form-group {
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+  }
 ul.list-group {
   position:absolute;
   z-index:2;

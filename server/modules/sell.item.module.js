@@ -44,9 +44,9 @@ function findStudent(student, item, res, req) {
     } else {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = 'SELECT * FROM users WHERE "studentId" = $1';
+      var queryText = 'SELECT * FROM users WHERE "id" = $1';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [student.studentId], function(errorMakingQuery, result){
+      db.query(queryText, [student.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
@@ -114,9 +114,9 @@ function subtractPoints(student, item, res, req) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'UPDATE users SET pts = $1 WHERE "studentId" = $2';
+        var queryText = 'UPDATE users SET pts = $1 WHERE "id" = $2';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [newPts, student.studentId], function(errorMakingQuery, result){
+        db.query(queryText, [newPts, student.id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
@@ -135,8 +135,9 @@ function subtractPoints(student, item, res, req) {
 
 // create row on transactions table
 function addTransaction(student, item, res, req){
-  console.log(student);
-  console.log(item);
+  console.log('student', student);
+  console.log('item', item);
+  console.log('user', req.user);
   pool.connect(function(errorConnectingToDatabase, db, done){
     var today = new Date();
     console.log(today);
@@ -149,6 +150,7 @@ function addTransaction(student, item, res, req){
       var queryText = 'INSERT INTO transactions ("studentId", "pts", "employeeId", "timestamp", "itemId", "type") ' +
       'VALUES ($1, $2, $3, $4, $5, $6)';
       // errorMakingQuery is a bool, result is an object
+      console.log(student.id, '-' + item.pts_value, req.user.id, today, item.id, 'sale');
       db.query(queryText, [student.id, '-' + item.pts_value, req.user.id, today, item.id, 'sale'],
         function(errorMakingQuery, result){
         done();
