@@ -38,12 +38,15 @@ router.get('/', function(req, res) {
         }
         // gets challenges for all admin, store, teacher
         else {
-          queryText = "SELECT challenges.id, challenges.challenge_name, " +
-            "challenges.description, challenges.start_date, " +
-            "challenges.end_date, challenges.pts_value, challenges.teacher_id " +
-            "FROM challenges " +
-            "JOIN users ON users.id = challenges.teacher_id " +
-            "ORDER BY start_date ASC;";
+          queryText = 'SELECT challenges.id, challenges.challenge_name, challenges.description, ' +
+            'challenges.start_date, challenges.end_date, challenges.pts_value, ' +
+            'challenges.teacher_id, teachers.username, teachers.name AS teacher_name, ' +
+            'students.name AS student_name ' +
+            'FROM challenges ' +
+            'LEFT OUTER JOIN student_challenge ON student_challenge.\"challengeId\" = challenges.id ' +
+            'JOIN users teachers ON teachers.id = challenges.teacher_id ' +
+            'LEFT OUTER JOIN users students ON students.id = student_challenge.\"studentId\" ' +
+            'ORDER BY start_date ASC; ';
         }
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, function(errorMakingQuery, result) {
@@ -105,8 +108,8 @@ router.post('/', function(req, res) {
       res.sendStatus(401)
     }
   } else {
-  res.sendStatus(401)
-} // end of auth else
+    res.sendStatus(401)
+  } // end of auth else
 }); // end of POST
 
 //NOTE put route for challenges
@@ -156,7 +159,7 @@ router.delete('/:id', function(req, res) {
   //sets id of item to delete to a variable
   var challengeDelete = req.params.id;
   //checks if user is logged in
-  if(req.isAuthenticated()){
+  if (req.isAuthenticated()) {
     //checks if user is authorized
     if(req.user.role == constantModule.TEACHER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
       pool.connect(function(errorConnectingToDatabase, db, done) {
