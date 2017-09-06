@@ -12,6 +12,77 @@ var constantModule  = require('../modules/roles.constants.js');
 // 3 = teacher
 // 4 = student
 
+router.put('/students', function(req, res) {
+  console.log(req.body);
+  if (req.isAuthenticated()) {
+    //checks if user is authorized
+    if (req.user.role == constantModule.TEACHER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
+      pool.connect(function(errorConnectingToDatabase, db, done) {
+        if (errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          // set query
+          var queryText = 'UPDATE student_challenge SET pass = $1 WHERE "studentId" = $2 AND "challengeId" = $3';
+          db.query(queryText, [req.body.pass, req.body.studentId, req.body.challengeId],
+            function(errorMakingQuery, result) {
+              //return connection to pool
+              done();
+              if (errorMakingQuery) {
+                console.log('Attempted to query with', queryText);
+                console.log('Error making query');
+                res.sendStatus(500);
+              } else {
+                console.log('item updated');
+                // Send back the results
+                res.sendStatus(200);
+              }
+            }); // end query
+        } // end if
+      }); // end pool
+    } else {
+      res.sendStatus(401)
+    }
+  } else {
+    res.sendStatus(401)
+  }
+});
+
+router.get('/students/:challengeId', function(req, res) {
+  console.log(req.params.challengeId);
+  if(req.user.role == constantModule.ADMIN_ROLE || req.user.role == constantModule.TEACHER_ROLE){
+    // errorConnecting is bool, db is what we query against,
+    // done is a function that we call when we're done
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        // We connected to the database!!!
+        // Now we're going to GET things from the db
+        var queryText = ' SELECT users.name, users.id, users."studentId", student_challenge.pass ' +
+        'FROM users LEFT OUTER JOIN ' +
+        'student_challenge ON student_challenge."studentId" = users.id ' +
+        'WHERE student_challenge."challengeId" = $1;';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [req.params.challengeId], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+
+            console.log(result.rows);
+            // Send back the results
+            res.send(result.rows);
+          }
+        }); // end query
+      } // end if
+    }); // end pool
+  } else{res.sendStatus(401);} //not authorized
+})
+
 // NOTE GET challenges
 router.get('/', function(req, res) {
   // errorConnecting is bool, db is what we query against,

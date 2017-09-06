@@ -1,5 +1,6 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
+
+<div class="container" ng-if="tcc.view == 'challenges'">
   <div class="row">
     <div class="col-md-12">
       <h1>Challenges</h1>
@@ -102,9 +103,9 @@
               <td>
                 <span ng-show="!rowform.$visible"  e-class="pts_value" editable-text="challenge.pts_value"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.pts_value}}</span>
               </td>
-
-            </td>
-
+              <td>
+                <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="tcc.getStudents(challenge.id)">View Students</button>
+              </td>
             <td class="actionButtons hidden-sm hidden-xs">
               <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
                 <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-sm btn-space">
@@ -130,5 +131,38 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<div class="container" ng-if="tcc.view == 'students'">
+  <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="tcc.changeView()">Back</button>
+  <div class="row">
+    <table class="table table-responsive col-md-12">
+      <thead>
+        <th>Student Name</th>
+        <th>Student Id</th>
+        <th>Status</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="student in tcc.currentChallenge.students">
+          <td>{{student.name}}</td>
+          <td>{{student.studentId}}</td>
+          <td>{{student.pass | pass}}</td>
+          <td>
+            <button ng-if="student.pass" type="button" class="btn btn-danger btn-sm btn-space" ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
+              Fail
+            </button>
+            <button ng-if="!student.pass" type="button" class="btn btn-danger btn-sm btn-space" ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
+              Pass
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-success btn-sm btn-space">Award Points</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
