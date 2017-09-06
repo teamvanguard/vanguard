@@ -31,7 +31,9 @@
   border-right:1px solid #dfdfdf;
   min-height:438px!important;
 }
-
+.noPadding .col-md-4 {
+    padding: 0;
+}
 .btn-danger {
   margin-left:10px;
 }
@@ -205,17 +207,45 @@
 .search input.form-control {
   border-radius:20px!important;
 }
-
+.storeFront .description {
+  width: 24%;
+}
 .storeFront .col-md-3 {
   padding:0;
 }
+.card {
+    font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    margin-bottom: 15px;
+    padding: 10px;
+}
 
-.student .challengeInfo {
-  font-size:20px;
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
+.card h4 {
+    margin-top: 0;
+}
+.studentPoints {
+    width: auto;
+    text-align: center;
+}
+.challenge {
+  font-size:18px;
 }
 
 .student summary {
-  font-size:22px;
+  font-size:28px;
 }
 
 .studentList td {
@@ -225,10 +255,6 @@
 .studentNav .container a {
   color:#000;
   pointswidth:9%;
-}
-
-.studentPhoto img {
-  padding:30px;
 }
 
 .submitButton {

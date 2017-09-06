@@ -1,18 +1,27 @@
 <div class="container">
-<!-- {{scc.userObject.info.studentId}} -->
-<details ng-repeat="challenge in scc.challengesService.challenges">
-  <summary>
-    {{challenge.challenge_name}}
-  </summary>
-  <div class="challengeInfo">
-    <div class="challenge"><label>Description:</label>{{challenge.description}}</div>
-    <div class="challenge"><label>Start Date:</label>{{challenge.start_date | date:'fullDate'}}</div>
-    <div class="challenge"><label>End Date:</label>{{challenge.end_date | date:'fullDate'}}</div>
-      <div class="studentList pull-left">
-  <button type="button" name="button" class="btn btn-xs btn-primary" ng-click="scc.challengesService.acceptChallenge(challenge.id)">Accept</button>
+  <!-- {{scc.userObject.info.studentId}} -->
+  <form class="form-horizontal noPadding">
+      <div class="form-group">
+        <label class="col-md-4 control-label" for="challengeSelect">Select challenge </label>
+        <div class="col-md-4">
+          <select id="challengeSelect" name="challengeSelect" class="form-control">
+            <option value="1">All</option>
+            <option value="2">Accepted</option>
+            <option value="3">Completed</option>
+          </select>
+        </div>
       </div>
-    </div>
 
-</details>
+  </form>
+
+  <div class="card col-md-4" ng-repeat="challenge in scc.challengesService.challenges">
+    <div class="card-body">
+      <h4 class="card-title">{{challenge.challenge_name}}</h4>
+      <h6 class="card-subtitle mb-2 text-muted">{{challenge.description}}</h6>
+      <p class="card-text"><strong>Start Date:</strong> {{challenge.start_date | date:'fullDate'}}</p>
+      <p class="card-text"><strong>End Date:</strong> {{challenge.end_date | date:'fullDate'}}=</p>
+      <button type="button" name="button" class="btn btn-sm btn-primary" ng-click="scc.challengesService.acceptChallenge(challenge.id)">Accept</button>
+    </div>
+  </div>
 
 </div>
