@@ -1,13 +1,19 @@
 <div class="container header">
   <div class="row">
+    <div class="studentPoints">
+      <h1>{{shc.userObject.info.name}}</h1>
+      <h2 ng-if="shc.userObject.info.role == 4" class="center-block">{{shc.userObject.info.pts}} pts</h2>
+      <h4 ng-if="shc.userObject.info.role == 4" class="center-block">{{shc.userObject.info.lifetimePts}} lifetime points</h4>
+
+    </div>
     <div class="studentPhoto">
       <!-- resize removes google's set size of 50 -->
+
       <img ng-src="{{shc.userObject.info.pic | resize}}"class="center-block img-responsive img-thumbnail" alt="profile pic">
+
       <p class="text-center">
         <a href="#/studentChallenges" class="btn btn-primary btn-lg">Challenges</a>
         <a href="#/studentItems" class="btn btn-primary btn-lg">Rewards</a>
-        <!-- points only show for students -->
-        <span ng-if="shc.userObject.info.role == 4">Points: {{shc.userObject.info.pts}}</span>
       </p>
     </div>
 
