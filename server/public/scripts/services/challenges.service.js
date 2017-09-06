@@ -16,7 +16,7 @@ myApp.factory('ChallengesService', function($http, $location) {
       });
     }, // end getChallenges
 
-    addChallenge: function(newChallenge) {
+   addChallenge: function(newChallenge) {
       console.log(newChallenge);
       $http.post('/challenges', newChallenge).then(function(response) {
         console.log(response);
@@ -24,7 +24,7 @@ myApp.factory('ChallengesService', function($http, $location) {
       });
     }, // end addChallenge
 
-    updateChallenge: function(challenge) {
+   updateChallenge: function(challenge) {
       console.log('update challenge');
       console.log(challenge);
       $http.put('/challenges', challenge).then(function(response) {
@@ -33,8 +33,7 @@ myApp.factory('ChallengesService', function($http, $location) {
       });
     }, // end updateChallenge
 
-
-    deleteChallenge: function(challenge) {
+   deleteChallenge: function(challenge) {
       console.log('deleteChallenge');
       console.log(challenge);
       swal({

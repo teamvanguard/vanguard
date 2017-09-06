@@ -4,7 +4,7 @@ myApp.controller('AdminViewUsersController', function(UserService, $http, UsersS
   avuc.userService = UserService;
   avuc.usersService = UsersService
   avuc.newUser = {};
-  // avuc.newUser.role = 2;
+
   avuc.getUsers = function(){
     avuc.users = []
     console.log('Getting Students');
@@ -28,7 +28,8 @@ myApp.controller('AdminViewUsersController', function(UserService, $http, UsersS
       }
       console.log(avuc.users);
     });
-  };
+  }; //end of getUsers
+
   avuc.getUsers();
   avuc.orderBy = 'role';
   avuc.changeOrderBy = function(property, property2) {
@@ -38,26 +39,8 @@ myApp.controller('AdminViewUsersController', function(UserService, $http, UsersS
     } else {
       avuc.orderBy = '-' + property;
     }
+  } //end of changeOrderBy
 
-  }
-  //send object with email and role properties
-  // avuc.addUser = function(newUser) {
-  //   console.log(newUser);
-  //   $http.post('/users', newUser).then(function(response) {
-  //     console.log(response);
-  //   });
-  // };
-  // //send object with email and role properties
-  // avuc.editRole = function(user) {
-  //   console.log(user);
-  //   $http.put('/users', user).then(function(response) {
-  //     console.log(response);
-  //   });
-  // };
-  // avuc.deleteUser = function(user){
-  //   console.log(user);
-  //   $http.delete('/users/' + user.id).then(function(response){
-  //     console.log(response);
-  //   });
-  // };
+//create update function below
+
 });

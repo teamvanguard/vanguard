@@ -15,6 +15,10 @@ Node
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+- Run [npm install]
+
+
+
 ### Prerequisites
 
 Link to software that is required to install the app (e.g. node).
@@ -36,14 +40,21 @@ Include one or two screen shots of your project here (optional). Remove if unuse
 
 ## Documentation
 
-Link to a read-only version of your scope document or other relevant documentation here (optional). Remove if unused.
+https://docs.google.com/document/d/1reOmnQ5pv6OZLIB4gQclkk26dDy_RVTzoVU5bx1FV_Q/edit
 
 ### Completed Features
 
 High level list of items completed.
 
-- [x] Feature a
-- [x] Feature b
+Students View
+- Ability to view and accept challenges
+
+Teacher View
+- Ability to create, update, and delete challenges
+
+Store Manager View
+- Ability to add, update, and delete items
+
 
 ### Next Steps
 
@@ -57,9 +68,4 @@ Add additional notes about how to deploy this on a live system
 
 ## Authors
 
-* Ale Leyva, Antonio Rice, Ben Siegel, Brendin Barone and Dexter St.Pierre
-
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
+* Antonio Rice, Ben Siegel, Brendin Barone, Dexter St.Pierre, Ale Leyva
