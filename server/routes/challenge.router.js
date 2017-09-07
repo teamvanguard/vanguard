@@ -24,8 +24,8 @@ router.put('/students', function(req, res) {
           res.sendStatus(500);
         } else {
           // set query
-          var queryText = 'UPDATE student_challenge SET pass = $1 WHERE "studentId" = $2 AND "challenge_id" = $3';
-          db.query(queryText, [req.body.pass, req.body.studentId, req.body.challenge_id],
+          var queryText = 'UPDATE student_challenge SET pass = $1 WHERE "student_id" = $2 AND "challenge_id" = $3';
+          db.query(queryText, [req.body.pass, req.body.student_id, req.body.challenge_id],
             function(errorMakingQuery, result) {
               //return connection to pool
               done();
@@ -63,7 +63,7 @@ router.get('/students/:challenge_id', function(req, res) {
         // Now we're going to GET things from the db
         var queryText = ' SELECT users.name, users.id, users."student_id", student_challenge.pass ' +
         'FROM users LEFT OUTER JOIN ' +
-        'student_challenge ON student_challenge."studentId" = users.id ' +
+        'student_challenge ON student_challenge."student_id" = users.id ' +
         'WHERE student_challenge."challenge_id" = $1;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, [req.params.challenge_id], function(errorMakingQuery, result){
@@ -273,7 +273,7 @@ router.get('/students', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = ' SELECT id, name, pts, "users"."studentId" FROM users WHERE users.role = $1;';
+        var queryText = ' SELECT id, name, pts, "users"."student_id" FROM users WHERE users.role = $1;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, ['4'], function(errorMakingQuery, result){
           done();
