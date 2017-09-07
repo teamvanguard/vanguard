@@ -11,6 +11,9 @@ myApp.controller('StudentChallengesController', function($http, UserService, Cha
   scc.challengesService.getChallenges();
   scc.userService.getuser();
 
+  scc.acceptedChallenges = {};
+  scc.unacceptedChallenges = {};
+
   scc.acceptChallenge = function(challengeId) {
     ChallengesService.acceptChallenge(challengeId).then(function(response){
       console.log(response);
@@ -23,8 +26,8 @@ myApp.controller('StudentChallengesController', function($http, UserService, Cha
 
   scc.getAcceptedChallenges = function() {
     return ChallengesService.getAcceptedChallenges().then(function(response){
-      console.log(response);
-      scc.acceptedChallenges = response.data;
+      console.log('acceptedChallenges', response);
+      scc.acceptedChallenges.challenges = response.data;
       scc.acceptedChallenges.accepted = true;
       return scc.acceptedChallenges
     })
@@ -32,8 +35,8 @@ myApp.controller('StudentChallengesController', function($http, UserService, Cha
 
   scc.getUnacceptedChallenges = function() {
     return ChallengesService.getUnacceptedChallenges().then(function(response){
-      console.log(response);
-      scc.unacceptedChallenges = response.data;
+      console.log('unacceptedChallenges', response);
+      scc.unacceptedChallenges.challenges = response.data;
       scc.unacceptedChallenges.accepted = false;
       return scc.unacceptedChallenges
     })
@@ -41,6 +44,7 @@ myApp.controller('StudentChallengesController', function($http, UserService, Cha
 
   scc.getAcceptedChallenges();
   scc.getUnacceptedChallenges().then(function(response) {
+    console.log('currentChallenges', response.challenges);
     scc.currentChallenges = response;
   });
 });

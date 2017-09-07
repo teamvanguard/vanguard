@@ -13,9 +13,10 @@
       </div>
 
     </form>
-  <div class="card col-md-4" ng-repeat="challenge in scc.challengesService.challenges">
+  <div class="card col-md-4" ng-repeat="challenge in scc.currentChallenges.challenges">
     <div class="card-body">
       <h4 class="card-title">{{challenge.challenge_name}}</h4>
+      <h5>{{challenge.teacher_name}}</h5>
       <h6 class="card-subtitle mb-2 text-muted">{{challenge.description}}</h6>
       <p class="card-text"><strong>Start Date:</strong> {{challenge.start_date | date:'fullDate'}}</p>
       <button ng-hide="scc.currentChallenges.accepted" type="button" name="button" class="btn btn-sm btn-primary" ng-click="scc.acceptChallenge(challenge.id)">Accept</button>
