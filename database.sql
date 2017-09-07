@@ -12,10 +12,10 @@ CREATE TABLE "users" (
   "student_id" integer UNIQUE,
   "pic" varchar(300),
   "pts" integer,
-  "lifetimePts" integer,
+  "lifetime_pts" integer,
   "role" varchar(20),
   "email" varchar(60) UNIQUE,
-  "employeeId" integer UNIQUE
+  "employee_id" integer UNIQUE
 );
 
 -- To create the items table
@@ -46,10 +46,10 @@ CREATE TABLE transactions (
   "id" serial primary key,
   "student_id" integer REFERENCES "users" ON DELETE CASCADE NOT NULL,
   "pts" integer NOT NULL,
-  "employeeId" integer REFERENCES "users" ON DELETE SET NULL,
+  "employee_id" integer REFERENCES "users" ON DELETE SET NULL,
   "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL,
-  "itemId" integer REFERENCES "items" ON DELETE SET NULL,
-  "challengeID" integer REFERENCES "challenges" ON DELETE SET NULL,
+  "item_id" integer REFERENCES "items" ON DELETE SET NULL,
+  "challenge_id" integer REFERENCES "challenges" ON DELETE SET NULL,
   "type" varchar(10) NOT NULL
 );
 
@@ -58,7 +58,7 @@ CREATE TABLE transactions (
 CREATE TABLE student_challenge (
   "id" serial primary key,
   "student_id" integer REFERENCES "users" ON DELETE CASCADE NOT NULL,
-  "challengeId" integer REFERENCES "challenges" ON DELETE CASCADE NOT NULL,
+  "challenge_id" integer REFERENCES "challenges" ON DELETE CASCADE NOT NULL,
   "pass" boolean DEFAULT 'true' NOT NULL,
   "timestamp" timestamp with time zone NOT NULL
 );
