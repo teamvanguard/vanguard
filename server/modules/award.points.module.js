@@ -31,7 +31,7 @@ function findChallenge(student, challenge, res, req) {
         } else {
           // Send back the results
           var selectedChallenge = result.rows[0];
-          console.log('selectedStudent from db', selectedStudent);
+          console.log('selectedStudent from db', selectedChallenge);
           console.log(challenge);
           findStudent(student, selectedChallenge, res, req)
         }
@@ -76,11 +76,11 @@ function addPointsTransaction(student, challenge, res, req) {
     } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'INSERT INTO transactions ("studentId", "pts", "employeeId", "timestamp", "challengeId", "type") ' +
+        var queryText = 'INSERT INTO transactions ("student_id", "pts", "employeeId", "timestamp", "challengeID", "type") ' +
           'VALUES ($1, $2, $3, $4, $5, $6)';
         // errorMakingQuery is a bool, result is an object
-        console.log(student.id[i], challenge.pts_value, req.user.id, today, challenge.id, 'challange');
-        db.query(queryText, [student.id[i], challenge.pts_value, req.user.id, today, challenge.id, 'challange'],
+        console.log(student.id, challenge.pts_value, req.user.id, today, challenge.id, 'challange');
+        db.query(queryText, [student.id, challenge.pts_value, req.user.id, today, challenge.id, 'challange'],
           function(errorMakingQuery, result) {
             done();
             if (errorMakingQuery) {
@@ -122,12 +122,5 @@ function addPoints(student, challenge, res, req) {
     } // end if
   }); // end pool
 }
-
-
-function awardPoints(student, challenge, res, req) {
-  //get the challenge_point info from the database
-  findChallenge(student, challenge, res, req);
-};
-
 
 module.exports = awardingModule;

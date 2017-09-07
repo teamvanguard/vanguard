@@ -92,9 +92,13 @@ myApp.factory('ChallengesService', function($http, $location) {
       }, // end acceptChallenge
 
       // award (Update) points for students
-      awardPoints: function(challenge) {
+      awardPoints: function(student, challenge) {
         console.log('award points');
-        $http.put('/challenges/award', challenge).then(function(response) {
+        var data = {
+          student: student,
+          challenge: challenge
+        }
+        $http.put('/challenges/award', data).then(function(response) {
           // refresh challenges
           challengesService.getChallenges();
         });
