@@ -44,7 +44,7 @@
       <tr ng-repeat="transaction in atc.usersService.transactions | orderBy: atc.orderBy | filter: atc.filterType | filter: atc.filterInput">
         <td>{{transaction.timestamp | date}}</td>
         <td>{{transaction.studentName}} {{transaction.student_id}}</td>
-        <td>{{transaction.employeeName | teacherName}} {{transaction.employeeId}}</td>
+        <td>{{transaction.employeeName | teacherName}} {{transaction.employee_id}}</td>
         <td>
           <span ng-if="transaction.type == 'challenge'">Challenge: {{transaction.challengeName | challengeName}}</span>
           <span ng-if="transaction.type == 'sale'">Sale: {{transaction.itemName | itemName}}</span>

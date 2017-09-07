@@ -18,10 +18,15 @@ footer {
     background-color: #F8F8F8;
     border-top: 1px solid #E7E7E7;
     text-align:center;
-    position: absolute;
     bottom: 0;
     width: 100%;
     z-index: 2;
+    position: fixed;
+}
+.row.studentContent {
+    margin-bottom: 35px;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 .alignCenter {
   display:block;
@@ -76,10 +81,10 @@ footer {
 .form-control {
   font-size:16px;
   height:163px;
-  importantwidth:555px;
   padding:10px;
   position:relative;
   resize:none;
+  word-break: break-all;
 }
 
 .form-signin {
@@ -131,7 +136,7 @@ footer {
 }
 
 .name {
-  width:20%;
+  width:16%;
 }
 
 .navbar {
@@ -140,15 +145,17 @@ footer {
   width:100%;
 }
 .start_date, .end_date {
-    width: 10%;
+    width: 13%;
 }
-
+.table-responsive {
+  overflow-x:inherit !important;
+}
 .pts_value {
     width: 7%;
 }
 
 .student_name {
-    width: 15%;
+    width: 9%;
 }
 .navbar-default {
   background-color:#FFF!important;
@@ -210,7 +217,7 @@ footer {
   border-radius:20px!important;
 }
 .storeFront .description {
-  width: 24%;
+  width: 28%;
 }
 .storeFront .col-md-3 {
   padding:0;
@@ -247,9 +254,11 @@ footer {
 }
 
 .student summary {
-  font-size:28px;
+  font-size:20px;
 }
-
+.student h2 {
+    padding: 0 10px;
+}
 .studentList td {
   padding:0 10px 0 5px;
 }
@@ -352,7 +361,9 @@ ul.list-group {
   width:86%;
   z-index:2;
 }
-
+.wrapper {
+  min-height: 100%;
+}
 @media only screen and min-device-width 320px and max-device-width 480px{
   ul.list-group {
     width:100%!important;
