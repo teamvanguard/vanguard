@@ -23,8 +23,8 @@ router.put('/students', function(req, res) {
           res.sendStatus(500);
         } else {
           // set query
-          var queryText = 'UPDATE student_challenge SET pass = $1 WHERE "studentId" = $2 AND "challengeId" = $3';
-          db.query(queryText, [req.body.pass, req.body.studentId, req.body.challengeId],
+          var queryText = 'UPDATE student_challenge SET pass = $1 WHERE "studentId" = $2 AND "challenge_id" = $3';
+          db.query(queryText, [req.body.pass, req.body.studentId, req.body.challenge_id],
             function(errorMakingQuery, result) {
               //return connection to pool
               done();
@@ -48,8 +48,8 @@ router.put('/students', function(req, res) {
   }
 });
 
-router.get('/students/:challengeId', function(req, res) {
-  console.log(req.params.challengeId);
+router.get('/students/:challenge_id', function(req, res) {
+  console.log(req.params.challenge_id);
   if(req.user.role == constantModule.ADMIN_ROLE || req.user.role == constantModule.TEACHER_ROLE){
     // errorConnecting is bool, db is what we query against,
     // done is a function that we call when we're done
@@ -63,9 +63,9 @@ router.get('/students/:challengeId', function(req, res) {
         var queryText = ' SELECT users.name, users.id, users."student_id", student_challenge.pass ' +
         'FROM users LEFT OUTER JOIN ' +
         'student_challenge ON student_challenge."studentId" = users.id ' +
-        'WHERE student_challenge."challengeId" = $1;';
+        'WHERE student_challenge."challenge_id" = $1;';
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [req.params.challengeId], function(errorMakingQuery, result){
+        db.query(queryText, [req.params.challenge_id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
@@ -113,7 +113,7 @@ router.get('/', function(req, res) {
             'challenges.start_date, challenges.end_date, challenges.pts_value, ' +
             'challenges.teacher_id, teachers.username, teachers.name AS teacher_name ' +
             'FROM challenges ' +
-            'LEFT OUTER JOIN student_challenge ON student_challenge.\"challengeId\" = challenges.id ' +
+            'LEFT OUTER JOIN student_challenge ON student_challenge.\"challenge_id\" = challenges.id ' +
             'JOIN users teachers ON teachers.id = challenges.teacher_id ' +
             'ORDER BY start_date ASC; ';
         }

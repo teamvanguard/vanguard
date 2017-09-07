@@ -5,10 +5,10 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     challenges: [],
 
-    getStudents: function(challengeId) {
+    getStudents: function(challenge_id) {
       console.log('getStudents');
-      console.log(challengeId);
-      return $http.get('/challenges/students/' + challengeId).then(function(response) {
+      console.log(challenge_id);
+      return $http.get('/challenges/students/' + challenge_id).then(function(response) {
         return response
       });
     },
@@ -78,9 +78,9 @@ myApp.factory('ChallengesService', function($http, $location) {
       }, // end deleteChallenge
 
 // students accept a challenge
-      acceptChallenge : function(challengeId) {
+      acceptChallenge : function(challenge_id) {
         console.log('acceptChallenge');
-        $http.post('/students/' + challengeId).then(function(response) {
+        $http.post('/students/' + challenge_id).then(function(response) {
           //refresh challenges
           challengesService.getChallenges();
           // provide user feedback

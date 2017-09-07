@@ -51,7 +51,7 @@ function addPointsTransaction(student, challenge, res, req){
         for (var i = 0; i < student.id.length; i++) {
       // We connected to the database!!!
       // Now we're going to GET things from the db
-      var queryText = 'INSERT INTO transactions ("studentId", "pts", "employeeId", "timestamp", "challengeId", "type") ' +
+      var queryText = 'INSERT INTO transactions ("studentId", "pts", "employee_id", "timestamp", "challenge_id", "type") ' +
       'VALUES ($1, $2, $3, $4, $5, $6)';
       // errorMakingQuery is a bool, result is an object
       console.log(student.id[i], '+' + challenge.pts_value, req.user.id, today, challenge.id, 'Points!');
