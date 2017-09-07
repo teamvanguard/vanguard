@@ -131,7 +131,7 @@ function addTransaction(student, item, res, req){
       console.log('Error connecting to the database.');
       cancelTransaction(student, item, res, req, 'user');
     } else {
-      var queryText = 'INSERT INTO transactions ("student_id", "pts", "employeeId", "timestamp", "itemId", "type") ' +
+      var queryText = 'INSERT INTO transactions ("student_id", "pts", "employee_id", "timestamp", "item_id", "type") ' +
       'VALUES ($1, $2, $3, $4, $5, $6)';
       // creates row with a negative point value
       db.query(queryText, [student.id, '-' + item.pts_value, req.user.id, timestamp, item.id, 'sale'],

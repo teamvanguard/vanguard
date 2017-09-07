@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
         pts: req.user.pts,
         student_id: req.user.student_id,
         pic: req.user.pic,
-        lifetimePts: req.user.lifetimePts,
+        lifetime_pts: req.user.lifetime_pts,
         name: req.user.name,
         email: req.user.email,
         role: req.user.role

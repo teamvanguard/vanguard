@@ -28,10 +28,10 @@ router.get('/challenges/:student_id', function(req, res) {
         // We connected to the database!!!
         // Now we're going to GET things from the db
         var queryText = "SELECT student_challenge.student_id, " +
-          "student_challenge.challengeId, student_challenge.pass, " +
+          "student_challenge.challenge_id, student_challenge.pass, " +
           "users.name, challenges.challenge_name,challenges.description," +
           "challenges.start_date, challenges.end_date, challenges.pts_value, " +
-          "FROM student_challenge JOIN challenges ON challenges.teacher_id = student_challenge.challengeId, " +
+          "FROM student_challenge JOIN challenges ON challenges.teacher_id = student_challenge.challenge_id, " +
           "JOIN users ON users.student_id = student_challenge.student_id WHERE student_challenge.student_id = $1;";
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, [req.params.student_id], function(errorMakingQuery, result) {
@@ -67,7 +67,7 @@ router.post('/:id', function(req, res) {
         } else {
           // We connected to the database!!!
           // Now we're going to POST things to the db
-          var queryText = 'INSERT INTO student_challenge ("student_id", "challengeId", pass, timestamp) VALUES ($1, $2, $3, $4 ); ';
+          var queryText = 'INSERT INTO student_challenge ("student_id", "challenge_id", pass, timestamp) VALUES ($1, $2, $3, $4 ); ';
 
           // errorMakingQuery is a bool, result is an object
           db.query(queryText, [req.user.id, req.params.id, 'true', timeStamp],
