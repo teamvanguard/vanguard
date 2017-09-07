@@ -5,6 +5,7 @@ var pool = require('../modules/pool.js');
 var encryptLib = require('../modules/encryption');
 var pg = require('pg');
 var constantModule  = require('../modules/roles.constants.js');
+var awardModule = require('../modules/award.points.module.js');
 
 // roles:
 // 1 = admin
@@ -300,7 +301,7 @@ router.put('/award', function(req, res) {
   if(req.user.role == constantModule.ADMIN_ROLE || req.user.role == constantModule.TEACHER_ROLE) {
     console.log('student', req.body.student);
     console.log('item', req.body.challenge);
-    sell.awardPoints(req.body.student, req.body.challenge, res, req);
+    awardModule.awardPoints(req.body.student, req.body.challenge, res, req);
   } else{res.sendStatus(200);} //not authorized
 });
 
