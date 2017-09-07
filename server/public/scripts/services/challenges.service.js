@@ -5,7 +5,15 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     challenges: [],
 
-    //get the list of all challenges
+    getStudents: function(challengeId) {
+      console.log('getStudents');
+      console.log(challengeId);
+      return $http.get('/challenges/students/' + challengeId).then(function(response) {
+        return response
+      });
+    },
+
+//get the list of all challenges
     getChallenges: function() {
       console.log('get challenges');
       $http.get('/challenges').then(function(response) {

@@ -1,10 +1,4 @@
-#container {
-  margin-top:10px;
-}
 
-#entryForm,.container p {
-  margin-top:14px;
-}
 
 .addChallenge {
   margin-bottom:10px;
@@ -20,7 +14,15 @@
   margin:0 auto;
   max-width:380px;
 }
-
+footer {
+    background-color: #F8F8F8;
+    border-top: 1px solid #E7E7E7;
+    text-align:center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+}
 .alignCenter {
   display:block;
   margin-left:auto;
@@ -66,7 +68,7 @@
 }
 
 .description {
-  width:26%;
+  width:24%;
 }
 .btn-space {
     margin-right: 5px;
@@ -277,10 +279,12 @@
 }
 
 a.studentHomeIcon {
-  color:#000;
-  display:inline-block;
-  height:68px;
-  padding:10px;
+  color: #000;
+  height: 68px;
+  padding: 10px;
+  padding-top: 25px;
+  float: left;
+  font-size: 18px;
 }
 
 body,html {

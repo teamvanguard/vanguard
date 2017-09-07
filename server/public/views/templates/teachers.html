@@ -1,5 +1,6 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="container">
+
+<div class="container" ng-if="tcc.view == 'challenges'">
   <div class="row">
     <div class="col-md-12">
       <h1>Challenges</h1>
@@ -103,18 +104,20 @@
               <td>
                 <span ng-show="!rowform.$visible"  e-class="pts_value" editable-text="challenge.pts_value"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.pts_value}}</span>
               </td>
-
+              <td>
+                <button type="button" class="btn btn-primary btn-md btn-space" ng-click="tcc.getStudents(challenge.id)">View Students</button>
+              </td>
             <td class="actionButtons hidden-sm hidden-xs">
               <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
-                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-sm btn-space">
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-md btn-space">
                   Save
                 </button>
-                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info btn-sm btn-space">
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info btn-md btn-space">
                   Cancel
                 </button>
               </form>
               <div ng-show="!rowform.$visible">
-                <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="rowform.$show()">
+                <button type="button" class="btn btn-primary btn-md btn-space" ng-click="rowform.$show()">
                   Edit
                 </button>
                   <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
@@ -130,5 +133,50 @@
       </div>
 
     </div>
+  </div>
+</div>
+
+<div class="container" ng-if="tcc.view == 'students'">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Students in the challenge</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <button type="button" class="btn btn-link  btn-block" ng-click="tcc.changeView()">Back to challenges</button>
+
+    </div>
+    <div class="col-md-10">
+
+    <table class="table table-responsive">
+      <thead>
+        <th>Student Name</th>
+        <th>Student Id</th>
+        <th>Status</th>
+        <th>Pass/Fail</th>
+        <th>Award Points</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="student in tcc.currentChallenge.students">
+          <td>{{student.name}}</td>
+          <td>{{student.studentId}}</td>
+          <td>{{student.pass | pass}}</td>
+          <td>
+            <button ng-if="student.pass" type="button" class="btn btn-danger btn-md btn-space" ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
+              Fail
+            </button>
+            <button ng-if="!student.pass" type="button" class="btn btn-success btn-md btn-space" ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
+              Pass
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-success btn-md btn-space">Award Points</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
   </div>
 </div>

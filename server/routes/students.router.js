@@ -27,12 +27,12 @@ router.get('/challenges/:studentId', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = "SELECT student_challenge.studentId, " +
+        var queryText = "SELECT student_challenge.student_id, " +
           "student_challenge.challengeId, student_challenge.pass, " +
           "users.name, challenges.challenge_name,challenges.description," +
           "challenges.start_date, challenges.end_date, challenges.pts_value, " +
           "FROM student_challenge JOIN challenges ON challenges.teacher_id = student_challenge.challengeId, " +
-          "JOIN users ON users.studentId = student_challenge.studentId WHERE student_challenge.studentId = $1;";
+          "JOIN users ON users.studentId = student_challenge.studentId WHERE student_challenge.student_id = $1;";
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, [req.params.studentId], function(errorMakingQuery, result) {
           done();
