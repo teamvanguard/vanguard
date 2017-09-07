@@ -92,16 +92,16 @@
           <tr ng-repeat="user in avuc.users | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">
 
             <td>
-              <span ng-show="!rowform.$visible"  e-class="name" editable-text="user.name"  e-form="rowform" class="hidden-sm hidden-xs" >{{user.name}}</span>
+              <span ng-show="!rowform.$visible"  e-class="name" editable-text="user.name"  e-form="rowform"  >{{user.name}}</span>
             </td>
             <td>
-              <span ng-show="!rowform.$visible"  e-class="student_id" editable-text="user.student_id"  e-form="rowform" class="hidden-sm hidden-xs" >{{user.student_id}}</span>
+              <span ng-show="!rowform.$visible"  e-class="student_id" editable-text="user.student_id"  e-form="rowform"  >{{user.student_id}}</span>
             </td>
             <td>
-              <span ng-show="!rowform.$visible"  e-class="email" editable-text="user.email"  e-form="rowform" class="hidden-sm hidden-xs" >{{user.email}}</span>
+              <span ng-show="!rowform.$visible"  e-class="email" editable-text="user.email"  e-form="rowform"  >{{user.email}}</span>
             </td>
             <td>
-              <span ng-show="!rowform.$visible"  e-class="role" editable-text="user.role"  e-form="rowform" class="hidden-sm hidden-xs" >{{user.role}}</span>
+              <span ng-show="!rowform.$visible"   e-class="role" editable-text="user.role" e-form="rowform"  >{{user.role}}</span>
             </td>
             <td class="actionButtons hidden-sm hidden-xs">
               <form onaftersave="avuc.usersService.editUser(user)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
