@@ -13,7 +13,7 @@ router.get('/', function(req, res) {
       var userInfo = {
         username : req.user.username,
         pts: req.user.pts,
-        studentId: req.user.studentId,
+        student_id: req.user.student_id,
         pic: req.user.pic,
         lifetimePts: req.user.lifetimePts,
         name: req.user.name,
@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
     } else{
       var userInfo = {
         username : req.user.username,
-        employeeid: req.user.studentId,
+        employeeid: req.user.student_id,
         pic: req.user.pic,
         name: req.user.name,
         email: req.user.email,

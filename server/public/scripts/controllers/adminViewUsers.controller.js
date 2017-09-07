@@ -41,6 +41,4 @@ myApp.controller('AdminViewUsersController', function(UserService, $http, UsersS
     }
   } //end of changeOrderBy
 
-//create update function below
-
 });

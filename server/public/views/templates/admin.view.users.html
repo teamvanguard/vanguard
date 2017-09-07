@@ -66,36 +66,60 @@
     <div class="col-md-9">
       <table class="table table-responsive">
         <thead>
-          <th ng-click="avuc.changeOrderBy('name')">
+          <th ng-click="avuc.changeOrderBy('name')" class="name">
             Name
             <span ng-if="avuc.orderBy == '-name'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
             <span ng-if="avuc.orderBy == 'name'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
           </th>
-          <th ng-click="avuc.changeOrderBy('studentId')">
+          <th ng-click="avuc.changeOrderBy('student_id')" class="student_id">
             Id
-            <span ng-if="avuc.orderBy == '-studentId'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
-            <span ng-if="avuc.orderBy == 'studentId'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+            <span ng-if="avuc.orderBy == '-student_id'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+            <span ng-if="avuc.orderBy == 'student_id'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
           </th>
-          <th ng-click="avuc.changeOrderBy('email')">
+          <th ng-click="avuc.changeOrderBy('email')" class="email" >
             Email
             <span ng-if="avuc.orderBy == '-email'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
             <span ng-if="avuc.orderBy == 'email'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
           </th>
-          <th ng-click="avuc.changeOrderBy('role')">
+          <th ng-click="avuc.changeOrderBy('role')" class="role">
             Role
             <span ng-if="avuc.orderBy == '-role'"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
             <span ng-if="avuc.orderBy == 'role'"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
           </th>
         </thead>
+
         <tbody>
           <tr ng-repeat="user in avuc.users | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">
-            <td>{{user.name}}</td>
+
             <td>
-              <span ng-show="user.studentId">{{user.studentId}}</span>
-              <span ng-show="user.employeeId">{{user.employeeId}}</span>
+              <span ng-show="!rowform.$visible"  e-class="name" editable-text="user.name"  e-form="rowform" class="hidden-sm hidden-xs" >{{user.name}}</span>
             </td>
-            <td>{{user.email}}</td>
-            <td>{{user.role}}</td>
+            <td>
+              <span ng-show="!rowform.$visible"  e-class="student_id" editable-text="user.student_id"  e-form="rowform" class="hidden-sm hidden-xs" >{{user.student_id}}</span>
+            </td>
+            <td>
+              <span ng-show="!rowform.$visible"  e-class="email" editable-text="user.email"  e-form="rowform" class="hidden-sm hidden-xs" >{{user.email}}</span>
+            </td>
+            <td>
+              <span ng-show="!rowform.$visible"  e-class="role" editable-text="user.role"  e-form="rowform" class="hidden-sm hidden-xs" >{{user.role}}</span>
+            </td>
+            <td class="actionButtons hidden-sm hidden-xs">
+              <form onaftersave="avuc.usersService.editUser(user)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-sm btn-space">
+                  Save
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info btn-sm btn-space">
+                  Cancel
+                </button>
+              </form>
+              <div ng-show="!rowform.$visible">
+                <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="rowform.$show()"> Edit </button>
+                  <!-- <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
+                    Delete
+                  </button> -->
+                </div>
+              </td>
+
           </tr>
         </tbody>
       </table>
