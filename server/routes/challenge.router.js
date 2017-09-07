@@ -60,7 +60,7 @@ router.get('/students/:challengeId', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = ' SELECT users.name, users.id, users."studentId", student_challenge.pass ' +
+        var queryText = ' SELECT users.name, users.id, users."student_id", student_challenge.pass ' +
         'FROM users LEFT OUTER JOIN ' +
         'student_challenge ON student_challenge."studentId" = users.id ' +
         'WHERE student_challenge."challengeId" = $1;';
