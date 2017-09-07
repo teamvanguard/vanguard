@@ -13,6 +13,87 @@ var awardModule = require('../modules/award.points.module.js');
 // 3 = teacher
 // 4 = student
 
+router.get('/unacceptedChallenges', function(req, res) {
+  console.log('otherChallenges');
+  if (req.isAuthenticated()) {
+    if (req.user.role) {
+      pool.connect(function(errorConnectingToDatabase, db, done){
+        console.log(req.user.id);
+        if(errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          // We connected to the database!!!
+          // Now we're going to GET things from the db
+          var queryText = 'SELECT challenges.id, challenges.challenge_name, ' +
+          'challenges.description, challenges.start_date, challenges.end_date, ' +
+          'challenges.pts_value, challenges.teacher_id, teachers.name AS teacher_name ' +
+          'FROM challenges JOIN users teachers ON challenges.teacher_id = teachers.id ' +
+          'LEFT JOIN student_challenge ON student_challenge.challenge_id = challenges.id ' +
+          'WHERE NOT student_challenge.challenge_id = ANY (SELECT student_challenge.challenge_id ' +
+          'FROM student_challenge WHERE student_challenge.student_id = $1) ' +
+          'GROUP BY student_challenge.challenge_id, challenges.id, teachers.name ' +
+          'ORDER BY start_date ASC;'
+          // errorMakingQuery is a bool, result is an object
+          db.query(queryText, [req.user.id], function(errorMakingQuery, result){
+            done();
+            if(errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query');
+              res.sendStatus(500);
+            } else {
+
+              console.log(result.rows);
+              // Send back the results
+              res.send(result.rows);
+            }
+          }); // end query
+        } // end if
+      }); // end pool
+    } else {res.sendStatus(401)}
+  } else {res.sendStatus(401)}
+})
+
+router.get('/acceptedChallenges', function(req,res) {
+  console.log('get accepted challenges');
+  if (req.isAuthenticated()) {
+    if (req.user.role == constantModule.STUDENT_ROLE) {
+      pool.connect(function(errorConnectingToDatabase, db, done){
+        console.log(req.user.id);
+        if(errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          // We connected to the database!!!
+          // Now we're going to GET things from the db
+          var queryText = 'SELECT challenges.id, challenges.challenge_name, ' +
+          'challenges.description, challenges.start_date, challenges.end_date, ' +
+          'challenges.pts_value, challenges.teacher_id, student_challenge.student_id AS student_id,' +
+          ' teachers.name AS teacher_name FROM student_challenge ' +
+          'LEFT OUTER JOIN challenges ON challenges.id = student_challenge.challenge_id ' +
+          'LEFT OUTER JOIN users teachers ON challenges.teacher_id = teachers.id ' +
+          'LEFT OUTER JOIN users students ON student_challenge.student_id = students.id ' +
+          'WHERE student_challenge.student_id = $1 ORDER BY start_date ASC;';
+          // errorMakingQuery is a bool, result is an object
+          db.query(queryText, [req.user.id], function(errorMakingQuery, result){
+            done();
+            if(errorMakingQuery) {
+              console.log('Attempted to query with', queryText);
+              console.log('Error making query');
+              res.sendStatus(500);
+            } else {
+
+              console.log(result.rows);
+              // Send back the results
+              res.send(result.rows);
+            }
+          }); // end query
+        } // end if
+      }); // end pool
+    } else {res.sendStatus(401)}
+  } else {res.sendStatus(401)}
+});
+
 router.put('/students', function(req, res) {
   console.log(req.body);
   if (req.isAuthenticated()) {
@@ -64,7 +145,7 @@ router.get('/students/:challengeId', function(req, res) {
         var queryText = ' SELECT users.name, users.id, users."student_id", student_challenge.pass ' +
         'FROM users LEFT OUTER JOIN ' +
         'student_challenge ON student_challenge."studentId" = users.id ' +
-        'WHERE student_challenge."challengeId" = $1;';
+        'WHERE student_challenge."challenge_id" = $1;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, [req.params.challengeId], function(errorMakingQuery, result){
           done();

@@ -67,7 +67,7 @@ router.post('/:id', function(req, res) {
         } else {
           // We connected to the database!!!
           // Now we're going to POST things to the db
-          var queryText = 'INSERT INTO student_challenge ("student_id", "challengeId", pass, timestamp) VALUES ($1, $2, $3, $4 ); ';
+          var queryText = 'INSERT INTO student_challenge ("student_id", "challenge_id", pass, timestamp) VALUES ($1, $2, $3, $4 ); ';
 
           // errorMakingQuery is a bool, result is an object
           db.query(queryText, [req.user.id, req.params.id, 'true', timeStamp],

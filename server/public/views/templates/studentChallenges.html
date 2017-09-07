@@ -4,23 +4,22 @@
       <div class="form-group">
         <label class="col-md-4 control-label" for="challengeSelect">Select challenge </label>
         <div class="col-md-4">
-          <select id="challengeSelect" name="challengeSelect" class="form-control">
-            <option value="1">All</option>
-            <option value="2">Accepted</option>
-            <option value="3">Completed</option>
+          <select id="challengeSelect" name="challengeSelect" class="form-control" ng-model="scc.currentChallenges">
+            <option ng-value="scc.unacceptedChallenges">All</option>
+            <option ng-value="scc.acceptedChallenges">Accepted</option>
           </select>
         </div>
       </div>
 
   </form>
 
-  <div class="card col-md-4" ng-repeat="challenge in scc.challengesService.challenges">
+  <div class="card col-md-4" ng-repeat="challenge in scc.currentChallenges">
     <div class="card-body">
       <h4 class="card-title">{{challenge.challenge_name}}</h4>
       <h6 class="card-subtitle mb-2 text-muted">{{challenge.description}}</h6>
       <p class="card-text"><strong>Start Date:</strong> {{challenge.start_date | date:'fullDate'}}</p>
-      <p class="card-text"><strong>End Date:</strong> {{challenge.end_date | date:'fullDate'}}=</p>
-      <button type="button" name="button" class="btn btn-sm btn-primary" ng-click="scc.challengesService.acceptChallenge(challenge.id)">Accept</button>
+      <p class="card-text"><strong>End Date:</strong> {{challenge.end_date | date:'fullDate'}}</p>
+      <button ng-hide="scc.currentChallenges.accepted" type="button" name="button" class="btn btn-sm btn-primary" ng-click="scc.acceptChallenge(challenge.id)">Accept</button>
     </div>
   </div>
 
