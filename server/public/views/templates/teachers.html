@@ -82,7 +82,8 @@
             <th class="start_date">Start Date</th>
             <th class="end_date">End Date</th>
             <th class="pts_value">Points</th>
-            <th class="student_name">Students Involved</th>
+            <th class="student_name">Students</th>
+            <th class="complete">Complete</th>
             <th class="edit">Edit</th>
           </thead>
           <tbody>
@@ -116,8 +117,9 @@
                 </button>
               </form>
               <div ng-show="!rowform.$visible">
-                <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="rowform.$show()">
-                  Edit </button>
+                <button type="button" class="btn btn-primary btn-md btn-space" ng-click="rowform.$show()">
+                  Edit
+                </button>
                   <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
                     Delete
                   </button>
@@ -162,14 +164,14 @@
           <td>{{student.pass | pass}}</td>
           <td>
             <button ng-if="student.pass" type="button" class="btn btn-danger btn-md btn-space" ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
-              Fail
+              Incomplete
             </button>
             <button ng-if="!student.pass" type="button" class="btn btn-success btn-md btn-space" ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
               Pass
             </button>
           </td>
           <td>
-            <button type="button" class="btn btn-success btn-md btn-space">Award Points</button>
+            <button type="button" class="btn btn-success btn-md btn-space" ng-click="tcc.challengesService.awardPoints(student, tcc.currentChallenge)">Award Points</button>
           </td>
         </tr>
       </tbody>
