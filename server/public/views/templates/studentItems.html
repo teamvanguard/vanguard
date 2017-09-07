@@ -1,16 +1,20 @@
-<div class="container student">
-  <h2>Rewards</h2>
-  <details ng-repeat="reward in sic.itemsService.itemList">
-    <summary>
-      {{reward.item_name}}
-    </summary>
-    <div class="challengeInfo">
-      <div class="challenge"><label>Description: </label> {{reward.item_description}}</div>
-      <div class="challenge"><label>Cost: </label> {{reward.pts_value}}</div>
-    </div>
-  </details>
+<div class="container">
+  <div class="row studentContent">
+    <h2>Rewards</h2>
+    <details ng-repeat="reward in sic.itemsService.itemList">
+      <summary>
+        {{reward.item_name}}
+      </summary>
+      <div class="challengeInfo">
+        <div class="challenge"><label>Description: </label> {{reward.item_description}}</div>
+        <div class="challenge"><label>Cost: </label> {{reward.pts_value}}</div>
+      </div>
+    </details>
+  </div>
+  <div class="row">
+    <footer>
+      <a href="#" class="btn btn-link center-block" ng-click="uc.userService.logout()"><i class="fa fa-sign-out 2x" aria-hidden="true"></i>
+        Log Out</a>
+      </footer>
+  </div>
 </div>
-<footer>
-  <a href="#" class="btn btn-link center-block" ng-click="uc.userService.logout()"><i class="fa fa-sign-out 2x" aria-hidden="true"></i>
-Log Out</a>
-</footer>
