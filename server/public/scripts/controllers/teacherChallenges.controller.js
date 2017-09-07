@@ -21,11 +21,11 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
     }
   }
 
-  tcc.getStudents = function(challengeId) {
+  tcc.getStudents = function(challenge_id) {
     console.log('controller get students');
-    ChallengesService.getStudents(challengeId).then(function(response){
+    ChallengesService.getStudents(challenge_id).then(function(response){
       console.log(response);
-      tcc.currentChallenge.id = challengeId;
+      tcc.currentChallenge.id = challenge_id;
       tcc.currentChallenge.students = response.data;
       if(tcc.view != 'students'){
         tcc.changeView();  
@@ -33,35 +33,35 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
     });
   }
 
-  tcc.failStudent = function(studentId, challengeId) {
+  tcc.failStudent = function(studentId, challenge_id) {
     console.log('failStudent');
     console.log(studentId);
-    console.log(challengeId);
+    console.log(challenge_id);
     var data = {
       studentId: studentId,
-      challengeId: challengeId,
+      challenge_id: challenge_id,
       pass: false
     };
 
     $http.put('/challenges/students', data).then(function(response){
       console.log(response);
-      tcc.getStudents(challengeId);
+      tcc.getStudents(challenge_id);
     })
   }
 
-  tcc.readdStudent = function(studentId, challengeId) {
+  tcc.readdStudent = function(studentId, challenge_id) {
     console.log('failStudent');
     console.log(studentId);
-    console.log(challengeId);
+    console.log(challenge_id);
     var data = {
       studentId: studentId,
-      challengeId: challengeId,
+      challenge_id: challenge_id,
       pass: true
     };
 
     $http.put('/challenges/students', data).then(function(response){
       console.log(response);
-      tcc.getStudents(challengeId);
+      tcc.getStudents(challenge_id);
     })
   }
 

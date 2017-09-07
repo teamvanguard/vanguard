@@ -28,7 +28,7 @@ router.get('/', function(req, res){
         // Now we're going to GET things from the db
         var queryText = 'SELECT "users"."id", "users"."name",' +
         '  "users"."username", "users"."student_id", "users"."pic",' +
-        '  "users"."pts", "users"."lifetimePts", "users"."email", "users"."employeeId", "users"."role"' +
+        '  "users"."pts", "users"."lifetime_pts", "users"."email", "users"."employee_id", "users"."role"' +
         'FROM "users" ORDER BY "role", "username" ASC;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, function(errorMakingQuery, result){
@@ -108,13 +108,13 @@ router.get('/transactions', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'SELECT transactions.pts, transactions.timestamp, employees."employeeId",' +
+        var queryText = 'SELECT transactions.pts, transactions.timestamp, employees."employee_id",' +
         'employees.name AS "employeeName", students.name AS "studentName", challenges.challenge_name AS "challengeName", ' +
         'items.item_name AS "itemName", students."student_id", transactions.type FROM transactions ' +
-        'JOIN users employees ON "transactions"."employeeId" = employees.id ' +
+        'JOIN users employees ON "transactions"."employee_id" = employees.id ' +
         'JOIN users students ON "transactions"."student_id" = students.id ' +
-        'LEFT OUTER JOIN items ON "transactions"."itemId" = items.id ' +
-        'LEFT OUTER JOIN challenges ON "transactions"."challengeID" = challenges.id;';
+        'LEFT OUTER JOIN items ON "transactions"."item_id" = items.id ' +
+        'LEFT OUTER JOIN challenges ON "transactions"."challenge_id" = challenges.id;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, function(errorMakingQuery, result){
           done();
@@ -277,7 +277,7 @@ router.get('/:role', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'SELECT "username", "email", "role", "employeeId", ' +
+        var queryText = 'SELECT "username", "email", "role", "employee_id", ' +
         '"student_id", "pts", "name" FROM users WHERE role = $1;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, [req.params.role], function(errorMakingQuery, result){
