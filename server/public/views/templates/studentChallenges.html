@@ -1,6 +1,7 @@
 <div class="container">
-  <!-- {{scc.userObject.info.student_id}} -->
-  <form class="form-horizontal noPadding">
+  <div class="row studentContent">
+    <h2>Challenges</h2><!-- {{scc.userObject.info.student_id}} -->
+    <form class="form-horizontal noPadding">
       <div class="form-group">
         <label class="col-md-4 control-label" for="challengeSelect">Select challenge </label>
         <div class="col-md-4">
@@ -12,8 +13,7 @@
         </div>
       </div>
 
-  </form>
-
+    </form>
   <div class="card col-md-4" ng-repeat="challenge in scc.challengesService.challenges">
     <div class="card-body">
       <h4 class="card-title">{{challenge.challenge_name}}</h4>
@@ -23,5 +23,10 @@
       <button type="button" name="button" class="btn btn-sm btn-primary" ng-click="scc.challengesService.acceptChallenge(challenge.id)">Accept</button>
     </div>
   </div>
-
+  <div class="row">
+    <footer>
+      <a href="#" class="btn btn-link center-block" ng-click="uc.userService.logout()"><i class="fa fa-sign-out 2x" aria-hidden="true"></i>
+        Log Out</a>
+      </footer>
+  </div>
 </div>

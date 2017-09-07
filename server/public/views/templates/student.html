@@ -1,5 +1,6 @@
 <div class="container header">
-  <div class="row">
+  <div class="row studentContent">
+    
     <div class="studentPoints">
       <h1>{{shc.userObject.info.name}}</h1>
       <h2 ng-if="shc.userObject.info.role == 4" class="center-block">{{shc.userObject.info.pts}} pts</h2>
@@ -18,5 +19,10 @@
     </div>
 
   </div>
-
+  <div class="row">
+    <footer>
+      <a href="#" class="btn btn-link center-block" ng-click="uc.userService.logout()"><i class="fa fa-sign-out 2x" aria-hidden="true"></i>
+    Log Out</a>
+    </footer>
+  </div>
 </div>
