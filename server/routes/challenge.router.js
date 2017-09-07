@@ -33,7 +33,7 @@ router.get('/unacceptedChallenges', function(req, res) {
           'WHERE NOT student_challenge.challenge_id = ANY (SELECT student_challenge.challenge_id ' +
           'FROM student_challenge WHERE student_challenge.student_id = $1) ' +
           'GROUP BY student_challenge.challenge_id, challenges.id, teachers.name ' +
-          'ORDER BY start_date ASC;'
+          'ORDER BY start_date ASC;' 
           // errorMakingQuery is a bool, result is an object
           db.query(queryText, [req.user.id], function(errorMakingQuery, result){
             done();
