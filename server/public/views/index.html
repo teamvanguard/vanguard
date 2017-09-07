@@ -12,12 +12,10 @@
         <link rel="stylesheet" href="views/styles/font-awesome-brands.css" />
         <link rel="stylesheet" href="views/styles/font-awesome-solid.css" />
         <link rel="stylesheet" href="views/styles/font-awesome-core.css" />
-        <link rel="stylesheet" href="views/styles/popeye.min.css" />
         <script type="text/javascript" src="vendors/angular.min.js"></script>
         <script type="text/javascript" src="vendors/angular-animate.min.js"></script>
         <script type="text/javascript" src="vendors/angular-touch.js"></script>
         <script type="text/javascript" src="vendors/sweetalert2.js"></script>
-        <script type="text/javascript" src="vendors/popeye.min.js"></script>
         <script type="text/javascript" src="vendors/xeditable.js"></script>
         <script type="text/javascript" src="vendors/ui-bootstrap.js"></script>
         <script type="text/javascript" src="vendors/ui-bootstrap-tpls.js"></script>
@@ -45,6 +43,7 @@
         <script src="scripts/filters/challenge.name.filter.js" charset="utf-8"></script>
         <script src="scripts/filters/teacher.name.filter.js" charset="utf-8"></script>
         <script src="scripts/filters/url.filter.js" charset="utf-8"></script>
+        <script src="scripts/filters/pass.filter.js" charset="utf-8"></script>
         <script type="text/javascript" src="scripts/services/user.service.js"></script>
         <script type="text/javascript" src="scripts/services/users.service.js"></script>
         <script type="text/javascript" src="scripts/services/items.service.js"></script>
@@ -57,6 +56,6 @@
       <header ng-include="'/views/partials/header.html'"></header>
 
       <main ng-view></main>
-
+      <footer ng-include="'/views/partials/footer.html'"></footer>
     </body>
 </html>
