@@ -16,8 +16,9 @@ myApp.factory('UsersService', function($http, $location){
     },
 
 //send object with email and role properties
-    editRole: function(user) {
-      console.log('editRole');
+    editUser: function(user) {
+      console.log('editUser');
+      console.log(user);
       $http.put('/users', user).then(function(response) {
         console.log('user role edited');
       });
