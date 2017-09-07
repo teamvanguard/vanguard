@@ -33,12 +33,12 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
     });
   }
 
-  tcc.failStudent = function(studentId, challenge_id) {
+  tcc.failStudent = function(student_id, challenge_id) {
     console.log('failStudent');
-    console.log(studentId);
+    console.log(student_id);
     console.log(challenge_id);
     var data = {
-      studentId: studentId,
+      student_id: student_id,
       challenge_id: challenge_id,
       pass: false
     };
@@ -49,12 +49,12 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
     })
   }
 
-  tcc.readdStudent = function(studentId, challenge_id) {
+  tcc.readdStudent = function(student_id, challenge_id) {
     console.log('failStudent');
-    console.log(studentId);
+    console.log(student_id);
     console.log(challenge_id);
     var data = {
-      studentId: studentId,
+      student_id: student_id,
       challenge_id: challenge_id,
       pass: true
     };

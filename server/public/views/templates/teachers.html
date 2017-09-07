@@ -160,7 +160,7 @@
       <tbody>
         <tr ng-repeat="student in tcc.currentChallenge.students">
           <td>{{student.name}}</td>
-          <td>{{student.studentId}}</td>
+          <td>{{student.student_id}}</td>
           <td>{{student.pass | pass}}</td>
           <td>
             <button ng-if="student.pass" type="button" class="btn btn-danger btn-md btn-space" ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
