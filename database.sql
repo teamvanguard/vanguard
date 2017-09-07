@@ -9,7 +9,7 @@ CREATE TABLE "users" (
   "username" varchar(60) UNIQUE,
   "password" varchar(100),
   "name" varchar(50),
-  "studentId" integer UNIQUE,
+  "student_id" integer UNIQUE,
   "pic" varchar(300),
   "pts" integer,
   "lifetimePts" integer,
@@ -44,7 +44,7 @@ CREATE TABLE "challenges" (
 -- To create the transactions table
 CREATE TABLE transactions (
   "id" serial primary key,
-  "studentId" integer REFERENCES "users" ON DELETE CASCADE NOT NULL,
+  "student_id" integer REFERENCES "users" ON DELETE CASCADE NOT NULL,
   "pts" integer NOT NULL,
   "employeeId" integer REFERENCES "users" ON DELETE SET NULL,
   "timestamp" TIMESTAMP WITH TIME ZONE NOT NULL,
@@ -57,7 +57,7 @@ CREATE TABLE transactions (
 
 CREATE TABLE student_challenge (
   "id" serial primary key,
-  "studentId" integer REFERENCES "users" ON DELETE CASCADE NOT NULL,
+  "student_id" integer REFERENCES "users" ON DELETE CASCADE NOT NULL,
   "challengeId" integer REFERENCES "challenges" ON DELETE CASCADE NOT NULL,
   "pass" boolean DEFAULT 'true' NOT NULL,
   "timestamp" timestamp with time zone NOT NULL

@@ -45,7 +45,7 @@ router.get('/', function(req, res) {
             'FROM challenges ' +
             'LEFT OUTER JOIN student_challenge ON student_challenge.\"challengeId\" = challenges.id ' +
             'JOIN users teachers ON teachers.id = challenges.teacher_id ' +
-            'LEFT OUTER JOIN users students ON students.id = student_challenge.\"studentId\" ' +
+            'LEFT OUTER JOIN users students ON students.id = student_challenge.\"student_id\" ' +
             'ORDER BY start_date ASC; ';
         }
         // errorMakingQuery is a bool, result is an object

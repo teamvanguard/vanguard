@@ -17,7 +17,7 @@ myApp.factory('ChallengesService', function($http, $location) {
     // Ale start
     // acceptStudentChallenge: function() {
     //   console.log('accept student challenges');
-    //   $http.get('/challenges/:studentId').then(function(response){
+    //   $http.get('/challenges/:student_id').then(function(response){
     //     console.log(response);
     //     challengesService.challenges = response.data;
     //   });

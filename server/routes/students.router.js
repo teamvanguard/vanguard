@@ -13,8 +13,8 @@ var constantModule  = require('../modules/roles.constants.js');
 // 4 = student
 
 
-// router.get('/challenges/:studentId')
-router.get('/challenges/:studentId', function(req, res) {
+// router.get('/challenges/:student_id')
+router.get('/challenges/:student_id', function(req, res) {
   console.log('students router get /challenges');
   //everyone but students
   if (req.isAuthenticated()) {
@@ -27,14 +27,14 @@ router.get('/challenges/:studentId', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = "SELECT student_challenge.studentId, " +
+        var queryText = "SELECT student_challenge.student_id, " +
           "student_challenge.challengeId, student_challenge.pass, " +
           "users.name, challenges.challenge_name,challenges.description," +
           "challenges.start_date, challenges.end_date, challenges.pts_value, " +
           "FROM student_challenge JOIN challenges ON challenges.teacher_id = student_challenge.challengeId, " +
-          "JOIN users ON users.studentId = student_challenge.studentId WHERE student_challenge.studentId = $1;";
+          "JOIN users ON users.student_id = student_challenge.student_id WHERE student_challenge.student_id = $1;";
         // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [req.params.studentId], function(errorMakingQuery, result) {
+        db.query(queryText, [req.params.student_id], function(errorMakingQuery, result) {
           done();
           if (errorMakingQuery) {
             console.log('Attempted to query with', queryText);
@@ -52,7 +52,7 @@ router.get('/challenges/:studentId', function(req, res) {
   } else {
     res.sendStatus(401);
   } //not authorized
-}); // end get /challenges/:studentId
+}); // end get /challenges/:student_id
 
 router.post('/:id', function(req, res) {
   var timeStamp = new Date();
@@ -67,7 +67,7 @@ router.post('/:id', function(req, res) {
         } else {
           // We connected to the database!!!
           // Now we're going to POST things to the db
-          var queryText = 'INSERT INTO student_challenge ("studentId", "challengeId", pass, timestamp) VALUES ($1, $2, $3, $4 ); ';
+          var queryText = 'INSERT INTO student_challenge ("student_id", "challengeId", pass, timestamp) VALUES ($1, $2, $3, $4 ); ';
 
           // errorMakingQuery is a bool, result is an object
           db.query(queryText, [req.user.id, req.params.id, 'true', timeStamp],

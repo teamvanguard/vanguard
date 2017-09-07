@@ -27,7 +27,7 @@ router.get('/', function(req, res){
         // We connected to the database!!!
         // Now we're going to GET things from the db
         var queryText = 'SELECT "users"."id", "users"."name",' +
-        '  "users"."username", "users"."studentId", "users"."pic",' +
+        '  "users"."username", "users"."student_id", "users"."pic",' +
         '  "users"."pts", "users"."lifetimePts", "users"."email", "users"."employeeId", "users"."role"' +
         'FROM "users" ORDER BY "role", "username" ASC;';
         // errorMakingQuery is a bool, result is an object
@@ -62,7 +62,7 @@ router.get('/students', function(req, res) {
       } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = ' SELECT id, name, pts, "users"."studentId" FROM users WHERE users.role = $1;';
+        var queryText = ' SELECT id, name, pts, "users"."student_id" FROM users WHERE users.role = $1;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, ['4'], function(errorMakingQuery, result){
           done();
@@ -110,9 +110,9 @@ router.get('/transactions', function(req, res) {
         // Now we're going to GET things from the db
         var queryText = 'SELECT transactions.pts, transactions.timestamp, employees."employeeId",' +
         'employees.name AS "employeeName", students.name AS "studentName", challenges.challenge_name AS "challengeName", ' +
-        'items.item_name AS "itemName", students."studentId", transactions.type FROM transactions ' +
+        'items.item_name AS "itemName", students."student_id", transactions.type FROM transactions ' +
         'JOIN users employees ON "transactions"."employeeId" = employees.id ' +
-        'JOIN users students ON "transactions"."studentId" = students.id ' +
+        'JOIN users students ON "transactions"."student_id" = students.id ' +
         'LEFT OUTER JOIN items ON "transactions"."itemId" = items.id ' +
         'LEFT OUTER JOIN challenges ON "transactions"."challengeID" = challenges.id;';
         // errorMakingQuery is a bool, result is an object
@@ -165,38 +165,72 @@ router.post('/', function(req, res) {
     }); // end pool
   } else{res.sendStatus(401);} //not authorized
 });
-
-//edit a user role
 router.put('/', function(req, res) {
-  console.log('users router put edit user role');
-  console.log(req.body);
-  //only admins
-  if(req.user.role == constantModule.ADMIN_ROLE){
-    pool.connect(function(errorConnectingToDatabase, db, done){
-      if(errorConnectingToDatabase) {
-        console.log('Error connecting to the database.');
-        res.sendStatus(500);
-      } else {
-        // We connected to the database!!!
-        // Now we're going to GET things from the db
-        var queryText = 'UPDATE users SET role = $2 WHERE email = $1;';
-        // errorMakingQuery is a bool, result is an object
-        db.query(queryText, [req.body.email, req.body.role], function(errorMakingQuery, result){
-          done();
-          if(errorMakingQuery) {
-            console.log('Attempted to query with', queryText);
-            console.log('Error making query');
-            res.sendStatus(500);
-          } else {
-            // console.log(result.rows);
-            // Send back the results
-            res.send(result.rows);
-          }
-        }); // end query
-      } // end if
-    }); // end pool
-  } else {res.sendStatus(401);} //not authorized
-});
+  console.log('usersRouter put');
+  console.log('updatedUser', req.body);
+  var updatedUser = req.body;
+  //sets the item to be updated to a variable
+  //checks if user is logged in
+  if(req.isAuthenticated()){
+    //checks if user is authorized
+    if(req.user.role == constantModule.ADMIN_ROLE) {
+      pool.connect(function(errorConnectingToDatabase, db, done) {
+        if (errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          // set query
+         var queryText = 'UPDATE users SET name = $1, student_id = $2, email = $3, role = $4 WHERE id = $5';
+          db.query(queryText, [updatedUser.name, updatedUser.student_id, updatedUser.email, updatedUser.role, updatedUser.id],
+            function(errorMakingQuery, result) {
+              //return connection to pool
+              done();
+              if (errorMakingQuery) {
+                console.log('Attempted to query with', queryText);
+                console.log('Error making query');
+                res.sendStatus(500);
+              } else {
+                console.log('user updated');
+                // Send back the results
+                res.sendStatus(200);
+              }
+            }); // end query
+          } // end if
+        }); // end pool
+      } else {res.sendStatus(401)}
+    } else {res.sendStatus(401)}
+  }); // end of PUT
+// //edit a user role
+// router.put('/', function(req, res) {
+//   console.log('users router put edit user');
+//   console.log(req.body);
+//   //only admins
+//   if(req.user.role == constantModule.ADMIN_ROLE){
+//     pool.connect(function(errorConnectingToDatabase, db, done){
+//       if(errorConnectingToDatabase) {
+//         console.log('Error connecting to the database.');
+//         res.sendStatus(500);
+//       } else {
+//         // We connected to the database!!!
+//         // Now we're going to GET things from the db
+//         var queryText = 'UPDATE users SET name = $1, student_id = $2, email = $3, role = $4 WHERE id = $5;';
+//         // errorMakingQuery is a bool, result is an object
+//         db.query(queryText, [req.body.name, req.body.student_id, req.body.email, req.body.role, req.body.id], function(errorMakingQuery, result){
+//           done();
+//           if(errorMakingQuery) {
+//             console.log('Attempted to query with', queryText);
+//             console.log('Error making query');
+//             res.sendStatus(500);
+//           } else {
+//             // console.log(result.rows);
+//             // Send back the results
+//             res.send(result.rows);
+//           }
+//         }); // end query
+//       } // end if
+//     }); // end pool
+//   } else {res.sendStatus(401);} //not authorized
+// });
 
 //delete a user
 router.delete('/:id', function(req, res) {
@@ -244,7 +278,7 @@ router.get('/:role', function(req, res) {
         // We connected to the database!!!
         // Now we're going to GET things from the db
         var queryText = 'SELECT "username", "email", "role", "employeeId", ' +
-        '"studentId", "pts", "name" FROM users WHERE role = $1;';
+        '"student_id", "pts", "name" FROM users WHERE role = $1;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, [req.params.role], function(errorMakingQuery, result){
           done();
