@@ -62,7 +62,7 @@
           <label for="" class="control-label">&nbsp;</label>
         </div>
 
-        <button id="addChallenge" name="addChallenge" tooltip-animation="false" tooltip-placement="bottom" uib-tooltip="Add Challenge" class="btn btn-info" ng-click="tcc.addChallenge(tcc.newChallenge)">Add
+        <button id="addChallenge" name="addChallenge" tooltip-animation="false" tooltip-placement="bottom" uib-tooltip="Add Challenge" class="btn btn-primary" ng-click="tcc.addChallenge(tcc.newChallenge)">Add
         </button>
       </div>
     </form>
@@ -81,7 +81,8 @@
             <th class="start_date">Start Date</th>
             <th class="end_date">End Date</th>
             <th class="pts_value">Points</th>
-            <th class="student_name">Students Involved</th>
+            <th class="student_name">Students</th>
+            <th class="complete">Complete</th>
             <th class="edit">Edit</th>
           </thead>
           <tbody>
@@ -103,8 +104,6 @@
                 <span ng-show="!rowform.$visible"  e-class="pts_value" editable-text="challenge.pts_value"  e-form="rowform" class="hidden-sm hidden-xs" >{{challenge.pts_value}}</span>
               </td>
 
-            </td>
-
             <td class="actionButtons hidden-sm hidden-xs">
               <form onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
                 <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-sm btn-space">
@@ -117,6 +116,7 @@
               <div ng-show="!rowform.$visible">
                 <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="rowform.$show()">
                   Edit
+                </button>
                   <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
                     Delete
                   </button>

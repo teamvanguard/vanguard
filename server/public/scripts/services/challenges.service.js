@@ -5,7 +5,7 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     challenges: [],
 
-//get the list of all challenges
+    //get the list of all challenges
     getChallenges: function() {
       console.log('get challenges');
       $http.get('/challenges').then(function(response) {
@@ -24,18 +24,17 @@ myApp.factory('ChallengesService', function($http, $location) {
     // }, // end acceptStudentChallenge
     // Ale end
 
-// add a new challenge (only teachers)
+    // add a new challenge (only teachers)
     addChallenge: function(newChallenge) {
       // check if newChallenge has all of the needed info
-      if (newChallenge.challenge_name && newChallenge.description && newChallenge.start_date
-        && newChallenge.end_date && newChallenge.pts_value) {
+      if (newChallenge.challenge_name && newChallenge.description && newChallenge.start_date &&
+        newChallenge.end_date && newChallenge.pts_value) {
           console.log('addChallenge');
           $http.post('/challenges', newChallenge).then(function(response) {
             //refresh challenges
             challengesService.getChallenges();
           });
-        }
-        else {
+        } else {
           // newChallenge is missing some info
           console.log('please fill out all the info');
         }
@@ -51,7 +50,7 @@ myApp.factory('ChallengesService', function($http, $location) {
       //      }, // end addChallenge
       //      // Ale end
 
-// make updates to the challenge
+      // make updates to the challenge
       updateChallenge: function(challenge) {
         console.log('update challenge');
         $http.put('/challenges', challenge).then(function(response) {
@@ -60,7 +59,7 @@ myApp.factory('ChallengesService', function($http, $location) {
         });
       }, // end updateChallenge
 
-//delete a challenge
+      //delete a challenge
       deleteChallenge: function(challenge) {
         console.log('deleteChallenge');
         $http.delete('/challenges/' + challenge.id).then(function(response) {
@@ -69,8 +68,8 @@ myApp.factory('ChallengesService', function($http, $location) {
         });
       }, // end deleteChallenge
 
-// students accept a challenge
-      acceptChallenge : function(challengeId) {
+      // students accept a challenge
+      acceptChallenge: function(challengeId) {
         console.log('acceptChallenge');
         $http.post('/students/' + challengeId).then(function(response) {
           //refresh challenges
@@ -82,10 +81,19 @@ myApp.factory('ChallengesService', function($http, $location) {
             'success'
           );
         });
-      } // end acceptChallenge
-    };
+      }, // end acceptChallenge
 
+      // award (Update) points for students
+      awardPoints: function(challenge) {
+        console.log('award points');
+        $http.put('/challenges/award', challenge).then(function(response) {
+          // refresh challenges
+          challengesService.getChallenges();
+        });
+      } // end updateChallenge
 
-  return challengesService;
+    }; // end challenges service
 
-  }); // end challenges service
+    return challengesService;
+
+  }); // end of factory
