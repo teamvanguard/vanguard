@@ -20,7 +20,7 @@
       <h6 class="card-subtitle mb-2 text-muted">{{challenge.description}}</h6>
       <p class="card-text"><strong>Start Date:</strong> {{challenge.start_date | date:'fullDate'}}</p>
       <p class="card-text"><strong>End Date:</strong> {{challenge.end_date | date:'fullDate'}}</p>
-      <button type="button" name="button" class="btn btn-sm btn-primary" ng-click="scc.challengesService.acceptChallenge(challenge.id)">Accept</button>
+      <button type="button" name="button" class="btn btn-md btn-primary" ng-click="scc.challengesService.acceptChallenge(challenge.id)">Accept</button>
     </div>
   </div>
   <div class="row">
