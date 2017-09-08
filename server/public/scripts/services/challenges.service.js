@@ -91,7 +91,7 @@ myApp.factory('ChallengesService', function($http, $location) {
 
 
 // students accept a challenge
-      acceptChallenge : function(challenge_id) {
+      acceptChallenge : function(challengeId) {
         console.log('acceptChallenge');
         return $http.post('/students/' + challengeId).then(function(response) {
           return response;
