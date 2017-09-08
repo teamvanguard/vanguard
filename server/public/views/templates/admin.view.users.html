@@ -89,7 +89,7 @@
         </thead>
 
         <tbody>
-          <tr ng-repeat="user in avuc.users | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">
+          <tr ng-repeat="user in avuc.usersService.appUsers | orderBy: avuc.orderBy | filter: avuc.filterType | filter: avuc.filterName">
 
             <td>
               <span ng-show="!rowform.$visible"  e-class="name" editable-text="user.name"  e-form="rowform"  >{{user.name}}</span>
@@ -114,9 +114,9 @@
               </form>
               <div ng-show="!rowform.$visible">
                 <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="rowform.$show()"> Edit </button>
-                  <!-- <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
+                  <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="avuc.usersService.deleteUser(user)">
                     Delete
-                  </button> -->
+                  </button>
                 </div>
               </td>
 
