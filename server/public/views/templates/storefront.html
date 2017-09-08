@@ -65,8 +65,8 @@
           <div class="form-group">
 
 
-            <button type="submit" class="btn btn-primary btn-md">Add Items</button>
-          </div>
+            <button type="submit" name="button" class="btn btn-sm btn-primary hidden-sm hidden-xs">Add Items</button>
+            <button type="submit" name="button" class="btn btn-md btn-primary btn-block visible-sm visible-xs">Add Item</button>          </div>
         </form>
 
       </details>
@@ -94,7 +94,8 @@
 
           </div>
           <div class="form-group">
-            <button id="search" name="search" class="btn btn-primary" ng-click="msc.itemsService.sellItem(msc.autocompletePackage.selectedItem, msc.autocompletePackage.selectedStudent)">Sell</button>
+            <button id="search" name="search" class="btn btn-primary btn-sm hidden-sm hidden-xs" ng-click="msc.itemsService.sellItem(msc.autocompletePackage.selectedItem, msc.autocompletePackage.selectedStudent)">Sell</button>
+            <button id="search" name="search" class="btn btn-primary btn-md btn-block visible-sm visible-xs" ng-click="msc.itemsService.sellItem(msc.autocompletePackage.selectedItem, msc.autocompletePackage.selectedStudent)">Sell</button>
           </div>
         </form>
       </details>

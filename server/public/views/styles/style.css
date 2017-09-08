@@ -311,8 +311,7 @@ body,html {
   font-size:14px;
   margin:0;
   padding:0;
-  word-break: break-all;
-  
+  word-break:break-word;
 }
 
 details {
@@ -380,6 +379,44 @@ ul.list-group {
   position:absolute;
   width:86%;
   z-index:2;
+}
+
+@media screen and max-width 600px{
+  .form-signin {
+    background-color:#fff;
+    border:none;
+    margin:0;
+    padding:0;
+  }
+
+  table {
+    width:100%;
+  }
+
+  tbody td {
+    display:block;
+    text-align:center;
+  }
+
+  tbody td:before {
+    content:attr(data-th);
+    display:block;
+    text-align:center;
+  }
+
+  thead {
+    display:none;
+  }
+
+  tr td:first-child {
+    background:#f0f0f0;
+    font-size:1.3em;
+    font-weight:700;
+  }
+
+  tr:nth-of-type(2n) {
+    background-color:inherit;
+  }
 }
 
 @media only screen and min-device-width 320px and max-device-width 480px{
