@@ -18,7 +18,8 @@ router.get('/', function(req, res) {
         lifetime_pts: req.user.lifetime_pts,
         name: req.user.name,
         email: req.user.email,
-        role: req.user.role
+        role: req.user.role,
+        lifetime_pts: req.user.lifetime_pts
       };
     } else{
       var userInfo = {

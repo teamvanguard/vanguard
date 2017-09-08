@@ -5,7 +5,19 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     challenges: [],
 
-    getStudents: function(challenge_id) {
+    getAcceptedChallenges: function() {
+      return $http.get('/challenges/acceptedChallenges').then(function(response) {
+        return response;
+      });
+    },
+
+    getUnacceptedChallenges: function() {
+      return $http.get('/challenges/unacceptedChallenges').then(function(response){
+        return response;
+      });
+    },
+
+    getStudents: function(challengeId) {
       console.log('getStudents');
       console.log(challenge_id);
       return $http.get('/challenges/students/' + challenge_id).then(function(response) {
@@ -16,8 +28,9 @@ myApp.factory('ChallengesService', function($http, $location) {
     //get the list of all challenges
     getChallenges: function() {
       console.log('get challenges');
-      $http.get('/challenges').then(function(response) {
+      return $http.get('/challenges').then(function(response) {
         challengesService.challenges = response.data;
+        return response.data
       });
     }, // end getChallenges
 
