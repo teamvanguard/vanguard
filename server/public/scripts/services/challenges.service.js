@@ -19,8 +19,8 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     getStudents: function(challengeId) {
       console.log('getStudents');
-      console.log(challenge_id);
-      return $http.get('/challenges/students/' + challenge_id).then(function(response) {
+      console.log(challengeId);
+      return $http.get('/challenges/students/' + challengeId).then(function(response) {
         return response
       });
     },
