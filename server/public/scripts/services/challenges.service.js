@@ -50,35 +50,6 @@ myApp.factory('ChallengesService', function($http, $location) {
         }
       }, // end addChallenge
 
-      // make updates to the challenge
-      updateChallenge: function(challenge) {
-        console.log('update challenge');
-        $http.put('/challenges', challenge).then(function(response) {
-          // refresh challenges
-          challengesService.getChallenges();
-        });
-      }, // end updateChallenge
-
-      //delete a challenge
-      deleteChallenge: function(challenge) {
-        console.log('deleteChallenge');
-        $http.delete('/challenges/' + challenge.id).then(function(response) {
-          // refresh challenges
-          challengesService.getChallenges();
-        });
-      }, // end deleteChallenge
-
-
-// students accept a challenge
-      acceptChallenge : function(challengeId) {
-        console.log('acceptChallenge');
-        return $http.post('/students/' + challengeId).then(function(response) {
-          return response;
-          //refresh challenges
-          challengesService.getChallenges();
-        });
-      },
-
     // make updates to the challenge
     updateChallenge: function(challenge) {
       console.log('update challenge');
