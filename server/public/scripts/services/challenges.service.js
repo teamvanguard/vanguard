@@ -19,8 +19,8 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     getStudents: function(challengeId) {
       console.log('getStudents');
-      console.log(challenge_id);
-      return $http.get('/challenges/students/' + challenge_id).then(function(response) {
+      console.log(challengeId);
+      return $http.get('/challenges/students/' + challengeId).then(function(response) {
         return response;
       });
     },
@@ -33,17 +33,6 @@ myApp.factory('ChallengesService', function($http, $location) {
         return response.data
       });
     }, // end getChallenges
-
-
-    // Ale start
-    // acceptStudentChallenge: function() {
-    //   console.log('accept student challenges');
-    //   $http.get('/challenges/:student_id').then(function(response){
-    //     console.log(response);
-    //     challengesService.challenges = response.data;
-    //   });
-    // }, // end acceptStudentChallenge
-    // Ale end
 
     // add a new challenge (only teachers)
     addChallenge: function(newChallenge) {
@@ -60,16 +49,6 @@ myApp.factory('ChallengesService', function($http, $location) {
           console.log('please fill out all the info');
         }
       }, // end addChallenge
-
-      // // Ale start
-      //     addChallengeToStudent: function(newStudent) {
-      //        console.log(newStudent);
-      //        $http.post('/challenges/addStudent', newStudent).then(function(response) {
-      //          console.log(response);
-      //          challengesService.acceptStudentChallenge();
-      //        });
-      //      }, // end addChallenge
-      //      // Ale end
 
       // make updates to the challenge
       updateChallenge: function(challenge) {
@@ -98,21 +77,7 @@ myApp.factory('ChallengesService', function($http, $location) {
           //refresh challenges
           challengesService.getChallenges();
         });
-      } else {
-        // newChallenge is missing some info
-        console.log('please fill out all the info');
-      }
-    }, // end addChallenge
-
-    // // Ale start
-    //     addChallengeToStudent: function(newStudent) {
-    //        console.log(newStudent);
-    //        $http.post('/challenges/addStudent', newStudent).then(function(response) {
-    //          console.log(response);
-    //          challengesService.acceptStudentChallenge();
-    //        });
-    //      }, // end addChallenge
-    //      // Ale end
+      },
 
     // make updates to the challenge
     updateChallenge: function(challenge) {
@@ -173,7 +138,7 @@ myApp.factory('ChallengesService', function($http, $location) {
       return $http.delete('/users/complete' + '/' + student + '/' + challenge).then(function(response) {
         return response.data;
       });
-    },
+    }
 
   }; // end challenges service
   return challengesService;
