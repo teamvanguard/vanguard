@@ -24,7 +24,7 @@ router.put('/students', function(req, res) {
           res.sendStatus(500);
         } else {
           // set query
-          var queryText = 'UPDATE student_challenge SET pass = $1 WHERE "studentId" = $2 AND "challenge_id" = $3';
+          var queryText = 'UPDATE student_challenge SET pass = $1 WHERE "student_id" = $2 AND "challenge_id" = $3';
           db.query(queryText, [req.body.pass, req.body.studentId, req.body.challenge_id],
             function(errorMakingQuery, result) {
               //return connection to pool
