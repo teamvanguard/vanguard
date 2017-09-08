@@ -13,6 +13,19 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
 
   tcc.currentChallenge = {};
 
+  tcc.awardPoints = function(student, challenge){
+    ChallengesService.awardPoints(student, challenge).then(function(response){
+      console.log(response);
+      tcc.getStudents(challenge.id)
+    })
+  }
+
+  tcc.completeChallenge = function(data) {
+    ChallengesService.completeChallenge(data).then(function(response){
+      tcc.currentChallenge.students = response;
+    })
+  }
+
   tcc.changeView = function(){
     if (tcc.view == 'challenges') {
       tcc.view = 'students';
@@ -28,7 +41,7 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
       tcc.currentChallenge.id = challenge_id;
       tcc.currentChallenge.students = response.data;
       if(tcc.view != 'students'){
-        tcc.changeView();  
+        tcc.changeView();
       }
     });
   }

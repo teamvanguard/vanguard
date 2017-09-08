@@ -63,14 +63,14 @@ router.get('/students/:challenge_id', function(req, res) {
         // Now we're going to GET things from the db
         var queryText = ' SELECT users.name, users.id, users."student_id", student_challenge.pass ' +
         'FROM users LEFT OUTER JOIN ' +
-        'student_challenge ON student_challenge."studentId" = users.id ' +
+        'student_challenge ON student_challenge."student_id" = users.id ' +
         'WHERE student_challenge."challenge_id" = $1;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, [req.params.challenge_id], function(errorMakingQuery, result){
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
-            console.log('Error making query');
+            console.log('Error making query', errorMakingQuery);
             res.sendStatus(500);
           } else {
 
