@@ -151,7 +151,7 @@ router.get('/students/:challenge_id', function(req, res) {
           done();
           if(errorMakingQuery) {
             console.log('Attempted to query with', queryText);
-            console.log('Error making query');
+            console.log('Error making query', errorMakingQuery);
             res.sendStatus(500);
           } else {
 

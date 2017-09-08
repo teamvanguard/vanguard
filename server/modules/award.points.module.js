@@ -76,7 +76,7 @@ function addPointsTransaction(student, challenge, res, req) {
     } else {
         // We connected to the database!!!
         // Now we're going to GET things from the db
-        var queryText = 'INSERT INTO transactions ("student_id", "pts", "employeeId", "timestamp", "challengeID", "type") ' +
+        var queryText = 'INSERT INTO transactions ("student_id", "pts", "employee_id", "timestamp", "challenge_id", "type") ' +
           'VALUES ($1, $2, $3, $4, $5, $6)';
         // errorMakingQuery is a bool, result is an object
         console.log(student.id, challenge.pts_value, req.user.id, today, challenge.id, 'challange');
@@ -101,18 +101,42 @@ function addPointsTransaction(student, challenge, res, req) {
 function addPoints(student, challenge, res, req) {
   // subtract cost of item from student points
   var newPts = student.pts + challenge.pts_value;
+  var lifeTimePts = student.lifetime_pts + challenge.pts_value;
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
       console.log('Error connecting to the database.');
       res.sendStatus(500);
     } else {
-      var queryText = 'UPDATE users SET pts = $1 WHERE "id" = $2';
+      var queryText = 'UPDATE users SET pts = $1, lifetime_pts = $2 WHERE "id" = $3; ';
       // uses points recieved from db
-      db.query(queryText, [newPts, student.id], function(errorMakingQuery, result){
+      db.query(queryText, [newPts, lifeTimePts, student.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
-          console.log('Error making query');
+          console.log('Error making query', errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          console.log('student pts added');
+          removeStudent(student, challenge, res, req);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
+}
+
+function removeStudent(student, challenge, res, req) {
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      var queryText = 'DELETE FROM student_challenge WHERE "student_id" = $1 AND challenge_id = $2; ';
+      // uses points recieved from db
+      db.query(queryText, [student.id, challenge.id], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query', errorMakingQuery);
           res.sendStatus(500);
         } else {
           console.log('student pts reset');

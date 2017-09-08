@@ -16,6 +16,20 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
   tcc.openCalender = OpenCalender;
   tcc.openCalender2 = OpenCalender2;
 
+  tcc.awardPoints = function(student, challenge){
+    ChallengesService.awardPoints(student, challenge).then(function(response){
+      console.log(response);
+      tcc.getStudents(challenge.id)
+    })
+  }
+
+  tcc.completeChallenge = function(data) {
+    ChallengesService.completeChallenge(data).then(function(response){
+      tcc.currentChallenge.students = response;
+    })
+  }
+
+  tcc.changeView = function(){
   function OpenCalender($event) {
           $event.preventDefault();
           $event.stopPropagation();
@@ -120,7 +134,7 @@ function getDayClass(data) {
   }
   return '';
  }
-    tcc.changeView = function(){
+    tcc.toggleView = function(){
     if (tcc.view == 'challenges') {
       tcc.view = 'students';
     } else if (tcc.view == 'students') {
@@ -135,7 +149,7 @@ function getDayClass(data) {
       tcc.currentChallenge.id = challenge_id;
       tcc.currentChallenge.students = response.data;
       if(tcc.view != 'students'){
-        tcc.changeView();
+        tcc.toggleView();
       }
     });
   }

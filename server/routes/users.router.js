@@ -6,6 +6,7 @@ var encryptLib = require('../modules/encryption');
 var pg = require('pg');
 var sell = require('../modules/sell.item.module.js');
 var constantModule  = require('../modules/roles.constants.js');
+var awardingModule = require('../modules/award.points.module.js');
 
 // roles:
 // 1 = admin
@@ -232,6 +233,41 @@ router.put('/', function(req, res) {
 //   } else {res.sendStatus(401);} //not authorized
 // });
 
+//delete a student from challenge when challenge is complete
+router.delete('/complete/:studentId/:challengeId', function(req, res) {
+  console.log('users router delete a user');
+  console.log("THIS IS THE DATA WE WANT!: ", req.params);
+  var student = req.params.studentId;
+  var challenge = req.params.challengeId;
+
+
+  if (req.user.role == constantModule.TEACHER_ROLE) {
+    pool.connect(function(errorConnectingToDatabase, db, done){
+      if(errorConnectingToDatabase) {
+        console.log('Error connecting to the database.');
+        res.sendStatus(500);
+      } else {
+        // We connected to the database!!!
+        // Now we're going to GET things from the db
+        var queryText = 'DELETE FROM student_challenge WHERE student_id = $1 AND challenge_id = $2;';
+        // errorMakingQuery is a bool, result is an object
+        db.query(queryText, [student, challenge], function(errorMakingQuery, result){
+          done();
+          if(errorMakingQuery) {
+            console.log('Attempted to query with', queryText);
+            console.log('Error making query');
+            res.sendStatus(500);
+          } else {
+            // console.log(result.rows);
+            // Send back the results
+            res.send(result.rows);
+          }
+        }); // end query
+      } // end if
+    }); // end pool
+  }else{res.sendStatus(401)}
+});
+
 //delete a user
 router.delete('/:id', function(req, res) {
   console.log('users router delete a user');
@@ -296,6 +332,8 @@ router.get('/:role', function(req, res) {
     }); // end pool
   }else{res.sendStatus(401);} //not authorized
 });
+
+
 
 
 module.exports = router;

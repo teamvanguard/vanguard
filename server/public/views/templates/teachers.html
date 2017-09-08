@@ -148,7 +148,7 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <button type="button" class="btn btn-link  btn-block" ng-click="tcc.changeView()">Back to challenges</button>
+      <button type="button" class="btn btn-link  btn-block" ng-click="tcc.toggleView()">Back to challenges</button>
 
     </div>
     <div class="col-md-10">
@@ -175,7 +175,7 @@
             </button>
           </td>
           <td>
-            <button type="button" class="btn btn-success btn-md btn-block " ng-click="tcc.challengesService.awardPoints(student, tcc.currentChallenge)">Award Points</button>
+            <button type="button" class="btn btn-success btn-md btn-block" ng-click="tcc.awardPoints(student, tcc.currentChallenge)">Award Points</button>
           </td>
         </tr>
       </tbody>
