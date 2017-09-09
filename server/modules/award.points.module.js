@@ -79,8 +79,8 @@ function addPointsTransaction(student, challenge, res, req) {
         var queryText = 'INSERT INTO transactions ("student_id", "pts", "employee_id", "timestamp", "challenge_id", "type") ' +
           'VALUES ($1, $2, $3, $4, $5, $6)';
         // errorMakingQuery is a bool, result is an object
-        console.log(student.id, challenge.pts_value, req.user.id, today, challenge.id, 'challange');
-        db.query(queryText, [student.id, challenge.pts_value, req.user.id, today, challenge.id, 'challange'],
+        console.log(student.id, challenge.pts_value, req.user.id, today, challenge.id, 'challenge');
+        db.query(queryText, [student.id, challenge.pts_value, req.user.id, today, challenge.id, 'challenge'],
           function(errorMakingQuery, result) {
             done();
             if (errorMakingQuery) {
