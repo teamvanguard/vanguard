@@ -15,11 +15,18 @@ myApp.controller('StudentChallengesController', function($http, UserService, Cha
   scc.unacceptedChallenges = {};
 
   scc.acceptChallenge = function(challengeId) {
-    ChallengesService.acceptChallenge(challengeId).then(function(response){
-      console.log(response);
+    ChallengesService.acceptChallenge(challengeId)
+    .then(function(response){
+      console.log('controller', response);
+      swal(
+        'Good job!',
+        'You selected a challange!',
+        'success'
+      );
       scc.getAcceptedChallenges();
-      scc.getUnacceptedChallenges().then(function(response) {
-        scc.currentChallenges = response;
+      ChallengesService.getUnacceptedChallenges().then(function(response) {
+        scc.currentChallenges.challenges = response.data;
+        console.log(scc.currentChallenges);
       });
     })
   }

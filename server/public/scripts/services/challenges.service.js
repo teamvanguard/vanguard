@@ -68,17 +68,6 @@ myApp.factory('ChallengesService', function($http, $location) {
         });
       }, // end deleteChallenge
 
-
-// students accept a challenge
-      acceptChallenge : function(challengeId) {
-        console.log('acceptChallenge');
-        return $http.post('/students/' + challengeId).then(function(response) {
-          return response;
-          //refresh challenges
-          challengesService.getChallenges();
-        });
-      },
-
     // make updates to the challenge
     updateChallenge: function(challenge) {
       console.log('update challenge');
@@ -101,15 +90,11 @@ myApp.factory('ChallengesService', function($http, $location) {
     // students accept a challenge
     acceptChallenge: function(challenge_id) {
       console.log('acceptChallenge');
-      $http.post('/students/' + challenge_id).then(function(response) {
+      return $http.post('/students/' + challenge_id).then(function(response) {
+        return response
         //refresh challenges
         challengesService.getChallenges();
         // provide user feedback
-        swal(
-          'Good job!',
-          'You selected a challange!',
-          'success'
-        );
       });
     }, // end acceptChallenge
 
