@@ -1,4 +1,4 @@
-INSERT INTO items(id,item_name,item_description,pts_value,pic,qty,school_community,last_edit_user_id)
+INSERT INTO items(id,item_name,item_description,pts_value,item_image,qty,school_community,last_edit_user_id)
 VALUES
 (E'School Shirt (S)',E'A t-shirt with the school logo on it',200,NULL,37,TRUE,12),
 (E'School Shirt (M)',E'A t-shirt with the school logo on it',200,NULL,31,TRUE,13),
