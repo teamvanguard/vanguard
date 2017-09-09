@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2>Students in the challenge</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <button type="button" class="btn btn-link  btn-block" ng-click="tcc.changeView()">Back to challenges</button>
+
+    </div>
+    <div class="col-md-10">
+
+    <table class="table table-responsive">
+      <thead>
+        <th>Student Name</th>
+        <th>Student Id</th>
+        <th>Status</th>
+        <th>Pass/Fail</th>
+        <th>Award Points</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="student in tcc.currentChallenge.students">
+          <td>{{student.name}}</td>
+          <td>{{student.studentId}}</td>
+          <td>{{student.pass | pass}}</td>
+          <td>
+            <button ng-if="student.pass" type="button" class="btn btn-danger btn-md btn-space" ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
+              Incomplete
+            </button>
+            <button ng-if="!student.pass" type="button" class="btn btn-success btn-md btn-space" ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
+              Pass
+            </button>
+          </td>
+          <td>
+            <button type="button" class="btn btn-success btn-md btn-space" ng-click="tcc.challengesService.awardPoints(student, tcc.currentChallenge); tcc.changeView()">Award Points</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  </div>
+</div>

@@ -11,9 +11,9 @@ CREATE TABLE "users" (
   "name" varchar(50),
   "student_id" integer UNIQUE,
   "pic" varchar(300),
-  "pts" integer,
-  "lifetime_pts" integer,
-  "role" varchar(20),
+  "pts" integer DEFAULT 0,
+  "lifetime_pts" integer DEFAULT 0,
+  "role" varchar(20) DEFAULT 4,
   "email" varchar(60) UNIQUE,
   "employee_id" integer UNIQUE
 );
@@ -25,7 +25,7 @@ CREATE TABLE "items" (
   "item_description" varchar(180) NOT NULL,
   "pts_value" integer NOT NULL,
   "item_image" varchar(300) NOT NULL,
-	"qty" integer,
+	"qty" integer DEFAULT 0,
   "school_community" Boolean NOT NULL,
   "last_edit_user_id" integer references "users" ON DELETE SET NULL
 );
