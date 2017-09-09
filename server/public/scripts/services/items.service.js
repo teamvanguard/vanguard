@@ -6,12 +6,18 @@ myApp.factory('ItemsService', function($http, $location){
 
     itemList: [],
 
-// submit a new item
+    // submit a new item
     submitNewItem: function(newItem){
       console.log('submitNewItem');
       //make sure newItem has all needed information
       if (newItem.name && newItem.description && newItem.pts_value && newItem.qty && newItem.school_community) {
         $http.post('/items', newItem).then(function(response){
+          swal(
+            'Great!'
+            'New item has been added to the store',
+            'success'
+          );
+
           // refresh items
           itemsService.getItems();
         });
@@ -22,7 +28,7 @@ myApp.factory('ItemsService', function($http, $location){
       }
     },
 
-// get list of items
+    // get list of items
     getItems: function(){
       console.log('get items');
       $http.get('/items').then(function(response){
@@ -30,7 +36,7 @@ myApp.factory('ItemsService', function($http, $location){
       });
     },
 
-// edit an item
+    // edit an item
     editItem: function(item) {
       console.log('editItem');
       $http.put('/items', item).then(function(response){
@@ -39,16 +45,29 @@ myApp.factory('ItemsService', function($http, $location){
       });
     },
 
-// delete an item
+    // delete an item
     deleteItem: function(item) {
       console.log('deleteItem');
-      $http.delete('/items/' + item.id).then(function(response){
-        //refresh items
-        itemsService.getItems();
-      });
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function () {
+        $http.delete('/items/' + item.id).then(function(response){
+          //refresh items
+          itemsService.getItems();
+        });
+        swal(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+      })
     },
 
-// sell an item
+    // sell an item
     sellItem: function(item, student){
       console.log('sell item');
       // define item to send to server
