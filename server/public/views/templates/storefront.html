@@ -19,9 +19,8 @@
         <form class="form-horizontal padding" ng-submit="msc.itemsService.submitNewItem(msc.newItem)">
           <!-- Text input-->
           <div class="form-group itemImage">
-
             <label for="itemImage">Item Image</label>
-            <input id="itemImage" ng-model="msc.newItem.item_image" name="itemImage" ng-click="msc.showPicker()" type="button" placeholder="Upload Image" class="form-control">
+            <button id="itemImage" ng-model="msc.newItem.item_image" name="itemImage" ng-click="msc.showPicker()" type="button" placeholder="Upload Image" class="form-control btn btn-default">Add Image</button>
             <!-- <input value="Upload" onclick="showPicker()" /> -->
           </div>
 
@@ -135,9 +134,6 @@
         </thead>
         <tbody>
           <tr ng-repeat="item in msc.itemsService.itemList | orderBy: msc.orderBy | filter: msc.filterInput | filter: msc.filterType" class="itemsTable">
-            <td>
-              <span ng-show="!rowform.$visible"  e-class="item_image" e-form="rowform">  <img ng-src="{{item.item_image}}" height="70px" width="70px"></span>
-            </td>
             <td>
 
               <span ng-show="!rowform.$visible"  e-class="name form-control" editable-text="item.item_name"  e-form="rowform"  >{{item.item_name}}</span>

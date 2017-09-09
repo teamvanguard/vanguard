@@ -4,18 +4,19 @@
 
 
   <form ng-submit="lc.registerUser()" class=form-signin>
-    <h2 class="form-signin-heading">Please register</h2>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-user"></i></span>
-      <input type="text" class="form-control " name="username" placeholder="Username" ng-model="lc.user.username" required="" autofocus="" />
-    </div>
-    <div class="input-group">
+    <h3>Please register</h3>
+    <div class="form-group input-group">
       <span class="input-group-addon"><i class="fa fa-key"></i></span>
       <input type="password" ng-model="lc.user.password" class="form-control" name="password" placeholder="Password" required=""/>
 
     </div>
-    <div class="submitButton"><button class="submit btn btn-md btn-primary" type="submit" name="submit" value="Register" href="#register">Register</button>
-     <a href="#home" class="btn btn-link">Cancel</a></div>
+    <div class="form-group input-group">
+      <span class="input-group-addon"><i class="fa fa-user"></i></span>
+      <input type="text" class="form-control " name="username" placeholder="Username" ng-model="lc.user.username" required="" autofocus="" />
+    </div>
+    <button class="btn btn-block btn-primary hidden-sm hidden-xs" type="submit" name="submit" value="Log In">Login</button>
+    <button class="btn btn-block btn-primary visible-sm visible-xs " type="submit" name="submit" value="Log In">Login</button>
+    <a href="#home" class="btn btn-block btn-link">Cancel</a>
   </form>
 </div>
 </div>
