@@ -35,7 +35,11 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
            msc.newItem.item_image = result.filesUploaded[0].url;
            console.log(result.filesUploaded[0].url);
             //  console.log(JSON.stringify(result.filesUploaded));
-             swal("Image Successfully Uploaded");
+             swal(
+               'Good job!',
+               'You selected a challange!',
+               'success'
+             );
             //  console.log(msc.newItem.image);
          });
      }

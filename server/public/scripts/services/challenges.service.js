@@ -5,19 +5,32 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     challenges: [],
 
-    getStudents: function(challenge_id) {
-      console.log('getStudents');
-      console.log(challenge_id);
-      return $http.get('/challenges/students/' + challenge_id).then(function(response) {
-        return response
+    getAcceptedChallenges: function() {
+      return $http.get('/challenges/acceptedChallenges').then(function(response) {
+        return response;
       });
     },
 
-//get the list of all challenges
+    getUnacceptedChallenges: function() {
+      return $http.get('/challenges/unacceptedChallenges').then(function(response){
+        return response;
+      });
+    },
+
+    getStudents: function(challengeId) {
+      console.log('getStudents');
+      console.log(challengeId);
+      return $http.get('/challenges/students/' + challengeId).then(function(response) {
+        return response;
+      });
+    },
+
+    //get the list of all challenges
     getChallenges: function() {
       console.log('get challenges');
-      $http.get('/challenges').then(function(response) {
+      return $http.get('/challenges').then(function(response) {
         challengesService.challenges = response.data;
+        return response.data
       });
     }, // end getChallenges
 
@@ -37,55 +50,63 @@ myApp.factory('ChallengesService', function($http, $location) {
         }
       }, // end addChallenge
 
-      // make updates to the challenge
-      updateChallenge: function(challenge) {
-        console.log('update challenge');
-        $http.put('/challenges', challenge).then(function(response) {
-          // refresh challenges
-          challengesService.getChallenges();
-        });
-      }, // end updateChallenge
+    // make updates to the challenge
+    updateChallenge: function(challenge) {
+      console.log('update challenge');
+      $http.put('/challenges', challenge).then(function(response) {
+        // refresh challenges
+        challengesService.getChallenges();
+      });
+    }, // end updateChallenge
 
-      //delete a challenge
-      deleteChallenge: function(challenge) {
-        console.log('deleteChallenge');
-        $http.delete('/challenges/' + challenge.id).then(function(response) {
-          // refresh challenges
-          challengesService.getChallenges();
-        });
-      }, // end deleteChallenge
+    //delete a challenge
+    deleteChallenge: function(challenge) {
+      console.log('deleteChallenge');
+      $http.delete('/challenges/' + challenge.id).then(function(response) {
+        // refresh challenges
+        challengesService.getChallenges();
+      });
+    }, // end deleteChallenge
 
 
-// students accept a challenge
-      acceptChallenge : function(challenge_id) {
-        console.log('acceptChallenge');
-        $http.post('/students/' + challenge_id).then(function(response) {
-          //refresh challenges
-          challengesService.getChallenges();
-          // provide user feedback
-          swal(
-            'Good job!',
-            'You selected a challange!',
-            'success'
-          );
-        });
-      }, // end acceptChallenge
+    // students accept a challenge
+    acceptChallenge: function(challenge_id) {
+      console.log('acceptChallenge');
+      return $http.post('/students/' + challenge_id).then(function(response) {
+        return response
+        //refresh challenges
+        challengesService.getChallenges();
+        // provide user feedback
+      });
+    }, // end acceptChallenge
 
-      // award (Update) points for students
-      awardPoints: function(student, challenge) {
-        console.log('award points');
-        var data = {
-          student: student,
-          challenge: challenge
-        }
-        $http.put('/challenges/award', data).then(function(response) {
-          // refresh challenges
-          challengesService.getChallenges();
-        });
-      } // end updateChallenge
+    // award (Update) points for students
+    awardPoints: function(student, challenge) {
+      console.log('award points');
+      console.log("student", student);
+      console.log("challenge", challenge);
+      var data = {
+        student: student,
+        challenge: challenge
+      }
+      return $http.put('/challenges/award', data).then(function(response) {
+        return challengesService.getStudents(challenge.id);
+      });
+    }, // end awardPoints
 
-    }; // end challenges service
+    // Send users' id in url
+    completeChallenge: function(data) {
+      console.log('completeChallenge');
+      console.log(data);
+      var student = data.student.id;
+      var challenge = data.challenge.id;
 
-    return challengesService;
+      // console.log(info);
+      return $http.delete('/users/complete' + '/' + student + '/' + challenge).then(function(response) {
+        return response.data;
+      });
+    }
 
-  }); // end of factory
+  }; // end challenges service
+  return challengesService;
+}); // end of factory

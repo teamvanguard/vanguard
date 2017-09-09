@@ -1,40 +1,41 @@
-<div class="container login">
+<div class="container">
 
-<div class="wrapper">
-  <div class="alert alert-danger loginError" role="alert" ng-if="lc.message != ''">{{lc.message}}</div>
+  <div class="wrapper">
+    <div class="alert alert-danger loginError" role="alert" ng-if="lc.message != ''">{{lc.message}}</div>
 
-  <form ng-submit="lc.login()" class="form-signin">
+    <form ng-submit="lc.login()" class="form-signin">
 
-      <h2 class="form-signin-heading">Please login</h2>
+      <h3>Please login</h3>
 
-      <div class="submutButton">
-      <p>Sign-in with gmail</p>
-        <a href="/auth/google" class="btn btn-primary hidden-sm hidden-xs btn-social btn-google"><i class="fab fa-google"></i>Google</a>
-        <a href="/auth/google" class="btn btn-primary visible-sm visible-xs btn-social btn-google "><i class="fab fa-google-plus"></i>Google</a>
-
-      </div>
-      <p>OR</p>
 
       <div class="submitButton">
-        <p>No Gmail Account? Please Register to login</p>
+        <a href="/auth/google" class="btn btn-primary btn-block hidden-sm hidden-xs btn-social btn-google"><i class="fab fa-google"></i>Sign in with Gmail</a>
+        <a href="/auth/google" class="btn btn-block btn-primary visible-sm visible-xs btn-social btn-google "><i class="fab fa-google-plus"></i>Sign in with Gmail</a>
 
-        <a href="#register" class="btn hidden-sm hidden-xs btn-link">Register</a>
-        <a href="#register" class="btn btn-block visible-sm visible-xs btn-link">Register</a>
       </div>
-
-      <div class="input-group">
+      <div class="signup-or-separator">
+        <h6 class="text">or</h6>
+        <hr>
+      </div>
+      <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-key"></i></span>
         <input type="password" ng-model="lc.user.password" class="form-control" name="password" placeholder="Password" required=""/>
 
       </div>
-      <div class="input-group">
+      <div class="form-group input-group">
         <span class="input-group-addon"><i class="fa fa-user"></i></span>
         <input type="text" class="form-control " name="username" placeholder="Username" ng-model="lc.user.username" required="" autofocus="" />
       </div>
+      <button class="btn btn-block btn-primary hidden-sm hidden-xs" type="submit" name="submit" value="Log In">Login</button>
+      <button class="btn btn-block btn-primary visible-sm visible-xs " type="submit" name="submit" value="Log In">Login</button>
+      <p class="text-center text-muted">
+        <small>Don't have an account yet? <a href="#/register">Sign up</a></small>
+      </p>
 
-      <button class="submit btn btn-md btn-primary hidden-sm hidden-xs" type="submit" name="submit" value="Log In">Login</button>
-      <button class="submit btn btn-primary btn-block visible-sm visible-xs " type="submit" name="submit" value="Log In">Login</button>
+
+
+
+
 
     </form>
   </div>
-</div>
