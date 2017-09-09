@@ -27,5 +27,16 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
     }
   }
 
+  msc.client = filestack.init('AKuV0DiBTT5OJNRrMUmTTz');
 
+     msc.showPicker = function() {
+         msc.client.pick({
+         }).then(function(result) {
+           msc.newItem.item_image = result.filesUploaded[0].url;
+           console.log(result.filesUploaded[0].url);
+            //  console.log(JSON.stringify(result.filesUploaded));
+             swal("Image Successfully Uploaded");
+            //  console.log(msc.newItem.image);
+         });
+     }
 }); //end of controller

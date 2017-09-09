@@ -125,7 +125,7 @@
                   <i class="fa fa-pencil" aria-hidden="true"></i>
 
                 </button>
-                  <button type="button" class="btn btn-danger btn-md btn-space" name="button" ng-click="msc.itemsService.deleteItem(item)">
+                  <button type="button" class="btn btn-danger btn-md btn-space" name="button" ng-click="tcc.challengesService.deleteChallenge(challenge)">
                     <i class="fa fa-trash" aria-hidden="true"></i>
 
                   </button>
@@ -165,7 +165,7 @@
         <tr ng-repeat="student in tcc.currentChallenge.students">
           <td>{{student.name}}</td>
           <td>{{student.student_id}}</td>
-          <td>{{student.pass | pass}}</td>
+          <!-- <td>{{student.pass | pass}}</td> -->
           <td>
             <button ng-if="student.pass" type="button" class="btn btn-danger btn-block btn-md " ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
               Incomplete

@@ -50,24 +50,6 @@ myApp.factory('ChallengesService', function($http, $location) {
         }
       }, // end addChallenge
 
-      // make updates to the challenge
-      updateChallenge: function(challenge) {
-        console.log('update challenge');
-        $http.put('/challenges', challenge).then(function(response) {
-          // refresh challenges
-          challengesService.getChallenges();
-        });
-      }, // end updateChallenge
-
-      //delete a challenge
-      deleteChallenge: function(challenge) {
-        console.log('deleteChallenge');
-        $http.delete('/challenges/' + challenge.id).then(function(response) {
-          // refresh challenges
-          challengesService.getChallenges();
-        });
-      }, // end deleteChallenge
-
     // make updates to the challenge
     updateChallenge: function(challenge) {
       console.log('update challenge');
