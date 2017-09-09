@@ -24,7 +24,7 @@ CREATE TABLE "items" (
   "item_name" character varying(60) NOT NULL,
   "item_description" varchar(180) NOT NULL,
   "pts_value" integer NOT NULL,
-  "pic" varchar(300) NOT NULL,
+  "item_image" varchar(300) NOT NULL,
 	"qty" integer,
   "school_community" Boolean NOT NULL,
   "last_edit_user_id" integer references "users" ON DELETE SET NULL

@@ -200,37 +200,6 @@ router.put('/', function(req, res) {
       } else {res.sendStatus(401)}
     } else {res.sendStatus(401)}
   }); // end of PUT
-// //edit a user role
-// router.put('/', function(req, res) {
-//   console.log('users router put edit user');
-//   console.log(req.body);
-//   //only admins
-//   if(req.user.role == constantModule.ADMIN_ROLE){
-//     pool.connect(function(errorConnectingToDatabase, db, done){
-//       if(errorConnectingToDatabase) {
-//         console.log('Error connecting to the database.');
-//         res.sendStatus(500);
-//       } else {
-//         // We connected to the database!!!
-//         // Now we're going to GET things from the db
-//         var queryText = 'UPDATE users SET name = $1, student_id = $2, email = $3, role = $4 WHERE id = $5;';
-//         // errorMakingQuery is a bool, result is an object
-//         db.query(queryText, [req.body.name, req.body.student_id, req.body.email, req.body.role, req.body.id], function(errorMakingQuery, result){
-//           done();
-//           if(errorMakingQuery) {
-//             console.log('Attempted to query with', queryText);
-//             console.log('Error making query');
-//             res.sendStatus(500);
-//           } else {
-//             // console.log(result.rows);
-//             // Send back the results
-//             res.send(result.rows);
-//           }
-//         }); // end query
-//       } // end if
-//     }); // end pool
-//   } else {res.sendStatus(401);} //not authorized
-// });
 
 //delete a user
 router.delete('/:id', function(req, res) {

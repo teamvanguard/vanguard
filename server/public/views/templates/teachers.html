@@ -155,21 +155,21 @@
       <thead>
         <th>Student Name</th>
         <th>Student Id</th>
-        <th>Status</th>
-        <th>Pass/Fail</th>
+        <!-- <th>Status</th> -->
+        <th>Complete/Incomplete</th>
         <th>Award Points</th>
       </thead>
       <tbody>
         <tr ng-repeat="student in tcc.currentChallenge.students">
           <td>{{student.name}}</td>
           <td>{{student.student_id}}</td>
-          <td>{{student.pass | pass}}</td>
+          <!-- <td>{{student.pass | pass}}</td> -->
           <td>
             <button ng-if="student.pass" type="button" class="btn btn-danger btn-sm btn-space" ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
               Incomplete
             </button>
             <button ng-if="!student.pass" type="button" class="btn btn-success btn-sm btn-space" ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
-              Pass
+              Complete
             </button>
           </td>
           <td>
