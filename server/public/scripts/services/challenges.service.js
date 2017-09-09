@@ -72,15 +72,11 @@ myApp.factory('ChallengesService', function($http, $location) {
     // students accept a challenge
     acceptChallenge: function(challenge_id) {
       console.log('acceptChallenge');
-      $http.post('/students/' + challenge_id).then(function(response) {
+      return $http.post('/students/' + challenge_id).then(function(response) {
+        return response
         //refresh challenges
         challengesService.getChallenges();
         // provide user feedback
-        swal(
-          'Good job!',
-          'You selected a challange!',
-          'success'
-        );
       });
     }, // end acceptChallenge
 
