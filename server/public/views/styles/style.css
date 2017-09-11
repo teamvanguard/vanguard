@@ -307,7 +307,7 @@ body,html {
   font-size:14px;
   margin:0;
   padding:0;
-  word-break:break-word;
+  word-wrap: break-word;
 }
 
 details {
