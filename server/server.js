@@ -1,4 +1,4 @@
-require('dotenv').config(); //needed to set environment variable
+require('dotenv').config(); //environment variable
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -15,8 +15,7 @@ var itemsRouter = require('./routes/items.router');
 var usersRouter = require('./routes/users.router');
 var challengesRouter = require('./routes/challenge.router');
 var studentsRouter = require('./routes/students.router');
-
-
+var mailRouter = require('./routes/mail.router');
 
 var port = process.env.PORT || 5000;
 
@@ -41,6 +40,7 @@ app.use('/items', itemsRouter);
 app.use('/users', usersRouter);
 app.use('/challenges', challengesRouter);
 app.use('/students', studentsRouter);
+app.use('/send', mailRouter)
 
 
 // Catch all bucket, must be last!

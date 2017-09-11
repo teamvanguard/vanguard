@@ -12,8 +12,10 @@ myApp.factory('AutocompleteService', function($http, $location , ItemsService){
 // get list of students to use in autocomplete
     getStudents : function(){
       console.log('Getting Students');
-      $http.get('/users/students').then(function(response){
+      return $http.get('/users/students').then(function(response){
         autocompletePackage.studentsList = response.data;
+        return response.data;
+        // console.log(response.data);
       });
     },
 

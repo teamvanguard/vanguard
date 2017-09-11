@@ -25,7 +25,7 @@ CREATE TABLE "items" (
   "item_description" varchar(180) NOT NULL,
   "pts_value" integer NOT NULL,
   "item_image" varchar(300),
-	"qty" integer DEFAULT 0,
+  "qty" integer DEFAULT(0),
   "school_community" Boolean NOT NULL,
   "last_edit_user_id" integer references "users" ON DELETE SET NULL
 );

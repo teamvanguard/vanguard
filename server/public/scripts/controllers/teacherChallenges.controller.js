@@ -1,4 +1,4 @@
-myApp.controller('TeacherChallengesController', function(UserService, $http, ChallengesService) {
+myApp.controller('TeacherChallengesController', function(UserService, $http, ChallengesService, AutocompleteService) {
   console.log('TeacherChallengesController created');
   var tcc = this;
   tcc.userService = UserService;
@@ -186,5 +186,30 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
       tcc.getStudents(challenge_id);
     })
   }
+
+  tcc.sendMail = function(){
+    //using the getStudents function, returning response as an array with student objects
+  if (tcc.newChallenge.challenge_name && tcc.newChallenge.description && tcc.newChallenge.start_date &&
+      tcc.newChallenge.end_date && tcc.newChallenge.pts_value){
+    AutocompleteService.getStudents().then(function(response){
+      var emailList = [];
+      var emails = {};
+      //looping through each object and calling a funtion that pulls each student's email
+      response.forEach(output);
+      function output(students){
+        emailList.push(students.email);
+        // console.log(emailList);
+        //converting to object to send in http
+        emails.emailList = emailList;
+      }
+      $http.post('/send', emails).then(function(response){
+        console.log(response);
+      });
+      console.log("EMAIL SENT TO ALL STUDENTS!");
+    });
+  }else{
+    console.log("PLEASE FILL OUT ALL CHALLENGE INFORMATION");
+  }
+  } //end of sendMail function
 
 }); // end TeacherChallengesController
