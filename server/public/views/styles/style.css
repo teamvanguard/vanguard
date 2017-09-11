@@ -311,7 +311,7 @@ body,html {
   font-size:14px;
   margin:0;
   padding:0;
-  word-break:break-word;
+  word-wrap: break-word;
 }
 
 details {
@@ -361,9 +361,6 @@ summary {
   padding:5px 10px;
 }
 
-td span {
-  word-break:break-all;
-}
 .form-signin h3 {
     text-align: center;
     padding-bottom: 20px;

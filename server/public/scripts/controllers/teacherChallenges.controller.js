@@ -81,25 +81,31 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
       tcc.currentChallenge.students = response;
     })
   }
+  
+  //tcc.changeView = function(){
+    function OpenCalender($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      tcc.picker.start_date = !tcc.picker.start_date;
+    }
 
-  // tcc.changeView = function(){
-  function OpenCalender($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    tcc.picker.start_date = !tcc.picker.start_date;
+    function OpenCalender2($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+      tcc.picker.end_date = !tcc.picker.end_date;
+    }
+
+
+  //}
+  tcc.fixDate = function(challenge) {
+    challenge.end_date = new Date(challenge.end_date);
+    challenge.start_date = new Date(challenge.start_date);
   }
+  // tcc.endDate = {
+  //   end = new Date(tcc.end_date);
+  // };
 
-  function OpenCalender2($event) {
-    $event.preventDefault();
-    $event.stopPropagation();
-    tcc.picker.end_date = !tcc.picker.end_date;
-  }
-  // }
-
-  tcc.today = function() {
-    tcc.dt = new Date();
-  };
-  tcc.today();
+  //tcc.today();
 
   tcc.clear = function() {
     tcc.dt = null;
