@@ -26,7 +26,7 @@ myApp.factory('ItemsService', function($http, $location){
         // item doesn't have all of the needed info
         swal(
           'Missing information!',
-          'Please for missing fields.',
+          'Please check for missing fields.',
           'error'
         );
       }
@@ -44,6 +44,11 @@ myApp.factory('ItemsService', function($http, $location){
     editItem: function(item) {
       console.log('editItem');
       $http.put('/items', item).then(function(response){
+        swal(
+          'Edit saved',
+          'Item has been updated successfully',
+          'success'
+        );
         // refresh items
         itemsService.getItems();
       });

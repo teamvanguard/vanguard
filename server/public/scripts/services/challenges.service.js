@@ -41,10 +41,20 @@ myApp.factory('ChallengesService', function($http, $location) {
         newChallenge.end_date && newChallenge.pts_value) {
           console.log('addChallenge');
           $http.post('/challenges', newChallenge).then(function(response) {
+            swal(
+              'Great!',
+              'New item has been added to the store',
+              'success'
+            );
             //refresh challenges
             challengesService.getChallenges();
           });
         } else {
+          swal(
+            'Missing information!',
+            'Please check for missing fields.',
+            'error'
+          );
           // newChallenge is missing some info
           console.log('please fill out all the info');
         }
@@ -55,6 +65,11 @@ myApp.factory('ChallengesService', function($http, $location) {
       console.log('update challenge');
       $http.put('/challenges', challenge).then(function(response) {
         // refresh challenges
+        swal(
+          'Challenge saved',
+          'Challenge has been updated successfully',
+          'success'
+        );
         challengesService.getChallenges();
       });
     }, // end updateChallenge
