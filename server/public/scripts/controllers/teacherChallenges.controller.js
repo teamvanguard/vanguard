@@ -29,7 +29,7 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
     })
   }
 
-  // tcc.changeView = function(){
+  //tcc.changeView = function(){
     function OpenCalender($event) {
       $event.preventDefault();
       $event.stopPropagation();
@@ -41,12 +41,18 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
       $event.stopPropagation();
       tcc.picker.end_date = !tcc.picker.end_date;
     }
-  // }
 
-  tcc.today = function() {
-    tcc.dt = new Date();
-  };
-  tcc.today();
+
+  //}
+  tcc.fixDate = function(challenge) {
+    challenge.end_date = new Date(challenge.end_date);
+    challenge.start_date = new Date(challenge.start_date);
+  }
+  // tcc.endDate = {
+  //   end = new Date(tcc.end_date);
+  // };
+
+  //tcc.today();
 
   tcc.clear = function() {
     tcc.dt = null;
