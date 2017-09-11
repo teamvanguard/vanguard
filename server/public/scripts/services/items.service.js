@@ -13,7 +13,7 @@ myApp.factory('ItemsService', function($http, $location){
       if (newItem.name && newItem.description && newItem.pts_value && newItem.qty && newItem.school_community) {
         $http.post('/items', newItem).then(function(response){
           swal(
-            'Great!'
+            'Great!',
             'New item has been added to the store',
             'success'
           );
@@ -24,7 +24,11 @@ myApp.factory('ItemsService', function($http, $location){
       }
       else {
         // item doesn't have all of the needed info
-        console.log('fill out all the info');
+        swal(
+          'Missing information!',
+          'Please for missing fields.',
+          'error'
+        );
       }
     },
 
@@ -61,7 +65,7 @@ myApp.factory('ItemsService', function($http, $location){
         });
         swal(
         'Deleted!',
-        'Your file has been deleted.',
+        'The item has been deleted',
         'success'
       )
       })

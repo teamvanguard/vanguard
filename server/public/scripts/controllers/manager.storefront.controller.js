@@ -36,8 +36,8 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
            console.log(result.filesUploaded[0].url);
             //  console.log(JSON.stringify(result.filesUploaded));
              swal(
-               'Good job!',
-               'You selected a challange!',
+               'Great!',
+               'Image has been added to the challenge',
                'success'
              );
             //  console.log(msc.newItem.image);
