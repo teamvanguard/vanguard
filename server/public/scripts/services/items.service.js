@@ -6,23 +6,33 @@ myApp.factory('ItemsService', function($http, $location){
 
     itemList: [],
 
-// submit a new item
+    // submit a new item
     submitNewItem: function(newItem){
       console.log('submitNewItem');
       //make sure newItem has all needed information
       if (newItem.name && newItem.description && newItem.pts_value && newItem.qty && newItem.school_community) {
         $http.post('/items', newItem).then(function(response){
+          swal(
+            'Great!',
+            'New item has been added to the store',
+            'success'
+          );
+
           // refresh items
           itemsService.getItems();
         });
       }
       else {
         // item doesn't have all of the needed info
-        console.log('fill out all the info');
+        swal(
+          'Missing information!',
+          'Please check for missing fields.',
+          'error'
+        );
       }
     },
 
-// get list of items
+    // get list of items
     getItems: function(){
       console.log('get items');
       $http.get('/items').then(function(response){
@@ -30,25 +40,43 @@ myApp.factory('ItemsService', function($http, $location){
       });
     },
 
-// edit an item
+    // edit an item
     editItem: function(item) {
       console.log('editItem');
       $http.put('/items', item).then(function(response){
+        swal(
+          'Edit saved',
+          'Item has been updated successfully',
+          'success'
+        );
         // refresh items
         itemsService.getItems();
       });
     },
 
-// delete an item
+    // delete an item
     deleteItem: function(item) {
       console.log('deleteItem');
-      $http.delete('/items/' + item.id).then(function(response){
-        //refresh items
-        itemsService.getItems();
-      });
+      swal({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete it!'
+      }).then(function () {
+        $http.delete('/items/' + item.id).then(function(response){
+          //refresh items
+          itemsService.getItems();
+        });
+        swal(
+        'Deleted!',
+        'The item has been deleted',
+        'success'
+      )
+      })
     },
 
-// sell an item
+    // sell an item
     sellItem: function(item, student){
       console.log('sell item');
       // define item to send to server

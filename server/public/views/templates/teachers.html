@@ -98,10 +98,10 @@
               </td>
 
               <td>
-                <span ng-show="!rowform.$visible" e-class="start_date form-control" editable-bsdate="challenge.start_date" e-form="rowform" e-is-open="tcc.picker.start_date" e-ng-click="tcc.openCalender($event, 'start_date')" e-datepicker-popup="shortDate">{{challenge.start_date | date: 'MM/dd/yyyy' || challenge.start_date}}</span>
+                <span ng-show="!rowform.$visible" editable-bsdate="today" e-class="start_date form-control" editable-bsdate="challenge.start_date" e-form="rowform" e-is-open="tcc.picker.start_date" e-ng-click="tcc.openCalender($event, 'start_date')" e-datepicker-popup="shortDate">{{challenge.start_date | date: 'MM/dd/yyyy'}}</span>
               </td>
               <td>
-                <span ng-show="!rowform.$visible"  e-class="end_date form-control" editable-bsdate="challenge.end_date" e-form="rowform" e-is-open="tcc.picker.end_date" e-ng-click="tcc.openCalender2($event, 'end_date')" e-datepicker-popup="shortDate">{{challenge.end_date | date: 'MM/dd/yyyy' || challenge.end_date}}</span>
+                <span ng-show="!rowform.$visible"  editable-bsdate="today"  e-class="end_date form-control"  e-form="rowform" e-is-open="tcc.picker.end_date" e-ng-click="tcc.openCalender2($event, 'end_date')" e-datepicker-popup="shortDate">{{challenge.end_date | date: 'MM/dd/yyyy'}}</span>
               </td>
               <td>
                 <span ng-show="!rowform.$visible"  e-class="pts_value form-control" editable-text="challenge.pts_value"  e-form="rowform"  >{{challenge.pts_value}}</span>
@@ -144,6 +144,7 @@
   <div class="row">
     <div class="col-md-12">
       <h2>Students in the challenge</h2>
+      <h3>{{challenge.challenge_name}}</h3>
     </div>
   </div>
   <div class="row">
