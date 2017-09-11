@@ -4,10 +4,10 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
   tcc.userService = UserService;
   tcc.newChallenge = {};
 
+  tcc.myChallenges = false;
+
   tcc.challengesService = ChallengesService;
   tcc.challenges = ChallengesService.challenges;
-
-  tcc.challengesService.getChallenges();
 
   tcc.view = 'challenges';
 
@@ -16,11 +16,64 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
   tcc.openCalender = OpenCalender;
   tcc.openCalender2 = OpenCalender2;
 
+  tcc.deleteChallenge = function(challenge) {
+    ChallengesService.deleteChallenge(challenge).then(function(response) {
+      console.log('challenge deleted');
+      tcc.getChallenges();
+    });
+  }
+
+  tcc.addChallenge = function(newChallenge) {
+    ChallengesService.addChallenge(newChallenge).then(function(response) {
+      console.log(response);
+      tcc.getChallenges();
+      swal(
+        'Great!',
+        'New challenge has been added',
+        'success'
+      );
+    });
+  }
+
   tcc.awardPoints = function(student, challenge){
     ChallengesService.awardPoints(student, challenge).then(function(response){
       console.log(response);
       tcc.getStudents(challenge.id)
-    })
+    });
+  }
+
+  tcc.getChallenges = function() {
+    if(tcc.myChallenges == true){
+      ChallengesService.getMyChallenges().then(function(response) {
+        console.log(response);
+        tcc.challenges = response
+        tcc.myChallenges = true;
+      });
+    }
+    else if (tcc.myChallenges == false) {
+      ChallengesService.getChallenges().then(function(response) {
+        console.log(response);
+        tcc.challenges = response;
+        tcc.myChallenges = false;
+      });
+    }
+  }
+
+  tcc.toggleChallenges = function() {
+    if(tcc.myChallenges == false) {
+      ChallengesService.getMyChallenges().then(function(response) {
+        console.log(response);
+        tcc.challenges = response
+        tcc.myChallenges = true;
+      });
+    }
+    else if(tcc.myChallenges == true) {
+      ChallengesService.getChallenges().then(function(response) {
+        console.log(response);
+        tcc.challenges = response;
+        tcc.myChallenges = false;
+      });
+    }
   }
 
   tcc.completeChallenge = function(data) {
@@ -28,7 +81,7 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
       tcc.currentChallenge.students = response;
     })
   }
-
+  
   //tcc.changeView = function(){
     function OpenCalender($event) {
       $event.preventDefault();
@@ -195,27 +248,28 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
 
   tcc.sendMail = function(){
     //using the getStudents function, returning response as an array with student objects
-  if (tcc.newChallenge.challenge_name && tcc.newChallenge.description && tcc.newChallenge.start_date &&
+    if (tcc.newChallenge.challenge_name && tcc.newChallenge.description && tcc.newChallenge.start_date &&
       tcc.newChallenge.end_date && tcc.newChallenge.pts_value){
-    AutocompleteService.getStudents().then(function(response){
-      var emailList = [];
-      var emails = {};
-      //looping through each object and calling a funtion that pulls each student's email
-      response.forEach(output);
-      function output(students){
-        emailList.push(students.email);
-        // console.log(emailList);
-        //converting to object to send in http
-        emails.emailList = emailList;
+        AutocompleteService.getStudents().then(function(response){
+          var emailList = [];
+          var emails = {};
+          //looping through each object and calling a funtion that pulls each student's email
+          response.forEach(output);
+          function output(students){
+            emailList.push(students.email);
+            // console.log(emailList);
+            //converting to object to send in http
+            emails.emailList = emailList;
+          }
+          $http.post('/send', emails).then(function(response){
+            console.log(response);
+          });
+          console.log("EMAIL SENT TO ALL STUDENTS!");
+        });
+      }else{
+        console.log("PLEASE FILL OUT ALL CHALLENGE INFORMATION");
       }
-      $http.post('/send', emails).then(function(response){
-        console.log(response);
-      });
-      console.log("EMAIL SENT TO ALL STUDENTS!");
-    });
-  }else{
-    console.log("PLEASE FILL OUT ALL CHALLENGE INFORMATION");
-  }
-  } //end of sendMail function
+    } //end of sendMail function
 
-}); // end TeacherChallengesController
+    tcc.getChallenges();
+  }); // end TeacherChallengesController

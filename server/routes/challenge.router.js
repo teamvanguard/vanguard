@@ -30,7 +30,7 @@ router.get('/unacceptedChallenges', function(req, res) {
           'challenges.pts_value, challenges.teacher_id, teachers.name AS teacher_name ' +
           'FROM challenges JOIN users teachers ON challenges.teacher_id = teachers.id ' +
           'LEFT JOIN student_challenge ON student_challenge.challenge_id = challenges.id ' +
-          'WHERE NOT student_challenge.challenge_id = ANY (SELECT student_challenge.challenge_id ' +
+          'WHERE NOT challenges.id = ANY (SELECT student_challenge.challenge_id ' +
           'FROM student_challenge WHERE student_challenge.student_id = $1) ' +
           'GROUP BY student_challenge.challenge_id, challenges.id, teachers.name ' +
           'ORDER BY start_date ASC;'
@@ -92,6 +92,41 @@ router.get('/acceptedChallenges', function(req,res) {
       }); // end pool
     } else {res.sendStatus(401)}
   } else {res.sendStatus(401)}
+});
+
+router.get('/myChallenges', function(req, res) {
+  console.log('myChallenges');
+  if (req.isAuthenticated()) {
+    //checks if user is authorized
+    if (req.user.role == constantModule.TEACHER_ROLE || req.user.role == constantModule.ADMIN_ROLE) {
+      pool.connect(function(errorConnectingToDatabase, db, done) {
+        if (errorConnectingToDatabase) {
+          console.log('Error connecting to the database.');
+          res.sendStatus(500);
+        } else {
+          // set query
+          var queryText = 'SELECT * FROM challenges WHERE teacher_id = $1';
+          db.query(queryText, [req.user.id],
+            function(errorMakingQuery, result) {
+              //return connection to pool
+              done();
+              if (errorMakingQuery) {
+                console.log('Attempted to query with', queryText);
+                console.log('Error making query');
+                res.sendStatus(500);
+              } else {
+                // Send back the results
+                res.send(result.rows);
+              }
+            }); // end query
+        } // end if
+      }); // end pool
+    } else {
+      res.sendStatus(401)
+    }
+  } else {
+    res.sendStatus(401)
+  }
 });
 
 router.put('/students', function(req, res) {

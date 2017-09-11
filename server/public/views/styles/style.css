@@ -257,6 +257,10 @@
   pointswidth:9%;
 }
 
+.studentNavButtons {
+  padding-top: 10px;
+}
+
 .studentPoints {
   text-align:center;
   width:auto;

@@ -5,6 +5,13 @@ myApp.factory('ChallengesService', function($http, $location) {
 
     challenges: [],
 
+    getMyChallenges: function(){
+      console.log('getMyChallenges');
+      return $http.get('/challenges/myChallenges').then(function(response) {
+        return response.data;
+      });
+    },
+
     getAcceptedChallenges: function() {
       return $http.get('/challenges/acceptedChallenges').then(function(response) {
         return response;
@@ -40,10 +47,11 @@ myApp.factory('ChallengesService', function($http, $location) {
       if (newChallenge.challenge_name && newChallenge.description && newChallenge.start_date &&
         newChallenge.end_date && newChallenge.pts_value) {
           console.log('addChallenge');
-          $http.post('/challenges', newChallenge).then(function(response) {
+          return $http.post('/challenges', newChallenge).then(function(response) {
+            return response
             swal(
               'Great!',
-              'New item has been added to the store',
+              'New challenge has been added',
               'success'
             );
             //refresh challenges
@@ -77,7 +85,8 @@ myApp.factory('ChallengesService', function($http, $location) {
     //delete a challenge
     deleteChallenge: function(challenge) {
       console.log('deleteChallenge');
-      $http.delete('/challenges/' + challenge.id).then(function(response) {
+      return $http.delete('/challenges/' + challenge.id).then(function(response) {
+        return response
         // refresh challenges
         challengesService.getChallenges();
       });
