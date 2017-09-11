@@ -27,6 +27,7 @@ myApp.factory('UsersService', function($http, $location){
       console.log(user);
       $http.put('/users', user).then(function(response) {
         console.log('user role edited');
+        usersService.getUsers();
       });
     },
 
@@ -42,22 +43,24 @@ myApp.factory('UsersService', function($http, $location){
       console.log('Getting Students');
       $http.get('/users').then(function(response){
         // console.log(response.data);
-        var users = response.data
-        // console.log(users);
-        for (var i = 0; i < users.length; i++) {
-          var user = users[i];
-          // console.log(user.role);
-          if (user.role == ADMIN_ROLE) {
-            user.role = 'Admin';
-          } else if (user.role == STORE_MANAGER_ROLE) {
-            user.role = 'Store Manager';
-          } else if (user.role == TEACHER_ROLE) {
-            user.role = 'Teacher';
-          } else if (user.role == STUDENT_ROLE) {
-            user.role = 'Student';
-          }
-          appUsers.push(user);
-        }
+        // var users = response.data
+        // // console.log(users);
+        // for (var i = 0; i < users.length; i++) {
+        //   var user = users[i];
+        //   // console.log(user.role);
+        //   if (user.role == ADMIN_ROLE) {
+        //     user.role = 'Admin';
+        //   } else if (user.role == STORE_MANAGER_ROLE) {
+        //     user.role = 'Store Manager';
+        //   } else if (user.role == TEACHER_ROLE) {
+        //     user.role = 'Teacher';
+        //   } else if (user.role == STUDENT_ROLE) {
+        //     user.role = 'Student';
+        //   }
+        //   appUsers.push(user);
+        // }
+        usersService.appUsers = response.data;
+        console.log(usersService.appUsers);
         // console.log(avuc.users);
       });
     },

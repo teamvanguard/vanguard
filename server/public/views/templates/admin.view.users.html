@@ -102,7 +102,9 @@
               <span ng-show="!rowform.$visible"  e-class="email form-control" editable-text="user.email"  e-form="rowform"  >{{user.email}}</span>
             </td>
             <td>
-              <span ng-show="!rowform.$visible"   e-class="role form-control" editable-text="user.role" e-form="rowform"  >{{user.role}}</span>
+              <span ng-show="!rowform.$visible" e-ng-options="role.value as role.text for role in avuc.roleList"  e-class="role form-control" buttons="no" editable-select="user.role" e-form="rowform">
+                {{user.role | role}}
+              </span>
             </td>
             <td class="actionButtons hidden-sm hidden-xs">
               <form onaftersave="avuc.usersService.editUser(user)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">

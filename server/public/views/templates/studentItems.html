@@ -6,7 +6,7 @@
         {{reward.item_name}}
       </summary>
       <div class="challengeInfo">
-        <img ng-src="{{reward.item_image}}" height="100px" width="100px">
+        <img ng-if="reward.item_image" ng-src="{{reward.item_image}}" height="100px" width="100px">
         <div class="challenge"><label>Description: </label> {{reward.item_description}}</div>
         <div class="challenge"><label>Cost: </label> {{reward.pts_value}}</div>
       </div>

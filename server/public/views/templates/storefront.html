@@ -150,7 +150,9 @@
               <span ng-show="!rowform.$visible"  e-class="qty form-control" editable-text="item.qty"  e-form="rowform"  >{{item.qty}}</span>
             </td>
             <td>
-              <span ng-show="!rowform.$visible"  e-class="school_community form-control" editable-text="item.school_community"  e-form="rowform" value="{{item.school_community}}">{{item.school_community | itemType}}</span>
+              <span ng-show="!rowform.$visible" e-ng-options="type.value as type.text for type in msc.itemTypes" e-class="school_community form-control" editable-select="item.school_community" buttons="no" e-form="rowform" value="{{item.school_community}}">
+                {{item.school_community | itemType}}
+              </span>
             </td>
           </td>
           <td>

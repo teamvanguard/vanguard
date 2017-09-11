@@ -6,6 +6,11 @@ myApp.controller('ManagerStorefrontController', function(UserService, $http, Ite
     school_community: 'true'
   };
 
+  msc.itemTypes = [
+    {value: true, text: 'School'},
+    {value: false, text: 'Community'}
+  ]
+
   msc.autocompleteService = AutocompleteService;
   msc.autocompletePackage = AutocompleteService.autocompletePackage;
   msc.autocompleteService.getStudents();
