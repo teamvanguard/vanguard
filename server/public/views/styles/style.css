@@ -16,7 +16,10 @@
   margin:0 auto;
   max-width:380px;
 }
-
+img.desktop {
+    max-width: 122px;
+    padding-top:10px;
+}
 .alignCenter {
   display:block;
   margin-left:auto;
