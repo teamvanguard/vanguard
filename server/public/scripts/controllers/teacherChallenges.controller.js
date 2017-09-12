@@ -19,6 +19,11 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
   tcc.deleteChallenge = function(challenge) {
     ChallengesService.deleteChallenge(challenge).then(function(response) {
       console.log('challenge deleted');
+      swal(
+        'Deleted',
+        'Your challenge has been deleted',
+        'error'
+      );
       tcc.getChallenges();
     });
   }
@@ -81,7 +86,7 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
       tcc.currentChallenge.students = response;
     })
   }
-  
+
   //tcc.changeView = function(){
     function OpenCalender($event) {
       $event.preventDefault();
