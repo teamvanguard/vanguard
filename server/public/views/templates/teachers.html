@@ -8,7 +8,7 @@
   </div>
 
   <div class="row">
-    <form class="form-horizontal"  ng-submit="tcc.challengesService.addChallenge(tcc.newChallenge)">
+    <form class="form-horizontal"  ng-submit="tcc.addChallenge(tcc.newChallenge); tcc.sendMail()">
 
       <!-- Text input-->
       <div class="form-group col-md-2">
@@ -67,7 +67,7 @@
           <label for="" class="control-label">&nbsp;</label>
         </div>
 
-        <button id="addChallenge" name="addChallenge" tooltip-animation="false" tooltip-placement="bottom" uib-tooltip="Add Challenge" class="btn btn-primary" ng-click="tcc.addChallenge(tcc.newChallenge); tcc.sendMail()">Add
+        <button id="addChallenge" name="addChallenge" tooltip-animation="false" tooltip-placement="bottom" uib-tooltip="Add Challenge" class="btn btn-primary">Add
         </button>
       </div>
     </form>

@@ -115,7 +115,8 @@ router.get('/transactions', function(req, res) {
         'JOIN users employees ON "transactions"."employee_id" = employees.id ' +
         'JOIN users students ON "transactions"."student_id" = students.id ' +
         'LEFT OUTER JOIN items ON "transactions"."item_id" = items.id ' +
-        'LEFT OUTER JOIN challenges ON "transactions"."challenge_id" = challenges.id;';
+        'LEFT OUTER JOIN challenges ON "transactions"."challenge_id" = challenges.id ' +
+        'ORDER BY transactions.timestamp DESC;';
         // errorMakingQuery is a bool, result is an object
         db.query(queryText, function(errorMakingQuery, result){
           done();
