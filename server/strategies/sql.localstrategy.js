@@ -4,6 +4,7 @@ var localStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var encryptLib = require('../modules/encryption');
 var pool = require('../modules/pool.js');
+var constantModule  = require('../modules/roles.constants.js');
 
 passport.use(new GoogleStrategy({
     clientID: process.env.CLIENT_ID,
@@ -23,8 +24,8 @@ passport.use(new GoogleStrategy({
         }
         var user = {};
         //adding user to database if not already there
-        client.query("INSERT INTO users (username, name, email, pic) VALUES ($2,$1, $2, $3) ON CONFLICT (email) DO UPDATE SET username = $2, name = $1, email = $2, pic = $3",
-        [profile.displayName, profile.emails[0].value, profile.photos[0].value ],
+        client.query("INSERT INTO users (username, name, email, pic, role) VALUES ($2,$1, $2, $3, $4) ON CONFLICT (email) DO UPDATE SET username = $2, name = $1, email = $2, pic = $3",
+        [profile.displayName, profile.emails[0].value, profile.photos[0].value, constantModule.STUDENT_ROLE ],
         function(err, result) {
         // Handle Errors
           if(err) {
