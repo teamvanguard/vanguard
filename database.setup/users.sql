@@ -24,4 +24,5 @@ VALUES
 ('ricex407@gmail.com',NULL,'Antonio Rice',NULL,'https://lh4.googleusercontent.com/--vW7X3Ker0Q/AAAAAAAAAAI/AAAAAAAAAKg/K_D5NE5M-MU/photo.jpg?sz=50',0,0,'3','ricex407@gmail.com',NULL),
 ('brendinbarone@gmail.com',NULL,'Brendin Barone',NULL,'https://lh4.googleusercontent.com/-G1sZLkmBFCI/AAAAAAAAAAI/AAAAAAAAAAw/wDfU9y95_Lw/photo.jpg?sz=50',0,0,'4','brendinbarone@gmail.com',NULL),
 ('alenzoleyva@gmail.com',NULL,'Alessandro Leyva',NULL,'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg?sz=50',0,0,'1','alenzoleyva@gmail.com',NULL),
-('bsiegel13@gmail.com',NULL,'Ben Siegel',NULL,'https://lh3.googleusercontent.com/-4c1oh0bdZEU/AAAAAAAAAAI/AAAAAAAAAKA/ENR4F8vspys/photo.jpg?sz=50',0,0,'2','bsiegel13@gmail.com',NULL);
+('bsiegel13@gmail.com',NULL,'Ben Siegel',NULL,'https://lh3.googleusercontent.com/-4c1oh0bdZEU/AAAAAAAAAAI/AAAAAAAAAKA/ENR4F8vspys/photo.jpg?sz=50',0,0,'2','bsiegel13@gmail.com',NULL),
+('vanguardtech2017@gmail.com',NULL,NULL,NULL,NULL,0,0,'1','vanguardtech2017@gmail.com',729372);

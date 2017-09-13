@@ -13,7 +13,7 @@ CREATE TABLE "users" (
   "pic" varchar(300),
   "pts" integer DEFAULT 0,
   "lifetime_pts" integer DEFAULT 0,
-  "role" varchar(20) DEFAULT 4,
+  "role" integer DEFAULT 4,
   "email" varchar(60) UNIQUE,
   "employee_id" integer UNIQUE
 );

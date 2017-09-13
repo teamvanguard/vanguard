@@ -6,10 +6,10 @@ myApp.controller('AdminViewUsersController', function(UserService, $http, UsersS
   avuc.newUser = {};
 
   avuc.roleList = [
-    {value: '1', text: 'Admin'},
-    {value: '2', text: 'Store Manager'},
-    {value: '3', text: 'Teacher'},
-    {value: '4', text: 'Student'}
+    {value: ADMIN_ROLE, text: 'Admin'},
+    {value: STORE_MANAGER_ROLE, text: 'Store Manager'},
+    {value: TEACHER_ROLE, text: 'Teacher'},
+    {value: STUDENT_ROLE, text: 'Student'}
   ];
 
   avuc.usersService.getUsers();
