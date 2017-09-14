@@ -5,6 +5,7 @@ myApp.controller('AdminViewUsersController', function(UserService, $http, UsersS
   avuc.usersService = UsersService;
   avuc.newUser = {};
 
+//dropdown list when editing user role 
   avuc.roleList = [
     {value: ADMIN_ROLE, text: 'Admin'},
     {value: STORE_MANAGER_ROLE, text: 'Store Manager'},

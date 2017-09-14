@@ -253,6 +253,7 @@ myApp.controller('TeacherChallengesController', function(UserService, $http, Cha
 
   tcc.sendMail = function(){
     //using the getStudents function, returning response as an array with student objects
+    //email will not be sent unless form is completely filled
     if (tcc.newChallenge.challenge_name && tcc.newChallenge.description && tcc.newChallenge.start_date &&
       tcc.newChallenge.end_date && tcc.newChallenge.pts_value){
         AutocompleteService.getStudents().then(function(response){
