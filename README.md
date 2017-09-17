@@ -33,11 +33,6 @@ Follow the steps
 1) set up database
 2-6) set up individual tables
 
-
-## Screen Shot
-
-Include one or two screen shots of your project here (optional). Remove if unused.
-
 ## Documentation
 
 https://docs.google.com/document/d/1reOmnQ5pv6OZLIB4gQclkk26dDy_RVTzoVU5bx1FV_Q/edit
@@ -58,9 +53,7 @@ Store Manager View
 
 ### Next Steps
 
-Features that you would like to add at some point in the future.
-
-- [ ] Feature c
+- Pilot Testing at Edison High School and North East Middle School in Minneapolis, MN. 
 
 ## Deployment
 
