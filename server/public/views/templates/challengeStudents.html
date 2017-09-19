@@ -25,15 +25,15 @@
           <td>{{student.studentId}}</td>
           <td>{{student.pass | pass}}</td>
           <td>
-            <button ng-if="student.pass" type="button" class="btn btn-danger btn-md btn-space" ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
+            <button ng-if="student.pass" type="button" class="btn btn-danger btn-sm btn-space" ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
               Incomplete
             </button>
-            <button ng-if="!student.pass" type="button" class="btn btn-success btn-md btn-space" ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
+            <button ng-if="!student.pass" type="button" class="btn btn-success btn-sm btn-space" ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
               Pass
             </button>
           </td>
           <td>
-            <button type="button" class="btn btn-success btn-md btn-space" ng-click="tcc.challengesService.awardPoints(student, tcc.currentChallenge); tcc.changeView()">Award Points</button>
+            <button type="button" class="btn btn-success btn-sm btn-space" ng-click="tcc.challengesService.awardPoints(student, tcc.currentChallenge); tcc.changeView()">Award Points</button>
           </td>
         </tr>
       </tbody>
