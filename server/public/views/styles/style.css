@@ -28,7 +28,7 @@ img.desktop {
 
 .borderRight {
   border-right:1px solid #dfdfdf;
-  min-height:438px!important;
+  min-height:438px;
 }
 
 .btn-danger,.itemsTable .btn-danger {
@@ -103,8 +103,8 @@ img.desktop {
 }
 
 .form-horizontal .form-group {
-  margin-left:0!important;
-  margin-right:0!important;
+  margin-left:0;
+  margin-right:0;
 }
 
 .form-signin {
@@ -162,12 +162,12 @@ img.desktop {
 }
 
 .navbar-default {
-  background-color:#FFF!important;
-  border-top:3px solid #000!important;
+  background-color:#FFF;
+  border-top:3px solid #000;
 }
 
 .navbar-default .navbar-nav > li > a {
-  color:#333!important;
+  color:#333;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
@@ -232,7 +232,7 @@ img.desktop {
 }
 
 .search input.form-control {
-  border-radius:20px!important;
+  border-radius:20px;
 }
 
 .start_date,.end_date {
@@ -274,15 +274,15 @@ img.desktop {
 }
 
 .table > tbody > tr > td {
-  vertical-align:middle!important;
+  vertical-align:middle;
 }
 
 .table > thead > tr > th {
-  border-bottom:none!important;
+  border-bottom:none;
 }
 
 .table-responsive {
-  overflow-x:inherit!important;
+  overflow-x:inherit;
 }
 
 .topPadding {
@@ -337,7 +337,7 @@ h1.vanguardTech {
 }
 
 input.editable-input,textarea.editable-input {
-  width:100%!important;
+  width:100%;
 }
 
 li a {
@@ -446,6 +446,6 @@ ul.list-group {
 
 @media only screen and min-device-width 320px and max-device-width 480px{
   ul.list-group {
-    width:100%!important;
+    width:100%;
   }
 }
