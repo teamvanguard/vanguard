@@ -95,7 +95,6 @@ img.desktop {
 
 .form-control {
   font-size:16px;
-  height:163px; 
   padding:10px;
   position:relative;
   resize:none;
@@ -239,9 +238,6 @@ img.desktop {
   width:13%;
 }
 
-.storeFront .description {
-  width:24%;
-}
 
 .student h2 {
   padding:0 10px;
