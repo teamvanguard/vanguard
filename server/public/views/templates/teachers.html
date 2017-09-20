@@ -113,25 +113,25 @@
                 <span ng-show="!rowform.$visible"  e-class="pts_value form-control" editable-text="challenge.pts_value"  e-form="rowform"  >{{challenge.pts_value}}</span>
               </td>
               <td>
-                <button type="button" class="btn btn-primary btn-md " ng-click="tcc.getStudents(challenge.id)">View Students</button>
+                <button type="button" class="btn btn-primary btn-sm " ng-click="tcc.getStudents(challenge.id)">View Students</button>
               </td>
             <td class="actionButtons hidden-sm hidden-xs">
               <form onshow="tcc.fixDate(challenge)" onaftersave="tcc.challengesService.updateChallenge(challenge)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == challenge">
-                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-md btn-space">
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-sm btn-space">
                   <i class="fa fa-check" aria-hidden="true"></i>
 
                 </button>
-                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info btn-md btn-space">
+                <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info btn-sm btn-space">
                   <i class="fa fa-times" aria-hidden="true"></i>
 
                 </button>
               </form>
               <div ng-show="!rowform.$visible">
-                <button type="button" class="btn btn-primary btn-md btn-space" ng-click="rowform.$show()">
+                <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="rowform.$show()">
                   <i class="fa fa-pencil" aria-hidden="true"></i>
 
                 </button>
-                  <button type="button" class="btn btn-danger btn-md btn-space" name="button" ng-click="tcc.deleteChallenge(challenge)">
+                  <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="tcc.deleteChallenge(challenge)">
                     <i class="fa fa-trash" aria-hidden="true"></i>
 
                   </button>
@@ -172,15 +172,15 @@
           <td>{{student.student_id}}</td>
           <!-- <td>{{student.pass | pass}}</td> -->
           <td>
-            <button ng-if="!student.pass" type="button" class="btn btn-danger btn-block btn-md " ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
+            <button ng-if="!student.pass" type="button" class="btn btn-danger btn-block btn-sm " ng-click="tcc.readdStudent(student.id, tcc.currentChallenge.id)">
               Incomplete
             </button>
-            <button ng-if="student.pass" type="button" class="btn btn-success btn-block btn-md " ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
+            <button ng-if="student.pass" type="button" class="btn btn-success btn-block btn-sm " ng-click="tcc.failStudent(student.id, tcc.currentChallenge.id)">
               Complete
             </button>
           </td>
           <td>
-            <button ng-if="student.pass" type="button" class="btn btn-success btn-md btn-block" ng-click="tcc.awardPoints(student, tcc.currentChallenge)">Award Points</button>
+            <button ng-if="student.pass" type="button" class="btn btn-success btn-sm btn-block" ng-click="tcc.awardPoints(student, tcc.currentChallenge)">Award Points</button>
           </td>
         </tr>
       </tbody>

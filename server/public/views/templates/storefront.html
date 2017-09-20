@@ -72,7 +72,7 @@
 
 
             <button type="submit" name="button" class="btn btn-sm btn-primary hidden-sm hidden-xs">Add Items</button>
-            <button type="submit" name="button" class="btn btn-md btn-primary btn-block visible-sm visible-xs">Add Item</button>          </div>
+            <button type="submit" name="button" class="btn btn-sm btn-primary btn-block visible-sm visible-xs">Add Item</button>          </div>
         </form>
 
       </details>
@@ -101,7 +101,7 @@
           </div>
           <div class="form-group">
             <button id="search" name="search" class="btn btn-primary btn-sm hidden-sm hidden-xs" ng-click="msc.itemsService.sellItem(msc.autocompletePackage.selectedItem, msc.autocompletePackage.selectedStudent)">Sell</button>
-            <button id="search" name="search" class="btn btn-primary btn-md btn-block visible-sm visible-xs" ng-click="msc.itemsService.sellItem(msc.autocompletePackage.selectedItem, msc.autocompletePackage.selectedStudent)">Sell</button>
+            <button id="search" name="search" class="btn btn-primary btn-sm btn-block visible-sm visible-xs" ng-click="msc.itemsService.sellItem(msc.autocompletePackage.selectedItem, msc.autocompletePackage.selectedStudent)">Sell</button>
           </div>
         </form>
       </details>
@@ -160,21 +160,21 @@
           </td>
           <td class="actionButtons hidden-sm hidden-xs">
             <form onaftersave="msc.itemsService.editItem(item)" editable-form name="rowform" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == item">
-              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-md btn-space">
+              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-success btn-sm btn-space">
                 <i class="fa fa-check" aria-hidden="true"></i>
 
               </button>
-              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info btn-md btn-space">
+              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-info btn-sm btn-space">
                 <i class="fa fa-times" aria-hidden="true"></i>
 
               </button>
             </form>
             <div ng-show="!rowform.$visible">
-              <button type="button" class="btn btn-primary btn-md btn-space" ng-click="rowform.$show()">
+              <button type="button" class="btn btn-primary btn-sm btn-space" ng-click="rowform.$show()">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
 
               </button>
-                <button type="button" class="btn btn-danger btn-md btn-space" name="button" ng-click="msc.itemsService.deleteItem(item)">
+                <button type="button" class="btn btn-danger btn-sm btn-space" name="button" ng-click="msc.itemsService.deleteItem(item)">
                   <i class="fa fa-trash" aria-hidden="true"></i>
 
                 </button>
